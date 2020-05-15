@@ -1,4 +1,11 @@
 module.exports = {
+  css: {
+    loaderOptions: {
+      sass: {
+        prependData: `@import "@/utils/_variables.scss";`
+      }
+    }
+  },
   pwa: {
     name: 'דיווחי מגן דוד אדום',
     themeColor: '#10133B',
