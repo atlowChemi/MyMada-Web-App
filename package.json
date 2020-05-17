@@ -29,7 +29,8 @@
         "node-sass": "^4.12.0",
         "prettier": "^1.19.1",
         "sass-loader": "^8.0.2",
-        "vue-template-compiler": "^2.6.11"
+        "vue-template-compiler": "^2.6.11",
+        "webpack": "^4.43.0"
     },
     "eslintConfig": {
         "root": true,
@@ -45,13 +46,16 @@
             "parser": "babel-eslint"
         },
         "rules": {
-            "vue/max-attributes-per-line": [2, {
-                "singleline": 20,
-                "multiline": {
-                  "max": 3,
-                  "allowFirstLine": false
+            "vue/max-attributes-per-line": [
+                "error",
+                {
+                    "singleline": 20,
+                    "multiline": {
+                        "max": 3,
+                        "allowFirstLine": false
+                    }
                 }
-              }]
+            ]
         }
     },
     "browserslist": [
