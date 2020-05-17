@@ -26,7 +26,7 @@ body {
 
     .main-main {
         height: calc(100vh - 3.5rem);
-        padding: 1rem;
+        //padding: 1rem;
         margin: 0 auto;
         overflow-y: auto;
 
