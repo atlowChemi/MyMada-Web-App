@@ -22,7 +22,7 @@ const routes = [
         path: "/privacy",
         name: "Privacy",
         meta: {
-            title: 'פרטיות'
+            title: 'מדיניות פרטיות'
         },
         component: () => import("../views/Privacy.vue")
     },
