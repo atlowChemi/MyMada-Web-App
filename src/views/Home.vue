@@ -23,9 +23,8 @@ export default {
 .grid-container {
     display: grid;
     grid-gap: 0.6rem 0.7rem;
-    grid-template-columns: 50% 50%;
     align-content: center;
-    margin: 0 auto;
+    margin: 0.5rem auto;
     width: 90%;
     max-width: 45rem;
     .home-btn:first-of-type {
