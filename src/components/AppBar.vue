@@ -15,8 +15,13 @@
                 >
                     <i class="material-icons">arrow_forward</i>
                 </a>
-                <span class="main-header__nav-wrapper__brand" v-if="title">{{ title }}</span>
-                <span class="main-header__nav-wrapper__brand" v-else>דיווחי מד"א</span>
+                <span class="main-header__nav-wrapper__brand" v-if="title">{{
+                    title
+                }}</span>
+                <span
+class="main-header__nav-wrapper__brand" v-else
+                    >דיווחי מד"א</span
+                >
                 <a
                     class="main-header__nav-wrapper__button main main-header__nav-wrapper__button-left"
                     @click="openSettings"
@@ -24,7 +29,10 @@
                     <i class="material-icons">settings</i>
                 </a>
             </div>
-            <div class="main-header__nav--circle" v-if="currentLoc === 'home'"></div>
+            <div
+                class="main-header__nav--circle"
+                v-if="currentLoc === 'home'"
+            ></div>
         </nav>
     </header>
 </template>
