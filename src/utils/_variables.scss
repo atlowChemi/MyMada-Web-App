@@ -8,17 +8,19 @@ $backdropBackground: rgba(0,0,0,0.5);
 
 $homeBtnIcons: #be1616;
 
-$primaryError: #C62828;
-// $secondaryError: #ff9595;
 // $errorText: #800;
 // $primaryValid: #0cb606;
 // $secondaryValid: #91f88d;
 // $priceText: #4d4d4d;
 // $messageText: #8ac1ff;
 // $commentsColor: #afc9ff;
-/*BTN COLOR*/
+//BTN COLOR
 $btnColor: #283593;
 $btnHoverColor: #3747bc;
+$btnDisabledBackground: #9a9b9c;
+$btnDisabledColor: #455065;
+$primaryError: #C62828;
+$secondaryError: #dd4545;
 
 @mixin desktop {
     @media (min-width: $mobileMaxWidth) {
