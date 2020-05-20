@@ -1,5 +1,5 @@
 <template>
-    <router-link class="btn" :class="{classs}" v-waves:hover v-if="link" :to="to">
+    <router-link class="btn" v-waves:hover v-if="link" :to="to">
         <slot />
     </router-link>
     <button class="btn" v-waves:hover v-else @click="clicked($event)">
@@ -19,8 +19,7 @@ export default {
             type: String,
             required: false,
             default: ""
-        },
-        classs: String
+        }
     },
     methods: {
         clicked(e) {
@@ -47,6 +46,9 @@ export default {
     padding: 0 1rem;
     vertical-align: middle;
     -webkit-tap-highlight-color: transparent;
+    &.long {
+        width: 100%;
+    }
     &:hover,
     &:active,
     &:focus {
