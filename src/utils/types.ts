@@ -9,6 +9,24 @@ export enum ModalFooterType {
     SendToMoked,
     AddTeamMember
 }
+export enum Languages {
+    he,
+    en
+}
+export enum Moked {
+    Jerusalem,
+    Ayalon,
+    Asher,
+    Gilboa,
+    Dan,
+    Yarden,
+    Yarkon,
+    Carmel,
+    Lachish,
+    Negev,
+    Sharon,
+    Moked4
+}
 export interface IRootState {
     packageVersion: string;
 }
@@ -27,7 +45,7 @@ export interface IUserState {
 }
 
 export interface ISettingsState {
-    moked: number,
-    lang: string,
-    tools: string[]
+    moked: number;
+    lang: string;
+    tools: string[];
 }
