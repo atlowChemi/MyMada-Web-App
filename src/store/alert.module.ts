@@ -6,17 +6,14 @@ export const state: IAlertState = {
     type: AlertType.Success,
     message: "",
     title: "",
-    footerType: ModalFooterType.CloseOnly
+    footerType: ModalFooterType.CloseOnly,
 };
 
 export const alert: Module<IAlertState, IRootState> = {
     namespaced: true,
     state,
     actions: {
-        message(
-            { commit },
-            { message, title }: { message: string; title: string }
-        ) {
+        message({ commit }, { message, title }: { message: string; title: string }) {
             commit("success", { message, title });
         },
         error({ commit }, { message, title }: { message: string; title?: string }) {
@@ -30,10 +27,10 @@ export const alert: Module<IAlertState, IRootState> = {
         },
         clear({ commit }) {
             commit("clear");
-        }
+        },
     },
     mutations: {
-        message(state, { message, title, footerType }: { message: string; title: string, footerType: ModalFooterType }) {
+        message(state, { message, title, footerType }: { message: string; title: string; footerType: ModalFooterType }) {
             state.show = true;
             state.type = AlertType.Success;
             state.message = message;
@@ -63,6 +60,6 @@ export const alert: Module<IAlertState, IRootState> = {
         },
         clear(state) {
             state.show = false;
-        }
-    }
+        },
+    },
 };

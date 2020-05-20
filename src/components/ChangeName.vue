@@ -11,11 +11,11 @@ import { Component, Vue } from "vue-property-decorator";
 
 @Component
 export default class ChangeName extends Vue {
-    get nameTemp(): string{
+    get nameTemp(): string {
         return this.$store.state.user.name;
     }
     set nameTemp(name: string) {
-        this.$store.dispatch("user/changeName", {name});
+        this.$store.dispatch("user/changeName", { name });
     }
     get hasErrors(): string | null {
         return this.nameTemp.length <= 0 ? "md-invalid" : null;

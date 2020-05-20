@@ -4,27 +4,22 @@ class _DatabaseManager {
     private dbName = "myMada";
     private db!: IDBDatabase;
     private errorCallback!: (msg: string) => void;
-    
+
     InitDb() {
         return new Promise((resolve, reject) => {
             if (!indexedDB) {
-                reject(
-                    "הדפדפן שלך אינו תומך באפשרות של שמירת המידע. אי לכך, האתר לא יפעל כמצופה."
-                );
+                reject("הדפדפן שלך אינו תומך באפשרות של שמירת המידע. אי לכך, האתר לא יפעל כמצופה.");
                 //We will work on LocalStorage later.
             } else {
                 let openRequest = indexedDB.open(this.dbName, 1);
                 openRequest.onupgradeneeded = this.AddTables;
-                openRequest.onerror = () =>
-                    this.errorCallback(openRequest.error?.message ?? "");
+                openRequest.onerror = () => this.errorCallback(openRequest.error?.message ?? "");
                 openRequest.onsuccess = () => {
                     this.db = openRequest.result;
                     resolve();
                     this.db.onversionchange = () => {
                         this.db.close();
-                        reject(
-                            "הנתונים שלך ישנים. עליך לרענן את העמוד בכדי שהדברים יפעלו."
-                        );
+                        reject("הנתונים שלך ישנים. עליך לרענן את העמוד בכדי שהדברים יפעלו.");
                     };
                 };
                 openRequest.onblocked = function() {
@@ -42,20 +37,7 @@ class _DatabaseManager {
             objStore.add(undefined, "fcmToken");
             objStore.add(Moked.Jerusalem, "moked");
             objStore.add(Languages.he, "lang");
-            objStore.add(
-                [
-                    "contractions",
-                    "pulse",
-                    "metronome",
-                    "vital",
-                    "oxygen",
-                    "apgar",
-                    "glazgo",
-                    "dictionary",
-                    "protocoles"
-                ],
-                "tools"
-            );
+            objStore.add(["contractions", "pulse", "metronome", "vital", "oxygen", "apgar", "glazgo", "dictionary", "protocoles"], "tools");
         }
     }
     GetName(): Promise<string> {
@@ -71,10 +53,10 @@ class _DatabaseManager {
         return new Promise<undefined>((resolve, reject) => {
             let transaction = this.db.transaction(["Settings"], "readwrite");
             let objStore = transaction.objectStore("Settings");
-            let nameSetRequest = objStore.put(name ,"name");
+            let nameSetRequest = objStore.put(name, "name");
             nameSetRequest.onerror = () => reject("אירעה שגיאה בשמירה!");
             nameSetRequest.onsuccess = () => resolve(undefined);
-        })
+        });
     }
 }
 
