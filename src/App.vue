@@ -17,6 +17,11 @@ export default Vue.extend({
     components: {
         Modal
     },
+    watch: {
+      '$route' (to) {
+        document.title = `דיווחי מד"א${to.meta.title ? ' - ' + to.meta.title : ''}`
+      }
+    },
     computed: {
         alert()  {
             return this.$store.state.alert;
@@ -26,7 +31,6 @@ export default Vue.extend({
 </script>
 
 <style lang="scss">
-@import url("https://fonts.googleapis.com/css?family=Heebo");
 * {
     box-sizing: border-box;
 }
