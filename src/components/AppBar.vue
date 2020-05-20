@@ -82,6 +82,7 @@ export default {
                 font: inherit;
                 vertical-align: middle;
                 cursor: pointer;
+                line-height: 3.5rem;
                 &-left {
                     left: 0.8rem;
                 }
