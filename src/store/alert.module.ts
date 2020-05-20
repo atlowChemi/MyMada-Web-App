@@ -1,5 +1,5 @@
 import { Module } from "vuex";
-import { AlertType, IAlertState, ModalFooterType } from "../utils/types";
+import { AlertType, IAlertState, ModalFooterType, IRootState } from "../utils/types";
 
 export const state: IAlertState = {
     show: false,
@@ -9,11 +9,11 @@ export const state: IAlertState = {
     footerType: ModalFooterType.CloseOnly
 };
 
-export const alert: Module<IAlertState, null> = {
+export const alert: Module<IAlertState, IRootState> = {
     namespaced: true,
     state,
     actions: {
-        success(
+        message(
             { commit },
             { message, title }: { message: string; title: string }
         ) {
@@ -25,12 +25,15 @@ export const alert: Module<IAlertState, null> = {
         settings({ commit }) {
             commit("settings");
         },
+        changeName({ commit }) {
+            commit("changeName");
+        },
         clear({ commit }) {
             commit("clear");
         }
     },
     mutations: {
-        success(state, { message, title, footerType }: { message: string; title: string, footerType: ModalFooterType }) {
+        message(state, { message, title, footerType }: { message: string; title: string, footerType: ModalFooterType }) {
             state.show = true;
             state.type = AlertType.Success;
             state.message = message;
@@ -42,6 +45,13 @@ export const alert: Module<IAlertState, null> = {
             state.type = AlertType.Error;
             state.message = message;
             state.title = title;
+            state.footerType = ModalFooterType.CloseOnly;
+        },
+        changeName(state) {
+            state.show = true;
+            state.type = AlertType.ChangeName;
+            state.message = "";
+            state.title = "רשמו שם משתמש";
             state.footerType = ModalFooterType.CloseOnly;
         },
         settings(state) {
