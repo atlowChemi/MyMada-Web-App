@@ -19,7 +19,7 @@ export const alert: Module<IAlertState, IRootState> = {
         ) {
             commit("success", { message, title });
         },
-        error({ commit }, { message, title }: { message: string; title: string }) {
+        error({ commit }, { message, title }: { message: string; title?: string }) {
             commit("error", { message, title });
         },
         settings({ commit }) {
@@ -44,7 +44,7 @@ export const alert: Module<IAlertState, IRootState> = {
             state.show = true;
             state.type = AlertType.Error;
             state.message = message;
-            state.title = title;
+            state.title = title ?? "תקלה";
             state.footerType = ModalFooterType.CloseOnly;
         },
         changeName(state) {
