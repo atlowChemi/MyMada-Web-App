@@ -1,17 +1,14 @@
 <template>
     <div>
-        <div class="modal-backdrop" @click="close"></div>
+        <div class="modal-backdrop" @click="close(true)"></div>
         <div class="modal" :class="{ 'modal-error': error }">
             <div class="modal__content">
                 <h1 class="modal__content-title">{{ title || "הגדרות" }}</h1>
-                <p v-html="message"></p>
+                <ChangeName v-if="changeName" />
+                <p v-else v-html="message"></p>
             </div>
             <div class="modal__footer">
-                <app-btn
-                    v-if="FooterCloseOnly"
-                    class="modal__footer-btn flat waves-success"
-                    @click="close"
-                >אישור</app-btn>
+                <md-button :disabled="validateUserName" v-if="FooterCloseOnly" @click="close(false)">אישור</md-button>
                 <div v-else-if="FooterSendToMoked">
                     <app-btn class="modal__footer-btn flat waves-success" @click="close">אישור</app-btn>
                     <app-btn class="modal__footer-btn flat waves-success" @click="close">אישור</app-btn>
@@ -21,38 +18,52 @@
     </div>
 </template>
 
-<script>
+<script lang="ts">
+import { Component, Vue, Prop } from "vue-property-decorator";
+
 import { AlertType, ModalFooterType } from "../utils/types";
-export default {
-    props: {
-        type: AlertType,
-        message: String,
-        title: String,
-        footer: ModalFooterType
-    },
-    computed: {
-        error() {
-            return this.type === AlertType.Error;
-        },
-        settings() {
-            return this.type === AlertType.Settings;
-        },
-        FooterCloseOnly() {
-            return this.footer === ModalFooterType.CloseOnly;
-        },
-        FooterSendToMoked() {
-            return this.footer === ModalFooterType.SendToMoked;
-        },
-        FooterAddTeamMember() {
-            return this.footer === ModalFooterType.AddTeamMember;
+import ChangeName from "./ChangeName.vue";
+
+@Component({
+    components: {
+        ChangeName
+    }
+})
+export default class Modal extends Vue {
+    @Prop(String) message!: string;
+    @Prop(String) title!: string;
+    @Prop() type!: AlertType;
+    @Prop() footer!: ModalFooterType;
+    get error(): boolean {
+        return this.type === AlertType.Error;
+    }
+    get settings(): boolean {
+        return this.type === AlertType.Settings;
+    }
+    get changeName(): boolean {
+        return this.type === AlertType.ChangeName;
+    }
+    get FooterCloseOnly(): boolean {
+        return this.footer === ModalFooterType.CloseOnly;
+    }
+    get FooterSendToMoked(): boolean {
+        return this.footer === ModalFooterType.SendToMoked;
+    }
+    get FooterAddTeamMember(): boolean {
+        return this.footer === ModalFooterType.AddTeamMember;
+    }
+    get validateUserName(): boolean {
+        return this.changeName && !this.$store.getters["user/validUserName"];
+    }
+    close(backdrop: boolean): void {
+        if(this.validateUserName) {
+            return;
         }
-    },
-    methods: {
-        close() {
+        if(!backdrop || (backdrop && !this.changeName)) {
             this.$store.dispatch("alert/clear");
         }
     }
-};
+}
 </script>
 
 <style lang="scss" scoped>
@@ -62,10 +73,12 @@ export default {
     bottom: 0;
     right: 0;
     left: 0;
+    z-index: 99;
     background-color: $backdropBackground;
 }
 .modal {
     $modal: &;
+    z-index: 100;
     position: fixed;
     top: 10%;
     left: 0;
@@ -88,7 +101,7 @@ export default {
     &__content {
         position: absolute;
         padding: 1.5rem;
-        padding-top: 0.5rem;
+        // padding-top: 0.5rem;
         height: calc(100% - 3.5rem);
         max-height: 100%;
         width: 100%;
