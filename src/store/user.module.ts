@@ -1,5 +1,6 @@
 import { Module } from "vuex";
 import { IUserState, IRootState } from "../utils/types";
+import { DatabaseManager } from "./indexedDb";
 
 export const state: IUserState = {
     fcmToken: "",
@@ -12,7 +13,9 @@ export const user: Module<IUserState, IRootState> = {
     state,
     actions: {
         changeName({ commit }, { name }: { name: string }) {
-            commit("changeName", { name });
+            DatabaseManager.SetName(name)
+                .then(() => commit("changeName", { name }))
+                .catch(err => commit("alert/error", { message: err }));
         }
     },
     mutations: {
