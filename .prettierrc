@@ -1,6 +1,15 @@
 {
+  "printWidth": 500,
+  "trailingComma": "es5",
     "tabWidth": 4,
     "semi": true,
     "bracketSpacing": true,
-    "arrowParens": "avoid"
+    "arrowParens": "avoid",
+    "vue/max-attributes-per-line": [2, {
+      "singleline": 10,
+      "multiline": {
+        "max": 5,
+        "allowFirstLine": true
+      }
+    }]
   }

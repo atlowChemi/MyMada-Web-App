@@ -40,33 +40,6 @@
     "vue-template-compiler": "^2.6.11",
     "webpack": "^4.43.0"
   },
-  "eslintConfig": {
-    "root": true,
-    "env": {
-      "node": true
-    },
-    "extends": [
-      "plugin:vue/essential",
-      "eslint:recommended",
-      "@vue/prettier",
-      "@vue/typescript"
-    ],
-    "parserOptions": {
-      "parser": "@typescript-eslint/parser"
-    },
-    "rules": {
-      "vue/max-attributes-per-line": [
-        "error",
-        {
-          "singleline": 20,
-          "multiline": {
-            "max": 3,
-            "allowFirstLine": false
-          }
-        }
-      ]
-    }
-  },
   "browserslist": [
     "> 1%",
     "last 2 versions",

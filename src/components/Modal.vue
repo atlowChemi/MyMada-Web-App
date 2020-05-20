@@ -26,8 +26,8 @@ import ChangeName from "./ChangeName.vue";
 
 @Component({
     components: {
-        ChangeName
-    }
+        ChangeName,
+    },
 })
 export default class Modal extends Vue {
     @Prop(String) message!: string;
@@ -56,10 +56,10 @@ export default class Modal extends Vue {
         return this.changeName && !this.$store.getters["user/validUserName"];
     }
     close(backdrop: boolean): void {
-        if(this.validateUserName) {
+        if (this.validateUserName) {
             return;
         }
-        if(!backdrop || (backdrop && !this.changeName)) {
+        if (!backdrop || (backdrop && !this.changeName)) {
             this.$store.dispatch("alert/clear");
         }
     }
@@ -91,8 +91,7 @@ export default class Modal extends Vue {
     margin: auto;
     border-radius: 2px;
     will-change: top, opacity;
-    box-shadow: 0 24px 38px 3px rgba(0, 0, 0, 0.14),
-        0 9px 46px 8px rgba(0, 0, 0, 0.12), 0 11px 15px -7px rgba(0, 0, 0, 0.2);
+    box-shadow: 0 24px 38px 3px rgba(0, 0, 0, 0.14), 0 9px 46px 8px rgba(0, 0, 0, 0.12), 0 11px 15px -7px rgba(0, 0, 0, 0.2);
     &-error {
         #{ $modal }__content-title {
             color: $primaryError;
