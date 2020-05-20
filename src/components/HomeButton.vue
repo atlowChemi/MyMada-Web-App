@@ -1,14 +1,7 @@
 <template>
-    <router-link
-        :to="'/' + of"
-        class="home-btn"
-        :class="{ 'home-btn__small': isSmall }"
-    >
+    <router-link :to="'/' + of" class="home-btn" :class="{ 'home-btn__small': isSmall }">
         <svg class="home-btn__image" viewBox="0 0 397 353">
-            <g
-                v-if="of === 'play'"
-                transform="translate(0,353) scale(0.1,-0.1)"
-            >
+            <g v-if="of === 'play'" transform="translate(0,353) scale(0.1,-0.1)">
                 <path
                     d="m760 3308c69-67 168-164 220-213 182-174 506-481 610-580 58-54 159-151 225-215 223-214 396-375 405-375 13 0 450 412 450 424 0 6-81 52-294 169-34 18-79 44-101 57-22 12-61 35-87 49-27 14-69 38-95 52-27 15-77 42-113 62s-107 60-159 89c-51 29-95 53-96 53-2 0-38 20-79 45-42 25-78 45-80 45s-47 25-101 55c-53 30-98 55-101 55-2 0-38 20-80 45-41 25-77 45-79 45s-30 15-62 34c-32 18-85 48-118 66s-91 51-130 72c-111 62-151 79-208 84l-52 6 125-124z"
                 />
@@ -57,10 +50,10 @@ export default {
     props: {
         of: {
             type: String,
-            required: true
+            required: true,
         },
-        isSmall: Boolean
-    }
+        isSmall: Boolean,
+    },
 };
 </script>
 
@@ -77,12 +70,10 @@ export default {
     border-radius: 25px;
     padding: 0.2rem 0.5rem;
     @include vendor(transition, box-shadow 0.25s);
-    box-shadow: 0 2px 2px 0 rgba(0, 0, 0, 0.14),
-        0 3px 1px -2px rgba(0, 0, 0, 0.12), 0 1px 5px 0 rgba(0, 0, 0, 0.2);
+    box-shadow: 0 2px 2px 0 rgba(0, 0, 0, 0.14), 0 3px 1px -2px rgba(0, 0, 0, 0.12), 0 1px 5px 0 rgba(0, 0, 0, 0.2);
     &:hover {
         transform: scale(1.03);
-        box-shadow: 0 8px 17px 0 rgba(0, 0, 0, 0.2),
-            0 6px 20px 0 rgba(0, 0, 0, 0.19);
+        box-shadow: 0 8px 17px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
     }
     &__small {
         display: block;

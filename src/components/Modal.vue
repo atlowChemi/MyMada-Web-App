@@ -5,10 +5,15 @@
             <div class="modal__content">
                 <h1 class="modal__content-title">{{ title || "הגדרות" }}</h1>
                 <ChangeName v-if="changeName" />
+                <Settings v-else-if="settings" />
                 <p v-else v-html="message"></p>
             </div>
             <div class="modal__footer">
-                <md-button :disabled="validateUserName" v-if="FooterCloseOnly" @click="close(false)">אישור</md-button>
+                <md-button
+                    :disabled="validateUserName"
+                    v-if="FooterCloseOnly"
+                    @click="close(false)"
+                >אישור</md-button>
                 <div v-else-if="FooterSendToMoked">
                     <app-btn class="modal__footer-btn flat waves-success" @click="close">אישור</app-btn>
                     <app-btn class="modal__footer-btn flat waves-success" @click="close">אישור</app-btn>
@@ -23,10 +28,12 @@ import { Component, Vue, Prop } from "vue-property-decorator";
 
 import { AlertType, ModalFooterType } from "../utils/types";
 import ChangeName from "./ChangeName.vue";
+import Settings from "./Settings.vue";
 
 @Component({
     components: {
         ChangeName,
+        Settings,
     },
 })
 export default class Modal extends Vue {
@@ -109,6 +116,7 @@ export default class Modal extends Vue {
             font-weight: 400;
             display: block;
             font-size: 2.28rem;
+            line-height: 1.7rem;
             margin: 0 0 0.912rem 0;
         }
     }

@@ -1,6 +1,6 @@
 import Vue from "vue";
 import Waves from "vue-waves-effect";
-import { MdButton, MdCard, MdField, MdRipple } from "vue-material/dist/components";
+import { MdButton, MdCard, MdCheckbox, MdField, MdRadio, MdRipple } from "vue-material/dist/components";
 import "vue-material/dist/vue-material.min.css";
 import "vue-material/dist/theme/default.css";
 
@@ -23,7 +23,9 @@ Vue.component("app-btn", Button);
 Vue.use(Waves);
 Vue.use(MdButton);
 Vue.use(MdCard);
+Vue.use(MdCheckbox);
 Vue.use(MdField);
+Vue.use(MdRadio);
 Vue.use(MdRipple);
 
 Vue.config.productionTip = false;

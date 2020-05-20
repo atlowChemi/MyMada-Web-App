@@ -1,5 +1,5 @@
 {
-  "printWidth": 500,
+  "printWidth": 300,
   "trailingComma": "es5",
     "tabWidth": 4,
     "semi": true,
@@ -9,7 +9,7 @@
       "singleline": 10,
       "multiline": {
         "max": 5,
-        "allowFirstLine": true
+        "allowFirstLine": false
       }
     }]
   }
