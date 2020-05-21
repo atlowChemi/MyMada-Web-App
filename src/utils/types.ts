@@ -2,16 +2,16 @@ export enum AlertType {
     Error,
     Success,
     Settings,
-    ChangeName
+    ChangeName,
 }
 export enum ModalFooterType {
     CloseOnly,
     SendToMoked,
-    AddTeamMember
+    AddTeamMember,
 }
 export enum Languages {
     he,
-    en
+    en,
 }
 export enum Moked {
     Jerusalem,
@@ -25,7 +25,7 @@ export enum Moked {
     Lachish,
     Negev,
     Sharon,
-    Moked4
+    Moked4,
 }
 export interface IRootState {
     packageVersion: string;
@@ -45,7 +45,7 @@ export interface IUserState {
 }
 
 export interface ISettingsState {
-    moked: number;
-    lang: string;
+    moked: Moked;
+    lang: Languages;
     tools: string[];
 }

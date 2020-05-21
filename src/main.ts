@@ -13,7 +13,10 @@ import Button from "./components/Button.vue";
 import { DatabaseManager } from "./store/indexedDb";
 
 DatabaseManager.InitDb()
-    .then(() => store.dispatch("user/initialize"))
+    .then(() => {
+        store.dispatch("user/initialize");
+        store.dispatch("settings/initialize");
+    })
     .catch(reason => {
         store.dispatch("alert/error", { message: reason });
     });

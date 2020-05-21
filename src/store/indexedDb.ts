@@ -1,10 +1,9 @@
-import { Languages, Moked } from "@/utils/types";
+import { Languages, Moked, ISettingsState } from "@/utils/types";
 
 class _DatabaseManager {
     private dbName = "myMada";
     private db!: IDBDatabase;
-    private errorCallback!: (msg: string) => void;
-
+    //#region Initialize the DB and close up
     InitDb() {
         return new Promise((resolve, reject) => {
             if (!indexedDB) {
@@ -13,7 +12,7 @@ class _DatabaseManager {
             } else {
                 let openRequest = indexedDB.open(this.dbName, 1);
                 openRequest.onupgradeneeded = this.AddTables;
-                openRequest.onerror = () => this.errorCallback(openRequest.error?.message ?? "");
+                openRequest.onerror = () => reject(openRequest.error?.message ?? "");
                 openRequest.onsuccess = () => {
                     this.db = openRequest.result;
                     resolve();
@@ -40,6 +39,7 @@ class _DatabaseManager {
             objStore.add(["contractions", "pulse", "metronome", "vital", "oxygen", "apgar", "glazgo", "dictionary", "protocoles"], "tools");
         }
     }
+    //#endregion
     GetName(): Promise<string> {
         return new Promise<string>((resolve, reject) => {
             let transaction = this.db.transaction(["Settings"], "readonly");
@@ -54,6 +54,59 @@ class _DatabaseManager {
             let transaction = this.db.transaction(["Settings"], "readwrite");
             let objStore = transaction.objectStore("Settings");
             let nameSetRequest = objStore.put(name, "name");
+            nameSetRequest.onerror = () => reject("אירעה שגיאה בשמירה!");
+            nameSetRequest.onsuccess = () => resolve(undefined);
+        });
+    }
+    GetSettings(): Promise<ISettingsState> {
+        return new Promise<ISettingsState>((resolve, reject) => {
+            let transaction = this.db.transaction(["Settings"], "readonly");
+            let objStore = transaction.objectStore("Settings");
+            let keys = ["moked", "lang", "tools"];
+            Promise.all(
+                keys.map(
+                    key =>
+                        new Promise<any>((resolve, reject) => {
+                            const request = objStore.get(key);
+                            request.onsuccess = () => resolve(request.result);
+                            request.onerror = () => reject(request.error);
+                        })
+                )
+            )
+                .then(values => keys.reduce((result: any, key: string, index) => ((result[key] = values[index]), result), {}))
+                .then(res => {
+                    resolve({
+                        lang: res.lang ?? Languages.he,
+                        moked: res.moked ?? Moked.Jerusalem,
+                        tools: res.tools,
+                    });
+                })
+                .catch(reject);
+        });
+    }
+    SetTools(tools: string[]): Promise<undefined> {
+        return new Promise<undefined>((resolve, reject) => {
+            let transaction = this.db.transaction(["Settings"], "readwrite");
+            let objStore = transaction.objectStore("Settings");
+            let nameSetRequest = objStore.put(tools, "tools");
+            nameSetRequest.onerror = () => reject("אירעה שגיאה בשמירה!");
+            nameSetRequest.onsuccess = () => resolve(undefined);
+        });
+    }
+    SetMoked(moked: Moked): Promise<undefined> {
+        return new Promise<undefined>((resolve, reject) => {
+            let transaction = this.db.transaction(["Settings"], "readwrite");
+            let objStore = transaction.objectStore("Settings");
+            let nameSetRequest = objStore.put(moked, "moked");
+            nameSetRequest.onerror = () => reject("אירעה שגיאה בשמירה!");
+            nameSetRequest.onsuccess = () => resolve(undefined);
+        });
+    }
+    SetLang(lang: Languages): Promise<undefined> {
+        return new Promise<undefined>((resolve, reject) => {
+            let transaction = this.db.transaction(["Settings"], "readwrite");
+            let objStore = transaction.objectStore("Settings");
+            let nameSetRequest = objStore.put(lang, "lang");
             nameSetRequest.onerror = () => reject("אירעה שגיאה בשמירה!");
             nameSetRequest.onsuccess = () => resolve(undefined);
         });

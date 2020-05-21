@@ -2,15 +2,15 @@
     <div class="container">
         <b>בחר אילו כלים יוצגו בכלי עזר</b>
         <div class="radio-grid radio-grid__large">
-            <md-checkbox v-model="array" value="contractions">שעון צירים</md-checkbox>
-            <md-checkbox v-model="array" value="pulse">שעון דופק</md-checkbox>
-            <md-checkbox v-model="array" value="metronome">מטרונום</md-checkbox>
-            <md-checkbox v-model="array" value="vital">מחשבון מדדים</md-checkbox>
-            <md-checkbox v-model="array" value="oxygen">מחשבון חמצן</md-checkbox>
-            <md-checkbox v-model="array" value="apgar">מחשבון אפגאר</md-checkbox>
-            <md-checkbox v-model="array" value="glazgo">מחשבון גלאזגו</md-checkbox>
-            <md-checkbox v-model="array" value="dictionary">מילון רפואי</md-checkbox>
-            <md-checkbox v-model="array" value="protocoles">פרוטוקולים</md-checkbox>
+            <md-checkbox v-model="tools" @change="toolsChanged" value="contractions">שעון צירים</md-checkbox>
+            <md-checkbox v-model="tools" @change="toolsChanged" value="pulse">שעון דופק</md-checkbox>
+            <md-checkbox v-model="tools" @change="toolsChanged" value="metronome">מטרונום</md-checkbox>
+            <md-checkbox v-model="tools" @change="toolsChanged" value="vital">מחשבון מדדים</md-checkbox>
+            <md-checkbox v-model="tools" @change="toolsChanged" value="oxygen">מחשבון חמצן</md-checkbox>
+            <md-checkbox v-model="tools" @change="toolsChanged" value="apgar">מחשבון אפגאר</md-checkbox>
+            <md-checkbox v-model="tools" @change="toolsChanged" value="glazgo">מחשבון גלאזגו</md-checkbox>
+            <md-checkbox v-model="tools" @change="toolsChanged" value="dictionary">מילון רפואי</md-checkbox>
+            <md-checkbox v-model="tools" @change="toolsChanged" value="protocoles">פרוטוקולים</md-checkbox>
         </div>
         <b>בחר מרחב ברירת מחדל (לצורך עמוד דיווחים למוקד)</b>
         <div class="radio-grid">
@@ -37,13 +37,30 @@
 
 <script lang="ts">
 import { Component, Vue } from "vue-property-decorator";
-import { Languages, Moked } from "../utils/types";
 
 @Component
 export default class Settings extends Vue {
-    array: string[] = ["contractions", "pulse", "metronome", "vital", "oxygen", "apgar", "glazgo", "dictionary", "protocoles"];
-    public moked: Moked = Moked.Jerusalem;
-    public lang: Languages = Languages.he;
+    private tools: string[] = [];
+    constructor() {
+        super();
+        this.tools.push(...this.$store.state.settings.tools);
+        this.moked = this.$store.state.settings.moked;
+    }
+    toolsChanged(event: string[]) {
+        this.$store.dispatch("settings/changeTools", event);
+    }
+    get moked(): number {
+        return this.$store.state.settings.moked;
+    }
+    set moked(moked: number) {
+        this.$store.dispatch("settings/changeMoked", moked);
+    }
+    get lang(): number {
+        return this.$store.state.settings.lang;
+    }
+    set lang(lang: number) {
+        this.$store.dispatch("settings/changeLang", lang);
+    }
 }
 </script>
 
@@ -63,8 +80,8 @@ export default class Settings extends Vue {
         &__large {
             grid-template-columns: repeat(1, 1fr);
             @include desktop {
-            grid-template-columns: repeat(3, 1fr);
-        }
+                grid-template-columns: repeat(3, 1fr);
+            }
         }
     }
     .centered {
