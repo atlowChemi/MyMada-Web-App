@@ -14,8 +14,8 @@ import HomeButton from "@/components/HomeButton.vue";
 export default {
     name: "Home",
     components: {
-        HomeButton
-    }
+        HomeButton,
+    },
 };
 </script>
 

@@ -29,7 +29,7 @@ import HomeButton from "@/components/HomeButton.vue";
 
 export default {
     components: {
-        HomeButton
-    }
+        HomeButton,
+    },
 };
 </script>

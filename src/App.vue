@@ -1,7 +1,13 @@
 <template>
     <div id="app">
         <app-nav />
-        <modal v-if="alert.show" :message="alert.message" :title="alert.title" :type="alert.type" :footer="alert.footerType" />
+        <modal
+            v-if="alert.show"
+            :message="alert.message"
+            :title="alert.title"
+            :type="alert.type"
+            :footer="alert.footerType"
+        />
         <main class="main-main">
             <router-view />
         </main>
@@ -15,18 +21,18 @@ import Modal from "./components/Modal.vue";
 export default Vue.extend({
     name: "App",
     components: {
-        Modal
+        Modal,
     },
     watch: {
-      '$route' (to) {
-        document.title = `דיווחי מד"א${to.meta.title ? ' - ' + to.meta.title : ''}`
-      }
+        $route(to) {
+            document.title = `דיווחי מד"א${to.meta.title ? " - " + to.meta.title : ""}`;
+        },
     },
     computed: {
-        alert()  {
+        alert() {
             return this.$store.state.alert;
-        }
-    }
+        },
+    },
 });
 </script>
 
