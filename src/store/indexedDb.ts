@@ -40,6 +40,17 @@ class _DatabaseManager {
         }
     }
     //#endregion
+    //#region Set up FcmToken
+    SetFcmToken(fcmToken: string): Promise<undefined> {
+        return new Promise<undefined>((resolve, reject) => {
+            let transaction = this.db.transaction(["Settings"], "readwrite");
+            let objStore = transaction.objectStore("Settings");
+            let nameSetRequest = objStore.put(fcmToken, "fcmToken");
+            nameSetRequest.onerror = () => reject("אירעה שגיאה בשמירה!");
+            nameSetRequest.onsuccess = () => resolve(undefined);
+        });
+    }
+    //#endregion
     GetName(): Promise<string> {
         return new Promise<string>((resolve, reject) => {
             let transaction = this.db.transaction(["Settings"], "readonly");

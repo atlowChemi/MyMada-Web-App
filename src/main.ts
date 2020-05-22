@@ -1,6 +1,6 @@
 import Vue from "vue";
 import Waves from "vue-waves-effect";
-import { MdButton, MdCard, MdCheckbox, MdField, MdRadio, MdRipple } from "vue-material/dist/components";
+import { MdButton, MdCard, MdCheckbox, MdEmptyState, MdField, MdRadio, MdRipple } from "vue-material/dist/components";
 import "vue-material/dist/vue-material.min.css";
 import "vue-material/dist/theme/default.css";
 
@@ -11,6 +11,7 @@ import store from "./store";
 import Navigation from "./components/AppBar.vue";
 import Button from "./components/Button.vue";
 import { DatabaseManager } from "./store/indexedDb";
+import { setup } from "./utils/firebaseConfig";
 
 DatabaseManager.InitDb()
     .then(() => {
@@ -21,12 +22,15 @@ DatabaseManager.InitDb()
         store.dispatch("alert/error", { message: reason });
     });
 
+setup().then(token => store.dispatch("user/initializeFcm", token));
+
 Vue.component("app-nav", Navigation);
 Vue.component("app-btn", Button);
 Vue.use(Waves);
 Vue.use(MdButton);
 Vue.use(MdCard);
 Vue.use(MdCheckbox);
+Vue.use(MdEmptyState);
 Vue.use(MdField);
 Vue.use(MdRadio);
 Vue.use(MdRipple);
