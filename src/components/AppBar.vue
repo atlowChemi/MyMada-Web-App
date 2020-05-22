@@ -15,13 +15,8 @@
                 >
                     <i class="material-icons">arrow_forward</i>
                 </a>
-                <span class="main-header__nav-wrapper__brand" v-if="title">{{
-                    title
-                }}</span>
-                <span
-class="main-header__nav-wrapper__brand" v-else
-                    >דיווחי מד"א</span
-                >
+                <span class="main-header__nav-wrapper__brand" v-if="title">{{ title }}</span>
+                <span class="main-header__nav-wrapper__brand" v-else>דיווחי מד"א</span>
                 <a
                     class="main-header__nav-wrapper__button main main-header__nav-wrapper__button-left"
                     @click="openSettings"
@@ -29,10 +24,7 @@ class="main-header__nav-wrapper__brand" v-else
                     <i class="material-icons">settings</i>
                 </a>
             </div>
-            <div
-                class="main-header__nav--circle"
-                v-if="currentLoc === 'home'"
-            ></div>
+            <div class="main-header__nav--circle" v-if="currentLoc === 'home'"></div>
         </nav>
     </header>
 </template>
@@ -45,7 +37,7 @@ export default {
         },
         title() {
             return this.$route.meta.title;
-        }
+        },
     },
     methods: {
         openSettings() {
@@ -53,8 +45,8 @@ export default {
         },
         goBack() {
             this.$router.go(-1);
-        }
-    }
+        },
+    },
 };
 </script>
 
@@ -62,7 +54,7 @@ export default {
 .main-header {
     $mainHeader: &;
     width: 100%;
-    box-shadow: 0 2px 2px 0 rgba(0,0,0,0.14), 0 3px 1px -2px rgba(0,0,0,0.12), 0 1px 5px 0 rgba(0,0,0,0.2);
+    box-shadow: 0 2px 2px 0 rgba(0, 0, 0, 0.14), 0 3px 1px -2px rgba(0, 0, 0, 0.12), 0 1px 5px 0 rgba(0, 0, 0, 0.2);
     &__nav {
         text-align: center;
         height: 3.5rem;

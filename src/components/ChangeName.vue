@@ -18,7 +18,7 @@ export default class ChangeName extends Vue {
         this.$store.dispatch("user/changeName", { name });
     }
     get hasErrors(): string | null {
-        return this.nameTemp.length <= 0 ? "md-invalid" : null;
+        return this.nameTemp?.length <= 0 ? "md-invalid" : null;
     }
 }
 </script>
