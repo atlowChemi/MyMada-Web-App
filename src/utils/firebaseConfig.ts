@@ -21,6 +21,8 @@ const defaultAnalytics = firebase.analytics();
 defaultAnalytics.logEvent("Web App Open", { name: "website Opened!" });
 messaging.usePublicVapidKey("BEFLpvSn04jJC8mgoS4k7zBzDBN3GEq_GXPHpp1d4Q6VePrq3yyRFh0SeBtAEqf156xuJ811CGC8ipfGdcMIj4Y");
 
+const DB = firebase.database();
+
 const setup = () => {
     return new Promise<string>((resolve, reject) => {
         messaging
@@ -36,6 +38,6 @@ const setup = () => {
     });
 };
 
-const ContactDb = (fcmToken: string) => firebase.database().ref(`chats/${fcmToken}`);
+const ContactDb = (fcmToken: string) => DB.ref(`chats/${fcmToken}`);
 
-export { setup, ContactDb };
+export { setup, ContactDb, DB };

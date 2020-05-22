@@ -4,15 +4,18 @@ export enum AlertType {
     Settings,
     ChangeName,
 }
+
 export enum ModalFooterType {
     CloseOnly,
     SendToMoked,
     AddTeamMember,
 }
+
 export enum Languages {
     he,
     en,
 }
+
 export enum Moked {
     Jerusalem,
     Ayalon,
@@ -27,9 +30,11 @@ export enum Moked {
     Sharon,
     Moked4,
 }
+
 export interface IRootState {
     packageVersion: string;
 }
+
 export interface IAlertState {
     show: boolean;
     type: AlertType;
