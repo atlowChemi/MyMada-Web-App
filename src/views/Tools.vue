@@ -1,6 +1,6 @@
 <template>
-    <div>
-        <md-empty-state md-icon="devices_other" md-label="לא קיימים כלים" md-description="ההמתנה משתלמת."></md-empty-state>
+    <div class="tools">
+        <md-empty-state v-if="!currentTool" md-icon="build" md-label="יש לבחור כלי" md-description="אנא בחר כלי מתפריט הצד."></md-empty-state>
     </div>
 </template>
 
@@ -8,5 +8,17 @@
 import { Vue, Component } from 'vue-property-decorator';
 
 @Component
-export default class Tools extends Vue{};
+export default class Tools extends Vue{
+    get currentTool(): string | undefined {
+        return this.$route.params.tool;
+    }
+};
 </script>
+
+<style lang="scss" scoped>
+.tools {
+    @include desktop {
+        margin-right: 19rem;
+    }
+}
+</style>
