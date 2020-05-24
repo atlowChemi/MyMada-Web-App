@@ -6,17 +6,14 @@
                 <h1 class="modal__content-title">{{ title || "הגדרות" }}</h1>
                 <ChangeName v-if="changeName" />
                 <Settings v-else-if="settings" />
+                <send-to-moked v-if="SendToMoked" :msg="message"></send-to-moked>
                 <p v-else v-html="message"></p>
             </div>
             <div class="modal__footer">
-                <md-button
-                    :disabled="validateUserName"
-                    v-if="FooterCloseOnly"
-                    @click="close(false)"
-                >אישור</md-button>
-                <div v-else-if="FooterSendToMoked">
-                    <app-btn class="modal__footer-btn flat waves-success" @click="close">אישור</app-btn>
-                    <app-btn class="modal__footer-btn flat waves-success" @click="close">אישור</app-btn>
+                <md-button :disabled="validateUserName" v-if="FooterCloseOnly" @click="close(false)">אישור</md-button>
+                <div v-else-if="SendToMoked">
+                    <app-btn class="modal__footer-btn flat waves-success" @click="sendMsgToMoked">שלח</app-btn>
+                    <app-btn class="modal__footer-btn flat waves-danger" @click="close">ביטול</app-btn>
                 </div>
             </div>
         </div>
@@ -27,13 +24,15 @@
 import { Component, Vue, Prop } from "vue-property-decorator";
 
 import { AlertType, ModalFooterType } from "../utils/types";
-import ChangeName from "./ChangeName.vue";
-import Settings from "./Settings.vue";
+import ChangeName from "./Modals/ChangeName.vue";
+import Settings from "./Modals/Settings.vue";
+import SendToMoked from "./Modals/SendToMoked.vue";
 
 @Component({
     components: {
         ChangeName,
         Settings,
+        SendToMoked,
     },
 })
 export default class Modal extends Vue {
@@ -50,11 +49,11 @@ export default class Modal extends Vue {
     get changeName(): boolean {
         return this.type === AlertType.ChangeName;
     }
+    get SendToMoked(): boolean {
+        return this.type === AlertType.SendToMoked;
+    }
     get FooterCloseOnly(): boolean {
         return this.footer === ModalFooterType.CloseOnly;
-    }
-    get FooterSendToMoked(): boolean {
-        return this.footer === ModalFooterType.SendToMoked;
     }
     get FooterAddTeamMember(): boolean {
         return this.footer === ModalFooterType.AddTeamMember;
@@ -69,6 +68,12 @@ export default class Modal extends Vue {
         if (!backdrop || (backdrop && !this.changeName)) {
             this.$store.dispatch("alert/clear");
         }
+    }
+    sendMsgToMoked() {
+        const mokdim = ["972523993348","972523993345","972523993339","972523993338","972523993342","972523993337","972523993343",
+            "972523993340","972523993346","972523993356","972523993341","972586309592"];
+            const moked = this.$store.state.settings.moked;
+            window.open(`sms://+${mokdim[moked]}?&body=${encodeURI(this.message)}`);
     }
 }
 </script>
