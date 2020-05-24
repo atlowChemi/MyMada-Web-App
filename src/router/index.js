@@ -11,7 +11,7 @@ const routes = [
         component: Home,
     },
     {
-        path: "/tools",
+        path: "/tools/:tool?",
         name: "Tools",
         meta: {
             title: "כלי עזר",
@@ -19,7 +19,7 @@ const routes = [
         component: () => import("../views/Tools.vue"),
     },
     {
-        path: "/moked/:optional?",
+        path: "/moked/:page",
         name: "Moked",
         meta: {
             title: "דיווחים למוקד",
