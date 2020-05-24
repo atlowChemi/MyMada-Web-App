@@ -25,6 +25,9 @@ export const alert: Module<IAlertState, IRootState> = {
         changeName({ commit }) {
             commit("changeName");
         },
+        sendToMoked({ commit }, { message }: { message: string }) {
+            commit("sendToMoked", { message });
+        },
         clear({ commit }) {
             commit("clear");
         },
@@ -57,6 +60,13 @@ export const alert: Module<IAlertState, IRootState> = {
             state.message = "";
             state.title = "הגדרות";
             state.footerType = ModalFooterType.CloseOnly;
+        },
+        sendToMoked(state, { message }: { message: string }) {
+            state.show = true;
+            state.type = AlertType.SendToMoked;
+            state.message = message;
+            state.title = "אשר לפני שליחה";
+            state.footerType = ModalFooterType.SendToMoked;
         },
         clear(state) {
             state.show = false;

@@ -3,6 +3,7 @@ export enum AlertType {
     Success,
     Settings,
     ChangeName,
+    SendToMoked
 }
 
 export enum ModalFooterType {
