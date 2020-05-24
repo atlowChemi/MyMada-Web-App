@@ -1,8 +1,8 @@
 <template>
-    <router-link class="btn" v-waves:hover v-if="link" :to="to">
+    <router-link class="btn" :class="{ long }" v-waves:hover v-if="link" :to="to">
         <slot />
     </router-link>
-    <button class="btn" v-waves:hover v-else @click="clicked($event)">
+    <button class="btn" :class="{ long }" v-waves:hover v-else @click="clicked($event)">
         <slot />
     </button>
 </template>
@@ -19,6 +19,11 @@ export default {
             type: String,
             required: false,
             default: "",
+        },
+        long: {
+            type: Boolean,
+            required: false,
+            default: false,
         },
     },
     methods: {
@@ -46,6 +51,7 @@ export default {
     padding: 0 1rem;
     vertical-align: middle;
     -webkit-tap-highlight-color: transparent;
+    position: relative;
     &.long {
         width: 100%;
     }
@@ -79,6 +85,12 @@ export default {
     &.disabled {
         color: $btnDisabledColor !important;
         background-color: $btnDisabledBackground !important;
+    }
+    i.material-icons {
+        position: absolute;
+        font-size: 1.3rem;
+        left: 0.7rem;
+        transform: scaleX(-1);
     }
 }
 </style>

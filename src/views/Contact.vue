@@ -24,12 +24,12 @@
                 <div class="new-msg__input">
                     <md-field md-clearable :class="hasErrors">
                         <label>כתוב הודעתך כאן</label>
-                        <md-textarea v-model="msg" rows="3" required></md-textarea>
+                        <md-textarea v-model="msg" rows="3" required md-autogrow></md-textarea>
                         <span class="md-error">חובה לרשום הודעה!</span>
                     </md-field>
                 </div>
                 <div class="new-msg__submit">
-                    <app-btn class="long waves-light" @click="sendMsg" :disabled="sending">
+                    <app-btn long class="waves-light" @click="sendMsg" :disabled="sending">
                         שלח
                         <i class="material-icons left">send</i>
                     </app-btn>
@@ -63,7 +63,7 @@ export default class Contact extends Vue {
     msg: string | null = null;
     lastSent!: number;
     seenMsg: string = "";
-    private retrievedMessages: { [key: string]: { msg: string; sender: string; time: number } } | null = null;
+    private retrievedMessages: { [key: string]: { msg: string; sender: string; time: number, WhatsApp?: boolean } } | null = null;
     get fcmToken(): string {
         return this.$store.state.user.fcmToken;
     }
@@ -176,15 +176,6 @@ export default class Contact extends Vue {
             .new-msg__submit {
                 @include desktop {
                     width: 33.3333333333%;
-                }
-                .btn {
-                    position: relative;
-                    i.material-icons {
-                        position: absolute;
-                        font-size: 1.3rem;
-                        left: 0.7rem;
-                        transform: scaleX(-1);
-                    }
                 }
             }
         }
