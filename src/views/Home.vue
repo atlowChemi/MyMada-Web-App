@@ -1,10 +1,10 @@
 <template>
     <div class="grid-container">
-        <HomeButton of="tools">כלי עזר למתנדב</HomeButton>
-        <HomeButton of="moked">דיווחים למוקד</HomeButton>
-        <HomeButton of="contact">צור קשר</HomeButton>
-        <HomeButton of="info">אודות האפליקציה</HomeButton>
-        <HomeButton of="play">הורדה בגוגל פליי</HomeButton>
+        <home-button of="tools">כלי עזר למתנדב</home-button>
+        <home-button of="moked/team">דיווחים למוקד</home-button>
+        <home-button of="contact">צור קשר</home-button>
+        <home-button of="info">אודות האפליקציה</home-button>
+        <home-button of="play">הורדה בגוגל פליי</home-button>
     </div>
 </template>
 
