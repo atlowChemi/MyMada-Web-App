@@ -1,8 +1,8 @@
 <template>
-    <router-link class="btn" :class="{ long }" v-waves:hover v-if="link" :to="to">
+    <router-link class="btn" :class="{ long, btn__light: light, 'waves-light': !light }" v-waves:hover v-if="link" :to="to">
         <slot />
     </router-link>
-    <button class="btn" :class="{ long }" v-waves:hover v-else @click="clicked($event)">
+    <button class="btn" :class="{ long, btn__light: light, 'waves-light': !light }" v-waves:hover v-else @click="clicked($event)">
         <slot />
     </button>
 </template>
@@ -21,6 +21,11 @@ export default {
             default: "",
         },
         long: {
+            type: Boolean,
+            required: false,
+            default: false,
+        },
+        light: {
             type: Boolean,
             required: false,
             default: false,
@@ -61,6 +66,15 @@ export default {
         background-color: $btnHoverColor;
         box-shadow: 0 3px 3px 0 rgba(0, 0, 0, 0.14), 0 1px 7px 0 rgba(0, 0, 0, 0.12), 0 3px 1px -1px rgba(0, 0, 0, 0.2);
     }
+    &__light {
+        color: $btnColor;
+        background-color: white;
+        &:hover,
+        &:active,
+        &:focus {
+            background-color: whitesmoke;
+        }
+    }
     &.flat {
         background: transparent;
         color: black;
@@ -92,11 +106,6 @@ export default {
         left: 0.7rem;
         transform: scaleX(-1);
     }
-}
-</style>
-
-<style lang="scss">
-.btn {
     &.waves-effect {
         position: relative;
         cursor: pointer;
@@ -107,7 +116,7 @@ export default {
         -ms-user-select: none;
         user-select: none;
         -webkit-tap-highlight-color: transparent;
-        .waves-ripple {
+        & /deep/ .waves-ripple {
             position: absolute;
             border-radius: 50%;
             width: 100px;
@@ -124,21 +133,21 @@ export default {
         }
 
         &.waves-success {
-            .waves-ripple {
+            & /deep/ .waves-ripple {
                 background: rgba(0, 182, 61, 0.4);
                 background: radial-gradient(rgba(0, 182, 61, 0.2) 0, rgba(0, 182, 61, 0.3) 40%, rgba(0, 182, 61, 0.4) 50%, rgba(0, 182, 61, 0.5) 60%, rgba(0, 182, 61, 0) 70%);
             }
         }
 
         &.waves-danger {
-            .waves-ripple {
+            & /deep/ .waves-ripple {
                 background: rgba(255, 0, 0, 0.4);
                 background: radial-gradient(rgba(255, 0, 0, 0.2) 0, rgba(255, 0, 0, 0.3) 40%, rgba(255, 0, 0, 0.4) 50%, rgba(255, 0, 0, 0.5) 60%, rgba(255, 0, 0, 0) 70%);
             }
         }
 
         &.waves-light {
-            .waves-ripple {
+            & /deep/ .waves-ripple {
                 background: rgba(255, 255, 255, 0.4);
                 background: radial-gradient(hsla(0, 0%, 100%, 0.2) 0, hsla(0, 0%, 100%, 0.3) 40%, hsla(0, 0%, 100%, 0.4) 50%, hsla(0, 0%, 100%, 0.5) 60%, hsla(0, 0%, 100%, 0) 70%);
             }
