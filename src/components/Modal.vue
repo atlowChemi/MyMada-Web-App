@@ -23,7 +23,6 @@
 
 <script lang="ts">
 import { Component, Vue, Prop } from "vue-property-decorator";
-
 import { AlertType } from "../utils/types";
 import ChangeName from "./Modals/ChangeName.vue";
 import Settings from "./Modals/Settings.vue";
@@ -69,10 +68,9 @@ export default class Modal extends Vue {
         }
     }
     sendMsgToMoked() {
-        const mokdim = ["972523993348","972523993345","972523993339","972523993338","972523993342","972523993337","972523993343",
-            "972523993340","972523993346","972523993356","972523993341","972586309592"];
-            const moked = this.$store.state.settings.moked;
-            window.open(`sms://+${mokdim[moked]}?&body=${encodeURI(this.message)}`);
+        const mokdim = ["972523993348", "972523993345", "972523993339", "972523993338", "972523993342", "972523993337", "972523993343", "972523993340", "972523993346", "972523993356", "972523993341", "972586309592"];
+        const moked = this.$store.state.settings.moked;
+        window.open(`sms://+${mokdim[moked]}?&body=${encodeURI(this.message)}`);
     }
 }
 </script>

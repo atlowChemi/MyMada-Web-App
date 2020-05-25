@@ -11,9 +11,18 @@ Vue.use(Vuex);
 export default new Vuex.Store<IRootState>({
     state: {
         packageVersion: process.env.PACKAGE_VERSION || "0",
+        selectedMedicalCodes: [],
     },
-    mutations: {},
-    actions: {},
+    actions: {
+        setMedicalCodes({ commit }, { medicalCodes }: { medicalCodes: number[] }) {
+            commit("setMedicalCodes", { medicalCodes });
+        },
+    },
+    mutations: {
+        setMedicalCodes(state, { medicalCodes }: { medicalCodes: number[] }) {
+            state.selectedMedicalCodes = medicalCodes;
+        },
+    },
     modules: {
         alert,
         user,

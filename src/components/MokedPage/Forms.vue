@@ -57,8 +57,9 @@
             </md-field>
         </div>
         <div @click="selectCodes" class="col col__full">
-            <md-chips md-static v-model="medicalCodes" :md-limit="5" md-placeholder="קוד רפואי">
+            <md-chips md-static v-model="medicalCodes" :md-limit="5" md-placeholder="קוד רפואי" :class="{ 'md-invalid': wasMedicalCodesFocused && medicalCodes.length <= 0 }">
                 <div class="md-helper-text">ניתן לבחור עד 5 קודים</div>
+                <span class="md-error">לא בחרת אף קוד רפואי</span>
             </md-chips>
         </div>
         <app-btn class="waves-light sendBtn" long @click="send">
@@ -82,10 +83,14 @@ export default class Forms extends Vue {
     price: number | undefined | null = null;
     name: string | null = null;
     family: string | null = null;
-    medicalCodes: string[] = [];
     msg: string | null = null;
+    wasMedicalCodesFocused: boolean = false;
+    get medicalCodes(): number[] {
+        return this.$store.state.selectedMedicalCodes;
+    }
     selectCodes() {
-        this.$store.dispatch("alert/medicalCodes", {selectedCodes: this.medicalCodes});
+        this.wasMedicalCodesFocused = true;
+        this.$store.dispatch("alert/medicalCodes", { selectedCodes: this.medicalCodes });
     }
     send() {
         this.msg = this.msg === null ? "" : this.msg.trim();

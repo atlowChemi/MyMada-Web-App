@@ -50,6 +50,7 @@ export enum MedicalCodeGroup {
 
 export interface IRootState {
     packageVersion: string;
+    selectedMedicalCodes: number[];
 }
 
 export interface IAlertState {

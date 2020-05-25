@@ -23,7 +23,10 @@ export default class App extends Vue {
         return this.$store.state.alert;
     }
     @Watch("$route", { immediate: true, deep: true })
-    routeChange(to: any): void {
+    routeChange(to: any, from: any): void {
+        if(from?.name === "Moked" && to.name !== "Moked") {
+            this.$store.dispatch("setMedicalCodes", { medicalCodes: [] })
+        }
         document.title = `דיווחי מד"א${to.meta.title ? " - " + to.meta.title : ""}`;
     }
 }

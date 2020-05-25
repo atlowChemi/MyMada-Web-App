@@ -68,7 +68,7 @@ export const alert: Module<IAlertState, IRootState> = {
         medicalCodes(state, medicalCodes: number[]) {
             state.show = true;
             state.type = AlertType.MedicalCodePicker;
-            state.message = medicalCodes.join(',');
+            state.message = medicalCodes.join(",");
             state.title = "אנא בחר קוד רפואי";
         },
         clear(state) {

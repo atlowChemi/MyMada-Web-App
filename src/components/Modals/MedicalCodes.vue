@@ -13,7 +13,7 @@
 </template>
 
 <script lang="ts">
-import { Vue, Component, Emit } from "vue-property-decorator";
+import { Vue, Component } from "vue-property-decorator";
 import { Fragment } from "vue-fragment";
 import { MedicalCodeGroup } from "@/utils/types";
 import { MedicalCodes as MedicalCodesList } from "@/utils/helperMethods";
@@ -23,6 +23,10 @@ import { MedicalCodes as MedicalCodesList } from "@/utils/helperMethods";
 })
 export default class MedicalCodes extends Vue {
     selectedCodes: number[] = [];
+    constructor() {
+        super();
+        this.selectedCodes.push(...this.$store.state.selectedMedicalCodes);
+    }
     get MedicalCodesList() {
         return MedicalCodesList;
     }
@@ -32,9 +36,8 @@ export default class MedicalCodes extends Vue {
     isDisabled(c: number): boolean {
         return this.selectedCodes.length > 4 && !this.selectedCodes.some(code => code === c);
     }
-    @Emit()
     codeSelected() {
-        return this.selectedCodes;
+        this.$store.dispatch("setMedicalCodes", { medicalCodes: this.selectedCodes });
     }
 }
 </script>
