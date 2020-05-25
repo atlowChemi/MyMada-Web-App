@@ -4,23 +4,54 @@ $secondaryColor: #265072;
 
 $background: #e0e0e0;
 $modalBackground: #fafafa;
-$backdropBackground: rgba(0,0,0,0.5);
+$backdropBackground: rgba(0, 0, 0, 0.5);
 
 $homeBtnIcons: #be1616;
 
-// $errorText: #800;
-// $primaryValid: #0cb606;
-// $secondaryValid: #91f88d;
-// $priceText: #4d4d4d;
-// $messageText: #8ac1ff;
-// $commentsColor: #afc9ff;
 //BTN COLOR
 $btnColor: #283593;
 $btnHoverColor: #3747bc;
 $btnDisabledBackground: #9a9b9c;
 $btnDisabledColor: #455065;
-$primaryError: #C62828;
+$primaryError: #c62828;
 $secondaryError: #dd4545;
+
+//MedicalCodes
+$AreaGroup: #099376;
+$TraumaGroup: #8064a2;
+$PainGroup: #4bacc6;
+$CardioGroup: #c0504d;
+$PulmonaryGroup: #4f81bd;
+$NeurologyGroup: #a1a30e;
+$DigestionGroup: #d8863a;
+$SepticGroup: #829ca3;
+$PsychiatryGroup: #00b050;
+$EndocrinologyGroup: #92d050;
+$GenitalGroup: #ba8280;
+$GeneralGroup: #6b7177;
+
+@mixin medicalCodeSelectors($name, $bg) {
+    .grp-#{$name} {
+        color: white;
+        background-color: $bg;
+        justify-content: center;
+        & ~ .md-list-item {
+            .md-list-item-content {
+                &:hover {
+                    background-color: rgba($color: $bg, $alpha: 0.3);
+                }
+            }
+            .md-checkbox {
+                &.md-checked {
+                    .md-checkbox-container {
+                        background-color: $bg;
+                        border-color: $bg;
+                    }
+                }
+            }
+        }
+    }
+}
 
 @mixin desktop {
     @media (min-width: $mobileMaxWidth) {
