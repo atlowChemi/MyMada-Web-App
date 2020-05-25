@@ -8,23 +8,23 @@
             </md-field>
         </div>
         <div class="col">
-            <md-field md-clearable :class="{ 'md-invalid': visa !== null ? visa <= 0 : false }">
+            <md-field md-clearable>
                 <label>מספר ויזה</label>
                 <md-input v-model="visa" type="number" min="1" max="9999"></md-input>
                 <span class="md-error">לא רשמת מספר ויזה</span>
             </md-field>
         </div>
         <div class="col">
-            <md-field md-clearable :class="{ 'md-invalid': address !== null && address.trim() }">
+            <md-field md-clearable>
                 <label>כתובת אירוע</label>
-                <md-input v-model="address" type="number"></md-input>
+                <md-input v-model="address"></md-input>
                 <span class="md-error">לא רשמת מה כתובת האירוע</span>
             </md-field>
         </div>
         <div class="col">
             <md-field md-clearable :class="{ 'md-invalid': tofesId !== null ? tofesId <= 0 : false }">
                 <label>חולה נפגע</label>
-                <md-input v-model="visa" type="number" min="1" required></md-input>
+                <md-input v-model="tofesId" type="number" min="1" required></md-input>
                 <span class="md-error">לא רשמת מספר טופס חולה נפגע</span>
             </md-field>
         </div>
@@ -43,14 +43,14 @@
             </md-field>
         </div>
         <div class="col">
-            <md-field md-clearable :class="{ 'md-invalid': name !== null && name.trim() }">
+            <md-field md-clearable :class="{ 'md-invalid': name !== null && !name.trim() }">
                 <label>שם פרטי</label>
                 <md-input v-model="name" required></md-input>
                 <span class="md-error">לא רשמת שם פרטי</span>
             </md-field>
         </div>
         <div class="col">
-            <md-field md-clearable :class="{ 'md-invalid': family !== null && family.trim() }">
+            <md-field md-clearable :class="{ 'md-invalid': family !== null && !family.trim() }">
                 <label>שם משפחה</label>
                 <md-input v-model="family" required></md-input>
                 <span class="md-error">לא רשמת שם משפחה</span>
@@ -93,8 +93,34 @@ export default class Forms extends Vue {
         this.$store.dispatch("alert/medicalCodes", { selectedCodes: this.medicalCodes });
     }
     send() {
-        this.msg = this.msg === null ? "" : this.msg.trim();
-        if (this.msg) {
+        let hasAnyError: boolean = false;
+        if (!this.ambulance) {
+            this.ambulance = 0;
+            hasAnyError = true;
+        }
+        if (!this.tofesId) {
+            this.tofesId = 0;
+            hasAnyError = true;
+        }
+        if ((this.price ? 1 : 0) ^ (this.bill ? 1 : 0)) {
+            hasAnyError = true;
+        }
+        if (!this.name) {
+            this.name = "";
+            hasAnyError = true;
+        }
+        if (!this.family) {
+            this.family = "";
+            hasAnyError = true;
+        }
+        if (this.medicalCodes.length <= 0) {
+            this.wasMedicalCodesFocused = true;
+            hasAnyError = true;
+        }
+        if (!hasAnyError) {
+            this.msg = `צוות אמבולנס ${Number(this.ambulance)}\n${this.visa ? `ויזה ${this.visa}\n` : ""}${this.address ? `כתובת ${this.address}\n` : ""}חולה נפגע ${this.tofesId}\n${this.bill ? `התחייבות ${this.bill}\n` : ""}${this.price ? `סכום ${this.price}\n` : ""}שם ${this.name} ${
+                this.family
+            }\nקוד ${this.medicalCodes.join(",")}`;
             this.MessageSent();
         }
     }
@@ -116,6 +142,7 @@ export default class Forms extends Vue {
         }
         @media (min-width: 62rem) {
             width: 25%;
+            margin-bottom: 0.5rem;
         }
         &__full {
             width: 100%;
