@@ -56,12 +56,12 @@
                 <span class="md-error">לא רשמת שם משפחה</span>
             </md-field>
         </div>
-        <div @click="selectCodes">
+        <div @click="selectCodes" class="col col__full">
             <md-chips md-static v-model="medicalCodes" :md-limit="5" md-placeholder="קוד רפואי">
                 <div class="md-helper-text">ניתן לבחור עד 5 קודים</div>
             </md-chips>
         </div>
-        <app-btn class="waves-light" long @click="send">
+        <app-btn class="waves-light sendBtn" long @click="send">
             שלח
             <i class="material-icons">send</i>
             <md-tooltip md-direction="bottom">כלי זה פועל באמצעות סמס</md-tooltip>
@@ -85,7 +85,7 @@ export default class Forms extends Vue {
     medicalCodes: string[] = [];
     msg: string | null = null;
     selectCodes() {
-        this.$store.dispatch("alert/medicalCodes");
+        this.$store.dispatch("alert/medicalCodes", {selectedCodes: this.medicalCodes});
     }
     send() {
         this.msg = this.msg === null ? "" : this.msg.trim();
@@ -112,6 +112,12 @@ export default class Forms extends Vue {
         @media (min-width: 62rem) {
             width: 25%;
         }
+        &__full {
+            width: 100%;
+        }
+    }
+    .sendBtn {
+        margin-top: 2rem;
     }
     .pulse-on-error::v-deep .md-duplicated {
         animation-name: pulse;

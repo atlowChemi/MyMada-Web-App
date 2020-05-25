@@ -27,15 +27,15 @@ export const alert: Module<IAlertState, IRootState> = {
         sendToMoked({ commit }, { message }: { message: string }) {
             commit("sendToMoked", { message });
         },
-        medicalCodes({commit}) {
-            commit("medicalCodes");
+        medicalCodes({ commit }, { selectedCodes }: { selectedCodes: number[] }) {
+            commit("medicalCodes", selectedCodes);
         },
         clear({ commit }) {
             commit("clear");
         },
     },
     mutations: {
-        message(state, { message, title }: { message: string; title: string; }) {
+        message(state, { message, title }: { message: string; title: string }) {
             state.show = true;
             state.type = AlertType.Success;
             state.message = message;
@@ -65,10 +65,10 @@ export const alert: Module<IAlertState, IRootState> = {
             state.message = message;
             state.title = "אשר לפני שליחה";
         },
-        medicalCodes(state) {
+        medicalCodes(state, medicalCodes: number[]) {
             state.show = true;
             state.type = AlertType.MedicalCodePicker;
-            state.message = "";
+            state.message = medicalCodes.join(',');
             state.title = "אנא בחר קוד רפואי";
         },
         clear(state) {
