@@ -56,9 +56,11 @@
                 <span class="md-error">לא רשמת שם משפחה</span>
             </md-field>
         </div>
-        <md-chips v-model="medicalCodes" md-input-type="select" :md-limit="5" md-placeholder="קוד רפואי" md-check-duplicated class="md-primary pulse-on-error">
-            <div class="md-helper-text">ניתן לבחור עד 5 קודים</div>
-        </md-chips>
+        <div @click="selectCodes">
+            <md-chips md-static v-model="medicalCodes" :md-limit="5" md-placeholder="קוד רפואי">
+                <div class="md-helper-text">ניתן לבחור עד 5 קודים</div>
+            </md-chips>
+        </div>
         <app-btn class="waves-light" long @click="send">
             שלח
             <i class="material-icons">send</i>
@@ -82,10 +84,8 @@ export default class Forms extends Vue {
     family: string | null = null;
     medicalCodes: string[] = [];
     msg: string | null = null;
-    FieldHasErrors() {
-        return {
-            "md-invalid": this.msg!?.trim().length <= 0,
-        };
+    selectCodes() {
+        this.$store.dispatch("alert/medicalCodes");
     }
     send() {
         this.msg = this.msg === null ? "" : this.msg.trim();
@@ -113,7 +113,7 @@ export default class Forms extends Vue {
             width: 25%;
         }
     }
-    .pulse-on-error /deep/ .md-duplicated {
+    .pulse-on-error::v-deep .md-duplicated {
         animation-name: pulse;
         animation-duration: 0.5s;
         animation-iteration-count: infinite;

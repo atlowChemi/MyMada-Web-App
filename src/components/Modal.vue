@@ -6,15 +6,16 @@
                 <h1 class="modal__content-title">{{ title || "הגדרות" }}</h1>
                 <ChangeName v-if="changeName" />
                 <Settings v-else-if="settings" />
-                <send-to-moked v-if="SendToMoked" :msg="message"></send-to-moked>
+                <send-to-moked v-else-if="SendToMoked" :msg="message"></send-to-moked>
+                <medical-codes v-else-if="MedicalCodePicker"></medical-codes>
                 <p v-else v-html="message"></p>
             </div>
             <div class="modal__footer">
-                <md-button :disabled="validateUserName" v-if="FooterCloseOnly" @click="close(false)">אישור</md-button>
-                <div v-else-if="SendToMoked">
+                <div v-if="SendToMoked">
                     <app-btn class="modal__footer-btn flat waves-success" @click="sendMsgToMoked">שלח</app-btn>
                     <app-btn class="modal__footer-btn flat waves-danger" @click="close">ביטול</app-btn>
                 </div>
+                <md-button :disabled="validateUserName" v-else @click="close(false)">אישור</md-button>
             </div>
         </div>
     </div>
@@ -23,23 +24,24 @@
 <script lang="ts">
 import { Component, Vue, Prop } from "vue-property-decorator";
 
-import { AlertType, ModalFooterType } from "../utils/types";
+import { AlertType } from "../utils/types";
 import ChangeName from "./Modals/ChangeName.vue";
 import Settings from "./Modals/Settings.vue";
 import SendToMoked from "./Modals/SendToMoked.vue";
+import MedicalCodes from "./Modals/MedicalCodes.vue";
 
 @Component({
     components: {
         ChangeName,
         Settings,
         SendToMoked,
+        MedicalCodes,
     },
 })
 export default class Modal extends Vue {
     @Prop(String) message!: string;
     @Prop(String) title!: string;
     @Prop() type!: AlertType;
-    @Prop() footer!: ModalFooterType;
     get error(): boolean {
         return this.type === AlertType.Error;
     }
@@ -52,11 +54,8 @@ export default class Modal extends Vue {
     get SendToMoked(): boolean {
         return this.type === AlertType.SendToMoked;
     }
-    get FooterCloseOnly(): boolean {
-        return this.footer === ModalFooterType.CloseOnly;
-    }
-    get FooterAddTeamMember(): boolean {
-        return this.footer === ModalFooterType.AddTeamMember;
+    get MedicalCodePicker(): boolean {
+        return this.type === AlertType.MedicalCodePicker;
     }
     get validateUserName(): boolean {
         return this.changeName && !this.$store.getters["user/validUserName"];

@@ -6,7 +6,6 @@ export const state: IAlertState = {
     type: AlertType.Success,
     message: "",
     title: "",
-    footerType: ModalFooterType.CloseOnly,
 };
 
 export const alert: Module<IAlertState, IRootState> = {
@@ -28,45 +27,49 @@ export const alert: Module<IAlertState, IRootState> = {
         sendToMoked({ commit }, { message }: { message: string }) {
             commit("sendToMoked", { message });
         },
+        medicalCodes({commit}) {
+            commit("medicalCodes");
+        },
         clear({ commit }) {
             commit("clear");
         },
     },
     mutations: {
-        message(state, { message, title, footerType }: { message: string; title: string; footerType: ModalFooterType }) {
+        message(state, { message, title }: { message: string; title: string; }) {
             state.show = true;
             state.type = AlertType.Success;
             state.message = message;
             state.title = title;
-            state.footerType = footerType;
         },
         error(state, { message, title }: { message: string; title: string }) {
             state.show = true;
             state.type = AlertType.Error;
             state.message = message;
             state.title = title ?? "תקלה";
-            state.footerType = ModalFooterType.CloseOnly;
         },
         changeName(state) {
             state.show = true;
             state.type = AlertType.ChangeName;
             state.message = "";
             state.title = "רשמו שם משתמש";
-            state.footerType = ModalFooterType.CloseOnly;
         },
         settings(state) {
             state.show = true;
             state.type = AlertType.Settings;
             state.message = "";
             state.title = "הגדרות";
-            state.footerType = ModalFooterType.CloseOnly;
         },
         sendToMoked(state, { message }: { message: string }) {
             state.show = true;
             state.type = AlertType.SendToMoked;
             state.message = message;
             state.title = "אשר לפני שליחה";
-            state.footerType = ModalFooterType.SendToMoked;
+        },
+        medicalCodes(state) {
+            state.show = true;
+            state.type = AlertType.MedicalCodePicker;
+            state.message = "";
+            state.title = "אנא בחר קוד רפואי";
         },
         clear(state) {
             state.show = false;
