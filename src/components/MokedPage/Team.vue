@@ -33,7 +33,7 @@ export default class Team extends Vue {
         };
     }
     addTeamMembers() {
-        this.$store.dispatch("alert/addTeamMember", null)
+        this.$store.dispatch("alert/addTeamMember", null);
     }
     send() {
         this.msg = this.msg === null ? "" : this.msg.trim();

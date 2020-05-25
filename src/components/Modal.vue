@@ -8,11 +8,16 @@
                 <Settings v-else-if="settings" />
                 <send-to-moked v-else-if="SendToMoked" :msg="message"></send-to-moked>
                 <medical-codes v-else-if="MedicalCodePicker"></medical-codes>
+                <add-team-member-component v-else-if="AddTeamMember"></add-team-member-component>
                 <p v-else v-html="message"></p>
             </div>
             <div class="modal__footer">
                 <div v-if="SendToMoked">
                     <app-btn class="modal__footer-btn flat waves-success" @click="sendMsgToMoked">שלח</app-btn>
+                    <app-btn class="modal__footer-btn flat waves-danger" @click="close">ביטול</app-btn>
+                </div>
+                <div v-if="AddTeamMember">
+                    <app-btn class="modal__footer-btn flat waves-success" @click="sendMsgToMoked">הוסף</app-btn>
                     <app-btn class="modal__footer-btn flat waves-danger" @click="close">ביטול</app-btn>
                 </div>
                 <md-button :disabled="validateUserName" v-else @click="close(false)">אישור</md-button>
@@ -24,10 +29,12 @@
 <script lang="ts">
 import { Component, Vue, Prop } from "vue-property-decorator";
 import { AlertType } from "../utils/types";
-import ChangeName from "./Modals/ChangeName.vue";
-import Settings from "./Modals/Settings.vue";
-import SendToMoked from "./Modals/SendToMoked.vue";
-import MedicalCodes from "./Modals/MedicalCodes.vue";
+
+const ChangeName = () => import(/* webpackPrefetch: true */ "@/components/Modals/ChangeName.vue");
+const Settings = () => import(/* webpackPrefetch: true */ "@/components/Modals/Settings.vue");
+const SendToMoked = () => import(/* webpackPrefetch: true */ "@/components/Modals/SendToMoked.vue");
+const MedicalCodes = () => import(/* webpackPrefetch: true */ "@/components/Modals/MedicalCodes.vue");
+const AddTeamMemberComponent = () => import(/* webpackPrefetch: true */ "@/components/Modals/AddTeamMember.vue");
 
 @Component({
     components: {
@@ -35,6 +42,7 @@ import MedicalCodes from "./Modals/MedicalCodes.vue";
         Settings,
         SendToMoked,
         MedicalCodes,
+        AddTeamMemberComponent,
     },
 })
 export default class Modal extends Vue {
@@ -55,6 +63,9 @@ export default class Modal extends Vue {
     }
     get MedicalCodePicker(): boolean {
         return this.type === AlertType.MedicalCodePicker;
+    }
+    get AddTeamMember(): boolean {
+        return this.type === AlertType.AddTeamMember;
     }
     get validateUserName(): boolean {
         return this.changeName && !this.$store.getters["user/validUserName"];
