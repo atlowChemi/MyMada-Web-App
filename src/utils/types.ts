@@ -3,7 +3,8 @@ export enum AlertType {
     Success,
     Settings,
     ChangeName,
-    SendToMoked
+    SendToMoked,
+    MedicalCodePicker,
 }
 
 export enum ModalFooterType {
@@ -32,6 +33,21 @@ export enum Moked {
     Moked4,
 }
 
+export enum MedicalCodeGroup {
+    Area,
+    Trauma,
+    Pain,
+    Cardio,
+    Pulmonary,
+    Neurology,
+    Digestion,
+    Septic,
+    Psychiatry,
+    Endocrinology,
+    Genital,
+    General,
+}
+
 export interface IRootState {
     packageVersion: string;
 }
@@ -41,7 +57,6 @@ export interface IAlertState {
     type: AlertType;
     message: string;
     title: string;
-    footerType: ModalFooterType;
 }
 
 export interface IUserState {
@@ -54,4 +69,10 @@ export interface ISettingsState {
     moked: Moked;
     lang: Languages;
     tools: string[];
+}
+
+export interface IMedicalCode {
+    name: string;
+    code?: number;
+    group: MedicalCodeGroup;
 }
