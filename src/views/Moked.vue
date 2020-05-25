@@ -4,8 +4,8 @@
             <md-tab id="tab-forms" md-label="הכתבת טפסים" to="/moked/forms">
                 <forms @message-sent="sendModal" />
             </md-tab>
-            <md-tab id="tab-pages" md-label="דיווח צוות" to="/moked/team">ויי</md-tab>
-            <md-tab id="tab-posts" md-label="הודעה כללית" to="/moked/general"><general @message-sent="sendModal" /></md-tab>
+            <md-tab id="tab-pages" md-label="דיווח צוות" to="/moked/team"><team @message-sent="sendModal"/></md-tab>
+            <md-tab id="tab-posts" md-label="הודעה כללית" to="/moked/general"><general @message-sent="sendModal"/></md-tab>
         </md-tabs>
         <!-- <md-empty-state md-icon="devices_other" md-label="לא קיימים מוקד" md-description="ההמתנה משתלמת."></md-empty-state> -->
     </div>
@@ -15,19 +15,21 @@
 import { Vue, Component } from "vue-property-decorator";
 import Forms from "@/components/MokedPage/Forms.vue";
 import General from "@/components/MokedPage/General.vue";
+import Team from "@/components/MokedPage/Team.vue";
 
 @Component({
     components: {
         Forms,
         General,
-    }
+        Team,
+    },
 })
 export default class Tools extends Vue {
     sendModal(message: string) {
-        this.$store.dispatch("alert/sendToMoked", { message })
+        this.$store.dispatch("alert/sendToMoked", { message });
     }
 }
-</script>   
+</script>
 
 <style lang="scss">
 .holder {
