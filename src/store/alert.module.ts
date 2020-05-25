@@ -1,5 +1,5 @@
 import { Module } from "vuex";
-import { AlertType, IAlertState, ModalFooterType, IRootState } from "../utils/types";
+import { AlertType, IAlertState, IRootState, ITeamMember } from "../utils/types";
 
 export const state: IAlertState = {
     show: false,
@@ -29,6 +29,9 @@ export const alert: Module<IAlertState, IRootState> = {
         },
         medicalCodes({ commit }, { selectedCodes }: { selectedCodes: number[] }) {
             commit("medicalCodes", selectedCodes);
+        },
+        addTeamMember({ commit }, teamMember?: ITeamMember) {
+            commit("addTeamMember", teamMember);
         },
         clear({ commit }) {
             commit("clear");
@@ -70,6 +73,12 @@ export const alert: Module<IAlertState, IRootState> = {
             state.type = AlertType.MedicalCodePicker;
             state.message = medicalCodes.join(",");
             state.title = "אנא בחר קוד רפואי";
+        },
+        addTeamMember(state, teamMember: ITeamMember) {
+            state.show = true;
+            state.type = AlertType.AddTeamMember;
+            state.message = "";
+            state.title = "הוספת איש צוות";
         },
         clear(state) {
             state.show = false;
