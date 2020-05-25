@@ -5,7 +5,7 @@
             <md-textarea v-model="msg" md-autogrow required></md-textarea>
             <span class="md-error">לא ניתן לשלוח הודעה ריקה</span>
         </md-field>
-        <app-btn long @click="send">
+        <app-btn class="waves-light" long @click="send">
             שלח
             <i class="material-icons">send</i>
             <md-tooltip md-direction="bottom">כלי זה פועל באמצעות סמס</md-tooltip>

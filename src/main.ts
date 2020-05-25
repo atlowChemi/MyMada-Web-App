@@ -1,6 +1,6 @@
 import Vue from "vue";
 import Waves from "vue-waves-effect";
-import { MdButton, MdCard, MdCheckbox, MdEmptyState, MdField, MdRadio, MdRipple, MdSnackbar, MdTabs, MdTooltip } from "vue-material/dist/components";
+import { MdButton, MdCard, MdCheckbox, MdChips, MdEmptyState, MdField, MdRadio, MdRipple, MdSnackbar, MdTabs, MdTooltip } from "vue-material/dist/components";
 import "vue-material/dist/vue-material.min.css";
 import "vue-material/dist/theme/default.css";
 
@@ -30,6 +30,7 @@ Vue.use(Waves);
 Vue.use(MdButton);
 Vue.use(MdCard);
 Vue.use(MdCheckbox);
+Vue.use(MdChips);
 Vue.use(MdEmptyState);
 Vue.use(MdField);
 Vue.use(MdRadio);
