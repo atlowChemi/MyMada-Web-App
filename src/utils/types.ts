@@ -5,6 +5,7 @@ export enum AlertType {
     ChangeName,
     SendToMoked,
     MedicalCodePicker,
+    AddTeamMember,
 }
 
 export enum ModalFooterType {
@@ -48,6 +49,16 @@ export enum MedicalCodeGroup {
     General,
 }
 
+export enum MedicalRole {
+    Driver,
+    EMT,
+    Paramedic,
+    Doctor,
+    Volunteer,
+    Student,
+    Service,
+}
+
 export interface IRootState {
     packageVersion: string;
     selectedMedicalCodes: number[];
@@ -76,4 +87,9 @@ export interface IMedicalCode {
     name: string;
     code?: number;
     group: MedicalCodeGroup;
+}
+
+export interface ITeamMember {
+    name: string;
+    role: MedicalRole;
 }
