@@ -32,19 +32,13 @@ import { Component, Vue, Prop } from "vue-property-decorator";
 import { AlertType } from "../utils/types";
 import { ModalComponents } from ".";
 
-const AddTeamMember = ModalComponents.AddTeamMember;
-const ChangeName = ModalComponents.ChangeName;
-const MedicalCodes = ModalComponents.MedicalCodes;
-const SendToMoked = ModalComponents.SendToMoked;
-const Settings = ModalComponents.Settings;
-
 @Component({
     components: {
-        AddTeamMember,
-        ChangeName,
-        MedicalCodes,
-        SendToMoked,
-        Settings,
+        AddTeamMember: ModalComponents.AddTeamMember,
+        ChangeName: ModalComponents.ChangeName,
+        MedicalCodes: ModalComponents.MedicalCodes,
+        SendToMoked: ModalComponents.SendToMoked,
+        Settings: ModalComponents.Settings,
     },
 })
 export default class Modal extends Vue {

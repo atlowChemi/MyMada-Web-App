@@ -133,7 +133,7 @@ export default class Contact extends Vue {
     .center__page {
         height: calc(100% - 11.5rem);
         overflow-y: auto;
-        @include desktop {
+        @include tablet {
             height: calc(100% - 8.5rem);
         }
         .main__container {
@@ -154,7 +154,7 @@ export default class Contact extends Vue {
     footer {
         max-height: 11.5rem;
         text-align: center;
-        @include desktop {
+        @include tablet {
             height: 8rem;
             padding-bottom: 0;
         }
@@ -163,18 +163,18 @@ export default class Contact extends Vue {
         }
         .new-msg__container {
             padding-bottom: 0;
-            @include desktop {
+            @include tablet {
                 display: flex;
                 align-items: center;
             }
             .new-msg__input {
-                @include desktop {
+                @include tablet {
                     width: 66.6666666667%;
                     margin-left: 0.5rem;
                 }
             }
             .new-msg__submit {
-                @include desktop {
+                @include tablet {
                     width: 33.3333333333%;
                 }
             }
