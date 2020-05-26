@@ -24,8 +24,7 @@
 <script lang="ts">
 import { Component, Vue, Watch } from "vue-property-decorator";
 import { convertRemToPixels } from "@/utils/helperMethods";
-import { Components } from ".";
-const ToolsMenu = Components.ToolsMenu;
+import ToolsMenu from "@/components/ToolsMenu.vue";
 
 @Component({
     components: {

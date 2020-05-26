@@ -44,14 +44,14 @@
     </router-link>
 </template>
 
-<script type="ts">
-import { Component, Prop, Vue, } from "vue-property-decorator";
+<script lang="ts">
+import { Component, Prop, Vue } from "vue-property-decorator";
 
 @Component
 export default class HomeButton extends Vue {
-    @Prop({type: String, required: true}) readonly of!: string;
-    @Prop({type: Boolean, required: false, default: false}) isSmall!: Boolean;
-};
+    @Prop({ type: String, required: true }) readonly of!: string;
+    @Prop({ type: Boolean, required: false, default: false }) isSmall!: Boolean;
+}
 </script>
 
 <style lang="scss" scoped>
