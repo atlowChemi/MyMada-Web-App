@@ -5,49 +5,49 @@
                 <i class="tools-nav__menu-item__icon material-icons">arrow_forward</i>
                 עמוד הבית
             </li>
-            <li class="tools-nav__menu-item">
+            <li class="tools-nav__menu-item" @click="close">
                 <router-link to="/tools/contractions">
                     <i class="tools-nav__menu-item__icon icon-contractions"></i>
                     שעון צירים
                 </router-link>
             </li>
-            <li class="tools-nav__menu-item">
+            <li class="tools-nav__menu-item" @click="close">
                 <router-link to="/tools/pulse">
                     <i class="tools-nav__menu-item__icon icon-pulse"></i>
                     שעון דופק
                 </router-link>
             </li>
-            <li class="tools-nav__menu-item">
+            <li class="tools-nav__menu-item" @click="close">
                 <router-link to="/tools/metronome">
                     <i class="tools-nav__menu-item__icon icon-metronome"></i>
                     מטרונום
                 </router-link>
             </li>
-            <li class="tools-nav__menu-item">
+            <li class="tools-nav__menu-item" @click="close">
                 <router-link to="/tools/vital">
                     <i class="tools-nav__menu-item__icon icon-vital"></i>
                     מחשבון מדדים
                 </router-link>
             </li>
-            <li class="tools-nav__menu-item">
+            <li class="tools-nav__menu-item" @click="close">
                 <router-link to="/tools/oxygen">
                     <i class="tools-nav__menu-item__icon icon-oxygen"></i>
                     מחשבון חמצן
                 </router-link>
             </li>
-            <li class="tools-nav__menu-item">
+            <li class="tools-nav__menu-item" @click="close">
                 <router-link to="/tools/apgar">
                     <i class="tools-nav__menu-item__icon icon-apgar"></i>
                     מחשבון אפגאר
                 </router-link>
             </li>
-            <li class="tools-nav__menu-item">
+            <li class="tools-nav__menu-item" @click="close">
                 <router-link to="/tools/glazgo">
                     <i class="tools-nav__menu-item__icon icon-glazgow"></i>
                     מחשבון גלאזגו
                 </router-link>
             </li>
-            <li class="tools-nav__menu-item">
+            <li class="tools-nav__menu-item" @click="close">
                 <router-link to="/tools/dictionary">
                     <i class="tools-nav__menu-item__icon icon-dictionary"></i>
                     מילון רפואי
@@ -57,19 +57,19 @@
         <div class="tools-nav__seperator"></div>
         <p class="tools-nav__title">פרוטוקולים</p>
         <ul class="tools-nav__menu">
-            <li class="tools-nav__menu-item">
+            <li class="tools-nav__menu-item" @click="close">
                 <router-link to="/tools/als">
                     <i class="tools-nav__menu-item__icon icon-als"></i>
                     פרוטוקולי ALS
                 </router-link>
             </li>
-            <li class="tools-nav__menu-item">
+            <li class="tools-nav__menu-item" @click="close">
                 <router-link to="/tools/bls">
                     <i class="tools-nav__menu-item__icon icon-bls"></i>
                     פרוטוקולי BLS
                 </router-link>
             </li>
-            <li class="tools-nav__menu-item">
+            <li class="tools-nav__menu-item" @click="close">
                 <router-link to="/tools/dead">
                     <i class="tools-nav__menu-item__icon icon-dead"></i>
                     קונטרס "גישה לנפטר"
@@ -80,13 +80,17 @@
 </template>
 
 <script lang="ts">
-import { Component, Vue, Prop } from "vue-property-decorator";
+import { Component, Vue, Prop, Emit } from "vue-property-decorator";
 
 @Component
 export default class ToolsMenu extends Vue {
     @Prop({ type: Boolean, required: true, default: false }) readonly menuState!: boolean;
     goHome() {
         this.$router.replace("/");
+    }
+    @Emit()
+    close() {
+        return true;
     }
 }
 </script>
@@ -124,13 +128,14 @@ export default class ToolsMenu extends Vue {
                     display: none;
                 }
             }
-            &:hover,
-            &.active {
-                background-color: $background;
-            }
             & > a {
                 display: block;
                 color: black;
+                &.router-link-active,
+                &:hover,
+                &:focus {
+                    background-color: $background;
+                }
             }
             &__icon {
                 color: $backdropBackground;

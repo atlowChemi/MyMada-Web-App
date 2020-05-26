@@ -16,7 +16,7 @@
             </div>
             <div class="main-header__nav--circle" v-if="currentLoc === 'home'"></div>
         </nav>
-        <tools-menu v-if="currentLoc === 'Tools'" :menuState="menuIsOpen"></tools-menu>
+        <tools-menu v-if="currentLoc === 'Tools'" :menuState="menuIsOpen" @close="closeMenu"></tools-menu>
         <div class="backdrop" @click="closeMenu" v-if="menuIsOpen && isMobile && currentLoc === 'Tools'"></div>
     </header>
 </template>
