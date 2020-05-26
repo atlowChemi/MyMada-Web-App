@@ -40,5 +40,6 @@ declare global {
     export interface ITeamMember {
         name: string;
         role: MedicalRole;
+        time?: Date;
     }
 }

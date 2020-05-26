@@ -7,7 +7,7 @@
         </md-field>
         <md-field>
             <label for="role">תפקיד בצוות</label>
-            <md-select v-model="role" md-dense placeholder="תפקיד בצוות" name="role" id="role">
+            <md-select @md-selected="IsValid" v-model="role" md-dense placeholder="תפקיד בצוות" name="role" id="role">
                 <md-option value="0">נהג</md-option>
                 <md-option value="1">חובש</md-option>
                 <md-option value="2">פראמדיק</md-option>
@@ -26,7 +26,7 @@ import { MedicalRole } from "../../utils/types";
 
 @Component
 export default class AddTeamMember extends Vue {
-    hiddenName: string | null = null;
+    private hiddenName: string | null = null;
     role: MedicalRole = MedicalRole.Driver;
     constructor() {
         super();

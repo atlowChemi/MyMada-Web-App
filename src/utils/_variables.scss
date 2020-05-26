@@ -30,6 +30,11 @@ $EndocrinologyGroup: #92d050;
 $GenitalGroup: #ba8280;
 $GeneralGroup: #6b7177;
 
+//Medical Roles
+$Paramedic: #ff5200;
+$Medic: #5a5a5a;
+$Volunteer: #e61f1f;
+
 @mixin medicalCodeSelectors($name, $bg) {
     .grp-#{$name} {
         color: white;

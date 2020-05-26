@@ -5,6 +5,9 @@
             <md-input v-model="ambulance" type="number" required min="1" max="9999"></md-input>
             <span class="md-error">לא רשמת מספר אמבולנס</span>
         </md-field>
+        <div class="team-holder">
+            <team-member v-for="(teamMember, index) in teamMembers" :key="index" :member="teamMember"></team-member>
+        </div>
         <div class="btn-holder">
             <div class="teams">
                 <app-btn long light @click="addTeamMembers">הוספת איש צוות</app-btn>
@@ -22,8 +25,13 @@
 
 <script lang="ts">
 import { Component, Vue, Emit } from "vue-property-decorator";
+const TeamMember = () => import(/* webpackPrefetch: true */ "@/components/TeamMember.vue");
 
-@Component
+@Component({
+    components: {
+        TeamMember,
+    },
+})
 export default class Team extends Vue {
     ambulance: number | null = null;
     msg: string | null = null;
@@ -31,6 +39,9 @@ export default class Team extends Vue {
         return {
             "md-invalid": this.ambulance !== null && this.ambulance <= 0,
         };
+    }
+    get teamMembers(): ITeamMember[] {
+        return this.$store.state.teamMembers;
     }
     addTeamMembers() {
         this.$store.dispatch("alert/addTeamMember", null);
@@ -49,6 +60,11 @@ export default class Team extends Vue {
 </script>
 
 <style lang="scss" scoped>
+.team-holder {
+    display: flex;
+    flex-wrap: wrap;
+    margin: 2rem 0;
+}
 .btn-holder {
     display: flex;
     flex-direction: column;

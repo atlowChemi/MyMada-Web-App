@@ -18,6 +18,7 @@ export default new Vuex.Store<IRootState>({
             commit("setMedicalCodes", { medicalCodes });
         },
         addTeamMember({ commit }, teamMember: ITeamMember) {
+            teamMember.time = new Date();
             commit("addTeamMember", teamMember);
         },
         setTeamMembers({ commit }, { teamMembers }: { teamMembers: ITeamMember[] }) {
@@ -29,7 +30,7 @@ export default new Vuex.Store<IRootState>({
             state.selectedMedicalCodes = medicalCodes;
         },
         addTeamMember(state, teamMember: ITeamMember) {
-            if (state.teamMembers.length <= 4) {
+            if (state.teamMembers.length < 4) {
                 state.teamMembers.push(teamMember);
             }
         },
