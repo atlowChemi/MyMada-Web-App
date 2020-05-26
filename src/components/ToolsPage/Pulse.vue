@@ -2,42 +2,14 @@
     <fragment>
         <frozen-side-bar>
             <template>
-                <p>p</p>
-                <p>p</p>
-                <p>p</p>
-                <p>p</p>
-                <p>p</p>
-                <p>p</p>
-                <p>p</p>
-                <p>p</p>
-                <p>p</p>
-                <p>p</p>
-                <p>p</p>
-                <p>p</p>
-                <p>p</p>
-                <p>p</p>
-                <p>p</p>
-                <p>p</p>
-                <p>p</p>
-                <p>p</p>
-                <p>p</p>
-                <p>p</p>
-                <p>p</p>
-                <p>p</p>
-                <p>p</p>
-                <p>p</p>
-                <p>p</p>
-                <p>p</p>
-                <p>p</p>
-                <p>p</p>
-                <p>p</p>
-                <p>p</p>
-                <p>p</p>
-                <p>p</p>
-                <p>p</p>
-                <p>p</p>
-                <p>p</p>
-                <p>p</p>
+                <md-field>
+                    <label>דופק ב15 שניות</label>
+                    <md-input type="number" min="1" v-model="pulseSeconds"></md-input>
+                </md-field>
+                <md-field>
+                    <label>דופק בדקה</label>
+                    <md-input type="number" min="1" v-model="pulseMinute"></md-input>
+                </md-field>
             </template>
             <template #side>
                 <div class="pulse-calc">
@@ -61,10 +33,22 @@ import FrozenSideBar from "@/components/FrozenSideBar.vue";
         FrozenSideBar,
     },
 })
-export default class Contractions extends Vue {
-    isActive: boolean = false;
-    contractionsBtnClicked() {
-        this.isActive = !this.isActive;
+export default class Pulse extends Vue {
+    private pSeconds: number | null = null;
+    private pMinute: number | null = null;
+    get pulseSeconds() {
+        return this.pSeconds ? Math.ceil(this.pSeconds) : null;
+    }
+    set pulseSeconds(value) {
+        this.pSeconds = value;
+        this.pMinute = value ? value * 4 : null;
+    }
+    get pulseMinute() {
+        return this.pMinute;
+    }
+    set pulseMinute(value) {
+        this.pMinute = value;
+        this.pSeconds = value ? value / 4 : null;
     }
 }
 </script>

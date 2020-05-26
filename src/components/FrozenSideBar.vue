@@ -23,6 +23,7 @@ export default class Contractions extends Vue {}
 
 <style lang="scss" scoped>
 .content {
+    padding: 0 0.75rem;
     width: 100%;
     height: 100%;
     overflow-y: auto;
