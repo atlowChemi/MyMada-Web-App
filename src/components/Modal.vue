@@ -8,7 +8,7 @@
                 <Settings v-else-if="settings" />
                 <send-to-moked v-else-if="SendToMoked" :msg="message"></send-to-moked>
                 <medical-codes v-else-if="MedicalCodePicker"></medical-codes>
-                <add-team-member-component v-else-if="AddTeamMember" :member="message" @is-valid="isValidTeamMember"></add-team-member-component>
+                <add-team-member v-else-if="IsAddTeamMember" :member="message" @is-valid="isValidTeamMember"></add-team-member>
                 <p v-else v-html="message"></p>
             </div>
             <div class="modal__footer">
@@ -16,7 +16,7 @@
                     <app-btn class="modal__footer-btn flat" v-wave.success @click="sendMsgToMoked">שלח</app-btn>
                     <app-btn class="modal__footer-btn flat" v-wave.danger @click="close">ביטול</app-btn>
                 </div>
-                <div v-if="AddTeamMember">
+                <div v-if="IsAddTeamMember">
                     <app-btn class="modal__footer-btn flat" v-if="message" v-wave.success @click="AddMember" :disabled="!addTeamBtnEnabled">שמור</app-btn>
                     <app-btn class="modal__footer-btn flat" v-else v-wave.success @click="AddMember" :disabled="!addTeamBtnEnabled">הוסף</app-btn>
                     <app-btn class="modal__footer-btn flat" v-wave.danger @click="close">ביטול</app-btn>
@@ -30,20 +30,21 @@
 <script lang="ts">
 import { Component, Vue, Prop } from "vue-property-decorator";
 import { AlertType } from "../utils/types";
+import { ModalComponents } from ".";
 
-const ChangeName = () => import(/* webpackPrefetch: true */ "@/components/Modals/ChangeName.vue");
-const Settings = () => import(/* webpackPrefetch: true */ "@/components/Modals/Settings.vue");
-const SendToMoked = () => import(/* webpackPrefetch: true */ "@/components/Modals/SendToMoked.vue");
-const MedicalCodes = () => import(/* webpackPrefetch: true */ "@/components/Modals/MedicalCodes.vue");
-const AddTeamMemberComponent = () => import(/* webpackPrefetch: true */ "@/components/Modals/AddTeamMember.vue");
+const AddTeamMember = ModalComponents.AddTeamMember;
+const ChangeName = ModalComponents.ChangeName;
+const MedicalCodes = ModalComponents.MedicalCodes;
+const SendToMoked = ModalComponents.SendToMoked;
+const Settings = ModalComponents.Settings;
 
 @Component({
     components: {
+        AddTeamMember,
         ChangeName,
-        Settings,
-        SendToMoked,
         MedicalCodes,
-        AddTeamMemberComponent,
+        SendToMoked,
+        Settings,
     },
 })
 export default class Modal extends Vue {
@@ -66,7 +67,7 @@ export default class Modal extends Vue {
     get MedicalCodePicker(): boolean {
         return this.type === AlertType.MedicalCodePicker;
     }
-    get AddTeamMember(): boolean {
+    get IsAddTeamMember(): boolean {
         return this.type === AlertType.AddTeamMember;
     }
     get validateUserName(): boolean {

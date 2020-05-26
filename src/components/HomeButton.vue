@@ -44,16 +44,13 @@
     </router-link>
 </template>
 
-<script>
-export default {
-    // inheritAttrs: true,
-    props: {
-        of: {
-            type: String,
-            required: true,
-        },
-        isSmall: Boolean,
-    },
+<script type="ts">
+import { Component, Prop, Vue, } from "vue-property-decorator";
+
+@Component
+export default class HomeButton extends Vue {
+    @Prop({type: String, required: true}) readonly of!: string;
+    @Prop({type: Boolean, required: false, default: false}) isSmall!: Boolean;
 };
 </script>
 

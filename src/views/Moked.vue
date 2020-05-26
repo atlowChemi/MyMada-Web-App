@@ -13,9 +13,11 @@
 
 <script lang="ts">
 import { Vue, Component } from "vue-property-decorator";
-import Forms from "@/components/MokedPage/Forms.vue";
-import General from "@/components/MokedPage/General.vue";
-import Team from "@/components/MokedPage/Team.vue";
+import { MokedPageComponents } from "@/components";
+
+const Forms = MokedPageComponents.Forms;
+const General = MokedPageComponents.General;
+const Team = MokedPageComponents.Team;
 
 @Component({
     components: {

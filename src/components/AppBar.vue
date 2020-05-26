@@ -24,7 +24,8 @@
 <script lang="ts">
 import { Component, Vue, Watch } from "vue-property-decorator";
 import { convertRemToPixels } from "@/utils/helperMethods";
-import ToolsMenu from "./ToolsMenu.vue";
+import { Components } from ".";
+const ToolsMenu = Components.ToolsMenu;
 
 @Component({
     components: {
@@ -34,9 +35,9 @@ import ToolsMenu from "./ToolsMenu.vue";
 export default class AppBar extends Vue {
     isMobile: boolean = true;
     menuIsOpen: boolean = false;
-    @Watch("$route", {immediate: true, deep: true})
-    changedRoute(to: any):void {
-        if(to.name !== 'Tools') {
+    @Watch("$route", { immediate: true, deep: true })
+    changedRoute(to: any): void {
+        if (to.name !== "Tools") {
             this.menuIsOpen = false;
         }
     }
@@ -53,7 +54,7 @@ export default class AppBar extends Vue {
         this.menuIsOpen = !this.menuIsOpen;
     }
     closeMenu() {
-        if(this.menuIsOpen) {
+        if (this.menuIsOpen) {
             this.menuIsOpen = false;
         }
     }

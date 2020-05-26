@@ -5,6 +5,7 @@
     "module": "esnext",
     "strict": true,
     "jsx": "preserve",
+    "declaration": true,
     "importHelpers": true,
     "moduleResolution": "node",
     "allowJs": true,
@@ -35,6 +36,7 @@
     "tests/**/*.tsx"
   ],
   "exclude": [
+    "src/**/*.js",
     "node_modules"
   ]
 }
