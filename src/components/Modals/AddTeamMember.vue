@@ -21,15 +21,34 @@
 </template>
 
 <script lang="ts">
-import { Component, Vue } from "vue-property-decorator";
+import { Component, Vue, Emit } from "vue-property-decorator";
 import { MedicalRole } from "../../utils/types";
 
 @Component
 export default class AddTeamMember extends Vue {
-    name: string | null = null;
+    hiddenName: string | null = null;
     role: MedicalRole = MedicalRole.Driver;
+    constructor() {
+        super();
+        this.IsValid();
+    }
+    get name(): string | null {
+        return this.hiddenName!?.trim();
+    }
+    set name(value: string | null) {
+        this.hiddenName = value;
+        this.IsValid();
+    }
     get hasErrors(): string | null {
-        return this.name!?.length <= 0 ? "md-invalid" : null;
+        return this.name !== null && this.name!?.length <= 0 ? "md-invalid" : null;
+    }
+    @Emit()
+    IsValid(): boolean | ITeamMember {
+        if (!this.name) {
+            return false;
+        } else {
+            return { name: this.name, role: this.role };
+        }
     }
 }
 </script>

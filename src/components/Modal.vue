@@ -88,7 +88,9 @@ export default class Modal extends Vue {
         this.addTeamBtnEnabled = typeof e === "boolean" ? null : e;
     }
     AddMember() {
-        console.log("What now?");
+        if (this.addTeamBtnEnabled && this.addTeamBtnEnabled.name.trim().length > 0) {
+            this.$store.dispatch("addTeamMember", this.addTeamBtnEnabled);
+        }
     }
 }
 </script>

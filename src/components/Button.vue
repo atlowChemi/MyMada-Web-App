@@ -13,7 +13,6 @@ import { Component, Vue, Prop, Emit } from "vue-property-decorator";
 Vue.directive("wave", function(el, binding) {
     const modifiers = binding.modifiers;
     for (const modifier in modifiers) {
-        console.log(modifier);
         el.classList.add(`waves-${modifier}`);
     }
 });

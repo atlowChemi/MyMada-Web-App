@@ -63,7 +63,7 @@ export default class Contact extends Vue {
     msg: string | null = null;
     lastSent!: number;
     seenMsg: string = "";
-    private retrievedMessages: { [key: string]: { msg: string; sender: string; time: number, WhatsApp?: boolean } } | null = null;
+    private retrievedMessages: { [key: string]: { msg: string; sender: string; time: number; WhatsApp?: boolean } } | null = null;
     get fcmToken(): string {
         return this.$store.state.user.fcmToken;
     }
@@ -80,7 +80,7 @@ export default class Contact extends Vue {
     }
     mounted() {
         this.database.on("value", snapshot => {
-            if(snapshot && snapshot.val()) {
+            if (snapshot && snapshot.val()) {
                 const { Name, SeenByAdmin, LastSent, ...value } = snapshot.val();
                 if (!Name) return;
                 this.lastSent = LastSent;
