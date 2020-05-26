@@ -195,3 +195,5 @@ export const MedicalCodes: IMedicalCode[] = [
     { name: "אחר", code: 1399, group: MedicalCodeGroup.General },
     //#endregion
 ];
+
+export const MedicalRolesNames: string[] = ["נהג", "חובש", "פראמדיק", "רופא", "מתנדב", "משתלם", "שירות לאומי"];

@@ -17,25 +17,33 @@ export default new Vuex.Store<IRootState>({
         setMedicalCodes({ commit }, { medicalCodes }: { medicalCodes: number[] }) {
             commit("setMedicalCodes", { medicalCodes });
         },
-        addTeamMember({ commit }, teamMember: ITeamMember) {
-            teamMember.time = new Date();
-            commit("addTeamMember", teamMember);
+        addTeamMember({ commit }, { teamMember, index }: { teamMember: ITeamMember; index?: string }) {
+            commit("addTeamMember", { teamMember, index });
+        },
+        removeTeamMember({ commit }, index: number) {
+            commit("removeTeamMember", index);
         },
         setTeamMembers({ commit }, { teamMembers }: { teamMembers: ITeamMember[] }) {
-            commit("setMedicalCodes", { teamMembers });
+            commit("setTeamMembers", { teamMembers });
         },
     },
     mutations: {
         setMedicalCodes(state, { medicalCodes }: { medicalCodes: number[] }) {
             state.selectedMedicalCodes = medicalCodes;
         },
-        addTeamMember(state, teamMember: ITeamMember) {
-            if (state.teamMembers.length < 4) {
+        setTeamMembers(state, { teamMembers }: { teamMembers: ITeamMember[] }) {
+            state.teamMembers = teamMembers;
+        },
+        addTeamMember(state, { teamMember, index }: { teamMember: ITeamMember; index?: number }) {
+            if (index) {
+                state.teamMembers[index].name = teamMember.name;
+                state.teamMembers[index].role = teamMember.role;
+            } else if (state.teamMembers.length < 4) {
                 state.teamMembers.push(teamMember);
             }
         },
-        setTeamMembers(state, { teamMembers }: { teamMembers: ITeamMember[] }) {
-            state.teamMembers = teamMembers;
+        removeTeamMember(state, index: number) {
+            state.teamMembers.splice(index, 1);
         },
     },
     modules: {
@@ -45,5 +53,6 @@ export default new Vuex.Store<IRootState>({
     },
     getters: {
         appVersion: state => state.packageVersion,
+        teamMemberCount: state => state.teamMembers.length,
     },
 });

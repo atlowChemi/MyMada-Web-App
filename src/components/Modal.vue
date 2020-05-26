@@ -8,7 +8,7 @@
                 <Settings v-else-if="settings" />
                 <send-to-moked v-else-if="SendToMoked" :msg="message"></send-to-moked>
                 <medical-codes v-else-if="MedicalCodePicker"></medical-codes>
-                <add-team-member-component v-else-if="AddTeamMember" @is-valid="isValidTeamMember"></add-team-member-component>
+                <add-team-member-component v-else-if="AddTeamMember" :member="message" @is-valid="isValidTeamMember"></add-team-member-component>
                 <p v-else v-html="message"></p>
             </div>
             <div class="modal__footer">
@@ -17,7 +17,8 @@
                     <app-btn class="modal__footer-btn flat" v-wave.danger @click="close">ביטול</app-btn>
                 </div>
                 <div v-if="AddTeamMember">
-                    <app-btn class="modal__footer-btn flat" v-wave.success @click="AddMember" :disabled="!addTeamBtnEnabled">הוסף</app-btn>
+                    <app-btn class="modal__footer-btn flat" v-if="message" v-wave.success @click="AddMember" :disabled="!addTeamBtnEnabled">שמור</app-btn>
+                    <app-btn class="modal__footer-btn flat" v-else v-wave.success @click="AddMember" :disabled="!addTeamBtnEnabled">הוסף</app-btn>
                     <app-btn class="modal__footer-btn flat" v-wave.danger @click="close">ביטול</app-btn>
                 </div>
                 <md-button :disabled="validateUserName" v-else @click="close(false)">אישור</md-button>
@@ -89,7 +90,7 @@ export default class Modal extends Vue {
     }
     AddMember() {
         if (this.addTeamBtnEnabled && this.addTeamBtnEnabled.name.trim().length > 0) {
-            this.$store.dispatch("addTeamMember", this.addTeamBtnEnabled);
+            this.$store.dispatch("addTeamMember", { teamMember: this.addTeamBtnEnabled, index: this.message });
             this.$store.dispatch("alert/clear");
         }
     }

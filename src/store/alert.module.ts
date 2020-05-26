@@ -30,8 +30,8 @@ export const alert: Module<IAlertState, IRootState> = {
         medicalCodes({ commit }, { selectedCodes }: { selectedCodes: number[] }) {
             commit("medicalCodes", selectedCodes);
         },
-        addTeamMember({ commit }, teamMember?: ITeamMember) {
-            commit("addTeamMember", teamMember);
+        addTeamMember({ commit }, teamMemberIndex?: number) {
+            commit("addTeamMember", teamMemberIndex);
         },
         clear({ commit }) {
             commit("clear");
@@ -74,10 +74,10 @@ export const alert: Module<IAlertState, IRootState> = {
             state.message = medicalCodes.join(",");
             state.title = "אנא בחר קוד רפואי";
         },
-        addTeamMember(state, teamMember: ITeamMember) {
+        addTeamMember(state, teamMemberIndex?: number) {
             state.show = true;
             state.type = AlertType.AddTeamMember;
-            state.message = "";
+            state.message = teamMemberIndex!?.toString();
             state.title = "הוספת איש צוות";
         },
         clear(state) {
