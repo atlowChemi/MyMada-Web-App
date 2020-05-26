@@ -1,4 +1,4 @@
-import { IMedicalCode, MedicalCodeGroup } from "./types";
+import { MedicalCodeGroup } from "@/utils/types";
 
 /**
  * Returns the Rem value of given pixels
@@ -19,7 +19,7 @@ export const MedicalCodes: IMedicalCode[] = [
     { name: "התייבשות", code: 2005, group: MedicalCodeGroup.Area },
     { name: "מכת ברק", code: 2006, group: MedicalCodeGroup.Area },
     { name: "עקיצת עקרב", code: 2007, group: MedicalCodeGroup.Area },
-    { name: "פגיעה מבע\"ח", code: 2008, group: MedicalCodeGroup.Area },
+    { name: 'פגיעה מבע"ח', code: 2008, group: MedicalCodeGroup.Area },
     { name: "פגיעות חום", code: 2009, group: MedicalCodeGroup.Area },
     { name: "פגיעות קור", code: 2010, group: MedicalCodeGroup.Area },
     { name: "רגישות יתר / אלרגיה", code: 2011, group: MedicalCodeGroup.Area },
@@ -41,7 +41,7 @@ export const MedicalCodes: IMedicalCode[] = [
     { name: "חבלת ראש", code: 3004, group: MedicalCodeGroup.Trauma },
     { name: "חבלת אגן", code: 3005, group: MedicalCodeGroup.Trauma },
     { name: "חבלת בטן", code: 3006, group: MedicalCodeGroup.Trauma },
-    { name: "חבלת עמ\"ש", code: 3007, group: MedicalCodeGroup.Trauma },
+    { name: 'חבלת עמ"ש', code: 3007, group: MedicalCodeGroup.Trauma },
     { name: "חבלת פנים", code: 3008, group: MedicalCodeGroup.Trauma },
     { name: "חשד לשבר צוואר ירך", code: 3009, group: MedicalCodeGroup.Trauma },
     { name: "חשד לשבר בגפיים עליונות", code: 3010, group: MedicalCodeGroup.Trauma },
@@ -107,7 +107,7 @@ export const MedicalCodes: IMedicalCode[] = [
     { name: "שיעול / שיעול דמי", code: 6003, group: MedicalCodeGroup.Pulmonary },
     { name: "אחר", code: 6099, group: MedicalCodeGroup.Pulmonary },
     //#endregion
-    //#region Neurology 
+    //#region Neurology
     { name: "נוירולוגיה", group: MedicalCodeGroup.Neurology },
     { name: "בלבול", code: 7001, group: MedicalCodeGroup.Neurology },
     { name: "התעלפות", code: 7002, group: MedicalCodeGroup.Neurology },
@@ -187,7 +187,7 @@ export const MedicalCodes: IMedicalCode[] = [
     { name: "קריאת שווא", code: 1314, group: MedicalCodeGroup.General },
     { name: "חשש לחיי אדם", code: 1315, group: MedicalCodeGroup.General },
     { name: "בדיקות דם לא תקינות", code: 1316, group: MedicalCodeGroup.General },
-    { name: "העברה מבי\"ח לבי\"ח", code: 1317, group: MedicalCodeGroup.General },
+    { name: 'העברה מבי"ח לבי"ח', code: 1317, group: MedicalCodeGroup.General },
     { name: "העברה מהבית למתקן רפואי", code: 1318, group: MedicalCodeGroup.General },
     { name: "העברה ממתקן רפואי הביתה", code: 1319, group: MedicalCodeGroup.General },
     { name: "העברה ממתקן רפואי לבית אבות", code: 1320, group: MedicalCodeGroup.General },

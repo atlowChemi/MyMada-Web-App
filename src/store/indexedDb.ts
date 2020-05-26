@@ -1,4 +1,4 @@
-import { Languages, Moked, ISettingsState } from "@/utils/types";
+import { Languages, Moked } from "@/utils/types";
 
 class _DatabaseManager {
     private dbName = "myMada";

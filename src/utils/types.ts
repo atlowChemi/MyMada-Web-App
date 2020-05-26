@@ -59,37 +59,38 @@ export enum MedicalRole {
     Service,
 }
 
-export interface IRootState {
-    packageVersion: string;
-    selectedMedicalCodes: number[];
-}
+// export interface IRootState {
+//     packageVersion: string;
+//     selectedMedicalCodes: number[];
+//     teamMembers: ITeamMember[];
+// }
 
-export interface IAlertState {
-    show: boolean;
-    type: AlertType;
-    message: string;
-    title: string;
-}
+// export interface IAlertState {
+//     show: boolean;
+//     type: AlertType;
+//     message: string;
+//     title: string;
+// }
 
-export interface IUserState {
-    name: string;
-    fcmToken: string;
-    messageSeenByAdmin: boolean | undefined;
-}
+// export interface IUserState {
+//     name: string;
+//     fcmToken: string;
+//     messageSeenByAdmin: boolean | undefined;
+// }
 
-export interface ISettingsState {
-    moked: Moked;
-    lang: Languages;
-    tools: string[];
-}
+// export interface ISettingsState {
+//     moked: Moked;
+//     lang: Languages;
+//     tools: string[];
+// }
 
-export interface IMedicalCode {
-    name: string;
-    code?: number;
-    group: MedicalCodeGroup;
-}
+// export interface IMedicalCode {
+//     name: string;
+//     code?: number;
+//     group: MedicalCodeGroup;
+// }
 
-export interface ITeamMember {
-    name: string;
-    role: MedicalRole;
-}
+// export interface ITeamMember {
+//     name: string;
+//     role: MedicalRole;
+// }

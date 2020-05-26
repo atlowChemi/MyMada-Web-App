@@ -1,5 +1,5 @@
 import { Module } from "vuex";
-import { ISettingsState, IRootState, Moked, Languages } from "../utils/types";
+import { Moked, Languages } from "../utils/types";
 import { DatabaseManager } from "./indexedDb";
 
 export const state: ISettingsState = {

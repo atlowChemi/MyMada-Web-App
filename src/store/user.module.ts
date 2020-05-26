@@ -1,5 +1,4 @@
 import { Module } from "vuex";
-import { IUserState, IRootState } from "../utils/types";
 import { DatabaseManager } from "./indexedDb";
 import { ContactDb } from "@/utils/firebaseConfig";
 

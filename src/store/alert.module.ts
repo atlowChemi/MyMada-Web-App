@@ -1,5 +1,5 @@
 import { Module } from "vuex";
-import { AlertType, IAlertState, IRootState, ITeamMember } from "../utils/types";
+import { AlertType } from "../utils/types";
 
 export const state: IAlertState = {
     show: false,
