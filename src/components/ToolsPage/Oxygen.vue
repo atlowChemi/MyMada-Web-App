@@ -57,7 +57,7 @@ export default class Oxygen extends Vue {
     }
     set ATM(value) {
         this.atm = value;
-        this.psi = value ? value * 15 : null;
+        this.psi = value ? Math.round(value * 15) : null;
         this.doCalc();
     }
     get PSI() {

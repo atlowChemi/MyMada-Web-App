@@ -138,6 +138,10 @@ export default class CircularButton extends Vue {
             padding-top: 45%;
             width: 45%;
         }
+        @include desktop {
+            width: 20rem;
+            padding-top: 20rem;
+        }
         .aspect-ratio-box-inside {
             .circle {
                 box-shadow: 0 0 0 7px white;
