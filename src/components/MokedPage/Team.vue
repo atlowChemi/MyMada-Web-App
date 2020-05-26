@@ -10,7 +10,7 @@
                 <app-btn long light @click="addTeamMembers">הוספת איש צוות</app-btn>
             </div>
             <div class="sender">
-                <app-btn long @click="send">
+                <app-btn v-wave.light long @click="send">
                     שלח
                     <i class="material-icons">send</i>
                     <md-tooltip md-direction="bottom">כלי זה פועל באמצעות סמס</md-tooltip>

@@ -62,7 +62,7 @@
                 <span class="md-error">לא בחרת אף קוד רפואי</span>
             </md-chips>
         </div>
-        <app-btn class="waves-light sendBtn" long @click="send">
+        <app-btn v-wave.light class="sendBtn" long @click="send">
             שלח
             <i class="material-icons">send</i>
             <md-tooltip md-direction="bottom">כלי זה פועל באמצעות סמס</md-tooltip>

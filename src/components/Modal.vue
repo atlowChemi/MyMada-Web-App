@@ -8,17 +8,17 @@
                 <Settings v-else-if="settings" />
                 <send-to-moked v-else-if="SendToMoked" :msg="message"></send-to-moked>
                 <medical-codes v-else-if="MedicalCodePicker"></medical-codes>
-                <add-team-member-component v-else-if="AddTeamMember"></add-team-member-component>
+                <add-team-member-component v-else-if="AddTeamMember" @is-valid="isValidTeamMember"></add-team-member-component>
                 <p v-else v-html="message"></p>
             </div>
             <div class="modal__footer">
                 <div v-if="SendToMoked">
-                    <app-btn class="modal__footer-btn flat waves-success" @click="sendMsgToMoked">שלח</app-btn>
-                    <app-btn class="modal__footer-btn flat waves-danger" @click="close">ביטול</app-btn>
+                    <app-btn class="modal__footer-btn flat" v-wave.success @click="sendMsgToMoked">שלח</app-btn>
+                    <app-btn class="modal__footer-btn flat" v-wave.danger @click="close">ביטול</app-btn>
                 </div>
                 <div v-if="AddTeamMember">
-                    <app-btn class="modal__footer-btn flat waves-success" @click="sendMsgToMoked">הוסף</app-btn>
-                    <app-btn class="modal__footer-btn flat waves-danger" @click="close">ביטול</app-btn>
+                    <app-btn class="modal__footer-btn flat" v-wave.success @click="AddMember" :disabled="!addTeamBtnEnabled">הוסף</app-btn>
+                    <app-btn class="modal__footer-btn flat" v-wave.danger @click="close">ביטול</app-btn>
                 </div>
                 <md-button :disabled="validateUserName" v-else @click="close(false)">אישור</md-button>
             </div>
@@ -49,6 +49,7 @@ export default class Modal extends Vue {
     @Prop(String) message!: string;
     @Prop(String) title!: string;
     @Prop() type!: AlertType;
+    addTeamBtnEnabled: ITeamMember | null = null;
     get error(): boolean {
         return this.type === AlertType.Error;
     }
@@ -82,6 +83,12 @@ export default class Modal extends Vue {
         const mokdim = ["972523993348", "972523993345", "972523993339", "972523993338", "972523993342", "972523993337", "972523993343", "972523993340", "972523993346", "972523993356", "972523993341", "972586309592"];
         const moked = this.$store.state.settings.moked;
         window.open(`sms://+${mokdim[moked]}?&body=${encodeURI(this.message)}`);
+    }
+    isValidTeamMember(e: boolean | ITeamMember) {
+        this.addTeamBtnEnabled = typeof e === "boolean" ? null : e;
+    }
+    AddMember() {
+        console.log("What now?");
     }
 }
 </script>

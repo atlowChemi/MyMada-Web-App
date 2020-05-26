@@ -29,7 +29,7 @@
                     </md-field>
                 </div>
                 <div class="new-msg__submit">
-                    <app-btn long class="waves-light" @click="sendMsg" :disabled="sending">
+                    <app-btn long v-wave.light @click="sendMsg" :disabled="sending">
                         שלח
                         <i class="material-icons left">send</i>
                     </app-btn>

@@ -1,42 +1,33 @@
 <template>
-    <router-link class="btn" :class="{ long, btn__light: light, 'waves-light': !light }" v-waves:hover v-if="link" :to="to">
+    <router-link class="btn" :class="{ long, btn__light: light }" v-waves:hover v-if="to" :to="to">
         <slot />
     </router-link>
-    <button class="btn" :class="{ long, btn__light: light, 'waves-light': !light }" v-waves:hover v-else @click="clicked($event)">
+    <button class="btn" :class="{ long, btn__light: light }" v-waves:hover v-else @click="clicked">
         <slot />
     </button>
 </template>
 
-<script>
-export default {
-    props: {
-        link: {
-            required: false,
-            type: Boolean,
-            default: false,
-        },
-        to: {
-            type: String,
-            required: false,
-            default: "",
-        },
-        long: {
-            type: Boolean,
-            required: false,
-            default: false,
-        },
-        light: {
-            type: Boolean,
-            required: false,
-            default: false,
-        },
-    },
-    methods: {
-        clicked(e) {
-            this.$emit("click", e);
-        },
-    },
-};
+<script lang="ts">
+import { Component, Vue, Prop, Emit } from "vue-property-decorator";
+
+Vue.directive("wave", function(el, binding) {
+    const modifiers = binding.modifiers;
+    for (const modifier in modifiers) {
+        console.log(modifier);
+        el.classList.add(`waves-${modifier}`);
+    }
+});
+
+@Component
+export default class Button extends Vue {
+    @Prop({ type: String, required: false, default: "" }) to!: string;
+    @Prop({ type: Boolean, required: false, default: false }) long!: string;
+    @Prop({ type: Boolean, required: false, default: false }) light!: string;
+    @Emit("click")
+    clicked(e: UIEvent) {
+        return e;
+    }
+}
 </script>
 
 <style lang="scss" scoped>

@@ -26,6 +26,7 @@ export default class App extends Vue {
     routeChange(to: any, from: any): void {
         if (from?.name === "Moked" && to.name !== "Moked") {
             this.$store.dispatch("setMedicalCodes", { medicalCodes: [] });
+            this.$store.dispatch("setTeamMembers", { teamMembers: [] });
         }
         document.title = `דיווחי מד"א${to.meta.title ? " - " + to.meta.title : ""}`;
     }
