@@ -1,6 +1,6 @@
 import Vue from "vue";
 import Waves from "vue-waves-effect";
-import { MdButton, MdCard, MdCheckbox, MdChips, MdEmptyState, MdField, MdList, MdMenu, MdRadio, MdRipple, MdSnackbar, MdSubheader, MdTabs, MdTooltip } from "vue-material/dist/components";
+import { MdAutocomplete, MdButton, MdCard, MdCheckbox, MdChips, MdEmptyState, MdField, MdHighlightText, MdList, MdMenu, MdRadio, MdRipple, MdSnackbar, MdSubheader, MdTabs, MdTooltip } from "vue-material/dist/components";
 import "vue-material/dist/vue-material.min.css";
 import "vue-material/dist/theme/default.css";
 
@@ -27,12 +27,14 @@ setup().then(token => store.dispatch("user/initializeFcm", token));
 Vue.component("app-nav", Navigation);
 Vue.component("app-btn", Button);
 Vue.use(Waves);
+Vue.use(MdAutocomplete);
 Vue.use(MdButton);
 Vue.use(MdCard);
 Vue.use(MdCheckbox);
 Vue.use(MdChips);
 Vue.use(MdEmptyState);
 Vue.use(MdField);
+Vue.use(MdHighlightText);
 Vue.use(MdList);
 Vue.use(MdMenu);
 Vue.use(MdRadio);
