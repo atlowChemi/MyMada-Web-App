@@ -22,13 +22,21 @@ export default class App extends Vue {
     get alert() {
         return this.$store.state.alert;
     }
+    ogTitle: HTMLMetaElement | null = document.querySelector("meta[property='og:title']");
+    ogDescription: HTMLMetaElement | null = document.querySelector("meta[property='og:description']");
+    description: HTMLMetaElement | null = document.querySelector("meta[name='description']");
     @Watch("$route", { immediate: true, deep: true })
     routeChange(to: any, from: any): void {
         if (from?.name === "Moked" && to.name !== "Moked") {
             this.$store.dispatch("setMedicalCodes", { medicalCodes: [] });
             this.$store.dispatch("setTeamMembers", { teamMembers: [] });
         }
-        document.title = `דיווחי מד"א${to.meta.title ? " - " + to.meta.title : ""}`;
+        let title = `דיווחי מד"א${to.meta.title ? " - " + to.meta.title : ""}`;
+        let description = to.meta.description ?? "גרסת הרשת של אפליקציית דיווחי מגן דוד אדום";
+        document.title = title;
+        if (this.ogTitle) this.ogTitle.content = title;
+        if (this.ogDescription) this.ogDescription.content = description;
+        if (this.description) this.description.content = description;
     }
 }
 </script>

@@ -6,6 +6,7 @@
     "start": "node server.js",
     "serve": "vue-cli-service serve",
     "build": "vue-cli-service build",
+    "publish": "firebase deploy --only hosting:beta-mymada",
     "lint": "vue-cli-service lint"
   },
   "dependencies": {

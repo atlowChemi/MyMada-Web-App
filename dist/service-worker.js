@@ -14,7 +14,7 @@
 importScripts("https://storage.googleapis.com/workbox-cdn/releases/4.3.1/workbox-sw.js");
 
 importScripts(
-  "/precache-manifest.eb3d3a144854888870ae87b6e5856341.js"
+  "/precache-manifest.12749149e7b06cad7bbb9ce54b92536a.js"
 );
 
 workbox.core.setCacheNameDetails({prefix: "mymadawebapp"});

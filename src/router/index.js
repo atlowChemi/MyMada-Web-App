@@ -15,6 +15,7 @@ const routes = [
         name: "Tools",
         meta: {
             title: "כלי עזר",
+            description: "כלי עזר לנוחיות מתנדבים",
         },
         component: () => import("../views/Tools.vue"),
     },
@@ -23,6 +24,7 @@ const routes = [
         name: "Moked",
         meta: {
             title: "דיווחים למוקד",
+            description: "עמוד שליחת דיווחים למוקד",
         },
         component: () => import("../views/Moked.vue"),
     },
@@ -31,6 +33,7 @@ const routes = [
         name: "Contact",
         meta: {
             title: "יצירת קשר",
+            description: "עמוד יצירת קשר עם מפתחי האתר",
         },
         component: () => import("../views/Contact.vue"),
     },
@@ -39,6 +42,7 @@ const routes = [
         name: "Info",
         meta: {
             title: "אודות",
+            description: "אודות האתר והאפליקציה",
         },
         component: () => import("../views/Info.vue"),
     },
@@ -47,6 +51,7 @@ const routes = [
         name: "Privacy",
         meta: {
             title: "מדיניות פרטיות",
+            description: "מדיניות הפרטיות של האתר והאפליקציה",
         },
         component: () => import("../views/Privacy.vue"),
     },
