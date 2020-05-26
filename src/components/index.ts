@@ -19,3 +19,10 @@ export namespace MokedPageComponents {
     export const General = () => import("@/components/MokedPage/General.vue");
     export const Team = () => import("@/components/MokedPage/Team.vue");
 }
+
+//Moked Page Components
+export namespace ToolsPageComponents {
+    export const Contractions = () => import("@/components/ToolsPage/Contractions.vue");
+    export const Pulse = () => import("@/components/ToolsPage/Pulse.vue");
+    export const Metronome = () => import("@/components/ToolsPage/Metronome.vue");
+}
