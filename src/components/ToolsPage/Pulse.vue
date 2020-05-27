@@ -1,6 +1,6 @@
 <template>
     <fragment>
-        <frozen-side-bar>
+        <frozen-side-bar @grey-mater-clicked="startTimer">
             <template>
                 <md-field>
                     <label>דופק ב15 שניות</label>
@@ -34,21 +34,26 @@ import FrozenSideBar from "@/components/FrozenSideBar.vue";
     },
 })
 export default class Pulse extends Vue {
-    private pSeconds: number | null = null;
-    private pMinute: number | null = null;
+    timer = 15;
+    //private pSeconds: number | null = null;
+    private pMinutes: number | null = null;
     get pulseSeconds() {
-        return this.pSeconds ? Math.ceil(this.pSeconds) : null;
+        return this.pMinutes ? Math.ceil(this.pMinutes / 4) : null;
     }
     set pulseSeconds(value) {
-        this.pSeconds = value;
-        this.pMinute = value ? value * 4 : null;
+        this.pMinutes = value ? value * 4 : null;
+        //this.pSeconds = value;
     }
     get pulseMinute() {
-        return this.pMinute;
+        return this.pMinutes;
     }
     set pulseMinute(value) {
-        this.pMinute = value;
-        this.pSeconds = value ? value / 4 : null;
+        this.pMinutes = value;
+    }
+    startTimer() {
+        setInterval(() => {
+            
+        }, 1000);
     }
 }
 </script>

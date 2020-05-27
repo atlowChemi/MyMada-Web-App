@@ -3,14 +3,14 @@
         <div class="content">
             <slot />
         </div>
-        <div class="side-frozen">
+        <div class="side-frozen" @click="GreyMaterClicked">
             <slot name="side" />
         </div>
     </fragment>
 </template>
 
 <script lang="ts">
-import { Component, Vue } from "vue-property-decorator";
+import { Component, Vue, Emit } from "vue-property-decorator";
 import { Fragment } from "vue-fragment";
 
 @Component({
@@ -18,7 +18,12 @@ import { Fragment } from "vue-fragment";
         Fragment,
     },
 })
-export default class Contractions extends Vue {}
+export default class Contractions extends Vue {
+    @Emit()
+    GreyMaterClicked(e: UIEvent) {
+        return e;
+    }
+}
 </script>
 
 <style lang="scss" scoped>
