@@ -4,16 +4,16 @@
             <template>
                 <md-field>
                     <label>דופק ב15 שניות</label>
-                    <md-input type="number" min="1" :value="pulseMinutes ? Math.ceil(pulseMinutes / 4) : null" @input="InputSeconds"></md-input>
+                    <md-input type="number" min="1" v-model="pulseSeconds"></md-input>
                 </md-field>
                 <md-field>
                     <label>דופק בדקה</label>
-                    <md-input type="number" min="1" :value="pulseMinutes" @input="InputMinutes"></md-input>
+                    <md-input type="number" min="1" v-model="pulseMinutes"></md-input>
                 </md-field>
             </template>
             <template #side>
                 <div class="pulse-calc">
-                    <h1 class="pulse-calc__time">15</h1>
+                    <h1 class="pulse-calc__time">{{ timer }}</h1>
                     <h4 class="pulse-calc__sec">שניות</h4>
                     <p class="pulse-calc__info">לחץ על האזור האפור למדידת דופק</p>
                 </div>
@@ -35,17 +35,41 @@ import FrozenSideBar from "@/components/FrozenSideBar.vue";
 })
 export default class Pulse extends Vue {
     timer = 15;
-    pulseMinutes: number | null = null;
-    InputSeconds(val: number) {
-        this.pulseMinutes = val * 4;
+    interval: number | undefined;
+    pulseSeconds: number | null = null;
+    get pulseMinutes() {
+        return this.pulseSeconds ? this.pulseSeconds * 4 : null;
     }
-    InputMinutes(val: number) {
-        this.pulseMinutes = val;
+    set pulseMinutes(val) {
+        this.pulseSeconds = val ? (val / 4) | 0 : null;
     }
     startTimer() {
-        setInterval(() => {
-            
-        }, 1000);
+        this.timer = 15;
+        if (this.interval) {
+            this.clearTimer();
+        } else {
+            let context = new AudioContext();
+            let osc = context.createOscillator();
+            let gain = context.createGain();
+            this.interval = setInterval(() => {
+                this.timer--;
+                if (this.timer === 0) {
+                    osc.type = "sine";
+                    osc.frequency.value = 277.2;
+                    osc.connect(gain);
+                    gain.connect(context.destination);
+                    gain.gain.exponentialRampToValueAtTime(0.00001, context.currentTime + 0.9);
+                    osc.start();
+                    osc.stop(context.currentTime + 0.9);
+                    this.clearTimer();
+                }
+            }, 1000);
+        }
+    }
+    private clearTimer() {
+        clearInterval(this.interval);
+        this.interval = undefined;
+        this.timer = 15;
     }
 }
 </script>
