@@ -4,14 +4,14 @@
             <template>
                 <md-field>
                     <label for="tank">סוג בלון חמצן</label>
-                    <md-select v-model="Tank" name="tank" id="tank">
+                    <md-select v-model="tankSize" @md-selected="doCalc" name="tank" id="tank">
                         <md-option :value="2.4">בלון קטן</md-option>
                         <md-option :value="20">בלון גדול</md-option>
                     </md-select>
                 </md-field>
                 <md-field>
                     <label>לחץ אטמוספרי בבלון</label>
-                    <md-input type="number" min="1" v-model="ATM"></md-input>
+                    <md-input type="number" min="1" v-model="atm"></md-input>
                 </md-field>
                 <md-field>
                     <label>לחץ PSI בבלון</label>
@@ -43,29 +43,12 @@ import FrozenSideBar from "@/components/FrozenSideBar.vue";
 export default class Oxygen extends Vue {
     tankSize: number = 2.4;
     calcResult: number = 24;
-    private atm: number | null = 100;
-    private psi: number | null = 1500;
-    get Tank() {
-        return this.tankSize;
-    }
-    set Tank(value) {
-        this.tankSize = value;
-        this.doCalc();
-    }
-    get ATM() {
-        return this.atm;
-    }
-    set ATM(value) {
-        this.atm = value;
-        this.psi = value ? Math.round(value * 15) : null;
-        this.doCalc();
-    }
+    atm: number | null = 100;
     get PSI() {
-        return this.psi;
+        return this.atm ? this.atm * 15 : null;
     }
     set PSI(value) {
-        this.psi = value;
-        this.atm = value ? value / 15 : null;
+        this.atm = value ? (value / 15) | 0 : null;
         this.doCalc();
     }
     doCalc() {
