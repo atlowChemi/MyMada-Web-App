@@ -4,11 +4,11 @@
             <template>
                 <md-field>
                     <label>דופק ב15 שניות</label>
-                    <md-input type="number" min="1" v-model="pulseSeconds"></md-input>
+                    <md-input type="number" min="1" :value="pulseMinutes ? Math.ceil(pulseMinutes / 4) : null" @input="InputSeconds"></md-input>
                 </md-field>
                 <md-field>
                     <label>דופק בדקה</label>
-                    <md-input type="number" min="1" v-model="pulseMinute"></md-input>
+                    <md-input type="number" min="1" :value="pulseMinutes" @input="InputMinutes"></md-input>
                 </md-field>
             </template>
             <template #side>
@@ -35,20 +35,12 @@ import FrozenSideBar from "@/components/FrozenSideBar.vue";
 })
 export default class Pulse extends Vue {
     timer = 15;
-    //private pSeconds: number | null = null;
-    private pMinutes: number | null = null;
-    get pulseSeconds() {
-        return this.pMinutes ? Math.ceil(this.pMinutes / 4) : null;
+    pulseMinutes: number | null = null;
+    InputSeconds(val: number) {
+        this.pulseMinutes = val * 4;
     }
-    set pulseSeconds(value) {
-        this.pMinutes = value ? value * 4 : null;
-        //this.pSeconds = value;
-    }
-    get pulseMinute() {
-        return this.pMinutes;
-    }
-    set pulseMinute(value) {
-        this.pMinutes = value;
+    InputMinutes(val: number) {
+        this.pulseMinutes = val;
     }
     startTimer() {
         setInterval(() => {
