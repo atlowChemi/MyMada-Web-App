@@ -1,4 +1,4 @@
-const audioCtx = new AudioContext();
+let audioCtx: AudioContext;
 const tempo = 100.0;
 const secondsPerBeat = 60.0 / tempo;
 let lookahead = 25.0; // How frequently to call scheduling function (in milliseconds)
@@ -42,9 +42,10 @@ function scheduler() {
     timerID = window.setTimeout(scheduler, lookahead);
 }
 
-export const playOrPause: (timeRunListener: (runningTime: number) => void, roundCompleteListener: () => void) => boolean = (timeRunListener: (runningTime: number) => void, roundCompleteListener: () => void) => {
+export const playOrPause: (audioContext: AudioContext, timeRunListener: (runningTime: number) => void, roundCompleteListener: () => void) => boolean = (audioContext: AudioContext, timeRunListener: (runningTime: number) => void, roundCompleteListener: () => void) => {
     rcListener = roundCompleteListener || (() => {});
     trListener = timeRunListener || (() => {});
+    audioCtx = audioContext;
     isPlaying = !isPlaying;
     if (isPlaying) {
         // check if context is in suspended state (autoplay policy)

@@ -15,6 +15,9 @@ declare global {
         packageVersion: string;
         selectedMedicalCodes: number[];
         teamMembers: ITeamMember[];
+        isMetronomeActive: boolean;
+        metronomeActiveTime: string;
+        metronomeRound: number;
     }
     export interface IAlertState {
         show: boolean;

@@ -12,6 +12,9 @@ export default new Vuex.Store<IRootState>({
         packageVersion: process.env.PACKAGE_VERSION || "0",
         selectedMedicalCodes: [],
         teamMembers: [],
+        isMetronomeActive: false,
+        metronomeActiveTime: "00:00",
+        metronomeRound: 0,
     },
     actions: {
         setMedicalCodes({ commit }, { medicalCodes }: { medicalCodes: number[] }) {
@@ -25,6 +28,15 @@ export default new Vuex.Store<IRootState>({
         },
         setTeamMembers({ commit }, { teamMembers }: { teamMembers: ITeamMember[] }) {
             commit("setTeamMembers", { teamMembers });
+        },
+        setMetronome({ commit }, isActive: boolean) {
+            commit("setMetronome", isActive);
+        },
+        setMetronomeTime({ commit }, activeTime: number) {
+            commit("setMetronomeTime", activeTime);
+        },
+        setMetronomeRound({ commit }, roundNum: number) {
+            commit("setMetronomeRound", roundNum);
         },
     },
     mutations: {
@@ -44,6 +56,22 @@ export default new Vuex.Store<IRootState>({
         },
         removeTeamMember(state, index: number) {
             state.teamMembers.splice(index, 1);
+        },
+        setMetronome(state, isActive: boolean) {
+            state.isMetronomeActive = isActive;
+        },
+        setMetronomeTime(state, activeTime: number) {
+            function prettifyTimeString(num: number) {
+                return (num < 10 ? "0" : "") + num;
+            }
+            activeTime = activeTime % 3600;
+            let minutes = Math.floor(activeTime / 60);
+            activeTime = activeTime % 60;
+            let seconds = Math.floor(activeTime);
+            state.metronomeActiveTime = `${prettifyTimeString(minutes)}:${prettifyTimeString(seconds)}`;
+        },
+        setMetronomeRound(state, roundNum: number) {
+            state.metronomeRound = roundNum;
         },
     },
     modules: {

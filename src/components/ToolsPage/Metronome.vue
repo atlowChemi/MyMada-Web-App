@@ -2,7 +2,7 @@
     <div class="metro__valign">
         <div class="metro__valign-row">
             <p class="metro__info">לחץ בכל נקודה להתחלת המטרונום</p>
-            <circular-button metronome @click="startMetronome">
+            <circular-button metronome @click="startMetronome" :preWorking="isPlaying">
                 {{ activeTime }}
                 <p class="round-num">סבב: {{ round }}</p>
             </circular-button>
@@ -21,25 +21,29 @@ import { playOrPause } from "@/utils/Metronome";
     },
 })
 export default class Metronome extends Vue {
-    round: number = 0;
-    isPlaying: boolean = false;
-    activeTime: string = "00:00";
-    startMetronome() {
-        this.isPlaying = playOrPause(
-            (runningTime: number) => this.getMetroTime(runningTime),
-            () => this.round++
-        );
-        this.round = this.isPlaying ? 1 : 0;
+    runtimeListener = (runningTime: number) => (this.activeTime = runningTime.toString());
+    roundCompleteListener = () => this.round++;
+    get isPlaying(): boolean {
+        return this.$store.state.isMetronomeActive;
     }
-    getMetroTime(runningTime: number) {
-        function prettifyTimeString(num: number) {
-            return (num < 10 ? "0" : "") + num;
-        }
-        runningTime = runningTime % 3600;
-        let minutes = Math.floor(runningTime / 60);
-        runningTime = runningTime % 60;
-        let seconds = Math.floor(runningTime);
-        this.activeTime = `${prettifyTimeString(minutes)}:${prettifyTimeString(seconds)}`;
+    set isPlaying(value: boolean) {
+        this.$store.dispatch("setMetronome", value);
+    }
+    get activeTime(): string {
+        return this.$store.state.metronomeActiveTime;
+    }
+    set activeTime(value) {
+        this.$store.dispatch("setMetronomeTime", +value);
+    }
+    get round(): number {
+        return this.$store.state.metronomeRound;
+    }
+    set round(value: number) {
+        this.$store.dispatch("setMetronomeRound", value);
+    }
+    startMetronome() {
+        this.isPlaying = playOrPause(new AudioContext(), this.runtimeListener, this.roundCompleteListener);
+        this.round = this.isPlaying ? 1 : 0;
     }
 }
 </script>

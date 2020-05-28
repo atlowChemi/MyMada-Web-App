@@ -24,7 +24,12 @@ import { Component, Vue, Emit, Prop } from "vue-property-decorator";
 @Component
 export default class CircularButton extends Vue {
     @Prop({ type: Boolean, required: false, default: false }) metronome!: boolean;
+    @Prop({ type: Boolean, required: false, default: false }) preWorking!: boolean;
     working: boolean = false;
+    constructor() {
+        super();
+        this.working = this.preWorking;
+    }
     @Emit()
     Click(e: UIEvent) {
         this.working = !this.working;
