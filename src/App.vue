@@ -19,6 +19,9 @@ import Modal from "./components/Modal.vue";
     },
 })
 export default class App extends Vue {
+    created() {
+        document.addEventListener("SW_CacheUpdated", this.swUpdateNeeded, { once: true });
+    }
     get alert() {
         return this.$store.state.alert;
     }
@@ -37,6 +40,9 @@ export default class App extends Vue {
         if (this.ogTitle) this.ogTitle.content = title;
         if (this.ogDescription) this.ogDescription.content = description;
         if (this.description) this.description.content = description;
+    }
+    swUpdateNeeded() {
+        this.$store.dispatch("alert/requestUserUpdate");
     }
 }
 </script>

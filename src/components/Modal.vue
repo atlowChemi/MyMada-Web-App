@@ -4,8 +4,8 @@
         <div class="modal" :class="{ 'modal-error': error }">
             <div class="modal__content">
                 <h1 class="modal__content-title">{{ title || "הגדרות" }}</h1>
-                <ChangeName v-if="changeName" />
-                <Settings v-else-if="settings" />
+                <change-name v-if="changeName" />
+                <settings v-else-if="settings" />
                 <send-to-moked v-else-if="SendToMoked" :msg="message"></send-to-moked>
                 <medical-codes v-else-if="MedicalCodePicker"></medical-codes>
                 <add-team-member v-else-if="IsAddTeamMember" :member="message" @is-valid="isValidTeamMember"></add-team-member>
@@ -16,10 +16,14 @@
                     <app-btn class="modal__footer-btn flat" v-wave.success @click="sendMsgToMoked">שלח</app-btn>
                     <app-btn class="modal__footer-btn flat" v-wave.danger @click="close">ביטול</app-btn>
                 </div>
-                <div v-if="IsAddTeamMember">
+                <div v-else-if="IsAddTeamMember">
                     <app-btn class="modal__footer-btn flat" v-if="message" v-wave.success @click="AddMember" :disabled="!addTeamBtnEnabled">שמור</app-btn>
                     <app-btn class="modal__footer-btn flat" v-else v-wave.success @click="AddMember" :disabled="!addTeamBtnEnabled">הוסף</app-btn>
                     <app-btn class="modal__footer-btn flat" v-wave.danger @click="close">ביטול</app-btn>
+                </div>
+                <div v-else-if="IsRefreshNeeded">
+                    <app-btn class="modal__footer-btn flat" v-wave.success @click="updatePage">רענן כעת</app-btn>
+                    <app-btn class="modal__footer-btn flat" v-wave.danger @click="close">לא מעוניין כרגע</app-btn>
                 </div>
                 <md-button :disabled="validateUserName" v-else @click="close(false)">אישור</md-button>
             </div>
@@ -29,7 +33,6 @@
 
 <script lang="ts">
 import { Component, Vue, Prop } from "vue-property-decorator";
-import { AlertType } from "../utils/types";
 import { ModalComponents } from ".";
 
 @Component({
@@ -45,24 +48,27 @@ export default class Modal extends Vue {
     @Prop(String) message!: string;
     @Prop(String) title!: string;
     @Prop() type!: AlertType;
-    addTeamBtnEnabled: ITeamMember | null = null;
+    addTeamBtnEnabled: TeamMember | null = null;
     get error(): boolean {
-        return this.type === AlertType.Error;
+        return this.type === "Error";
     }
     get settings(): boolean {
-        return this.type === AlertType.Settings;
+        return this.type === "Settings";
     }
     get changeName(): boolean {
-        return this.type === AlertType.ChangeName;
+        return this.type === "ChangeName";
     }
     get SendToMoked(): boolean {
-        return this.type === AlertType.SendToMoked;
+        return this.type === "SendToMoked";
     }
     get MedicalCodePicker(): boolean {
-        return this.type === AlertType.MedicalCodePicker;
+        return this.type === "MedicalCodePicker";
     }
     get IsAddTeamMember(): boolean {
-        return this.type === AlertType.AddTeamMember;
+        return this.type === "AddTeamMember";
+    }
+    get IsRefreshNeeded(): boolean {
+        return this.type === "UpdateNeeded";
     }
     get validateUserName(): boolean {
         return this.changeName && !this.$store.getters["user/validUserName"];
@@ -80,7 +86,7 @@ export default class Modal extends Vue {
         const moked = this.$store.state.settings.moked;
         window.open(`sms://+${mokdim[moked]}?&body=${encodeURI(this.message)}`);
     }
-    isValidTeamMember(e: boolean | ITeamMember) {
+    isValidTeamMember(e: boolean | TeamMember) {
         this.addTeamBtnEnabled = typeof e === "boolean" ? null : e;
     }
     AddMember() {
@@ -88,6 +94,9 @@ export default class Modal extends Vue {
             this.$store.dispatch("addTeamMember", { teamMember: this.addTeamBtnEnabled, index: this.message });
             this.$store.dispatch("alert/clear");
         }
+    }
+    updatePage() {
+        window.location.reload();
     }
 }
 </script>
