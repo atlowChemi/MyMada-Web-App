@@ -1,18 +1,13 @@
-export enum AlertType {
-    Error,
-    Success,
-    Settings,
-    ChangeName,
-    SendToMoked,
-    MedicalCodePicker,
-    AddTeamMember,
-}
-
-export enum ModalFooterType {
-    CloseOnly,
-    SendToMoked,
-    AddTeamMember,
-}
+// export enum AlertType {
+//     Error,
+//     Success,
+//     Settings,
+//     ChangeName,
+//     SendToMoked,
+//     MedicalCodePicker,
+//     AddTeamMember,
+//     UpdateNeeded,
+// }
 
 export enum Languages {
     he,
@@ -59,38 +54,40 @@ export enum MedicalRole {
     Service,
 }
 
-// export interface IRootState {
-//     packageVersion: string;
-//     selectedMedicalCodes: number[];
-//     teamMembers: ITeamMember[];
-// }
-
-// export interface IAlertState {
-//     show: boolean;
-//     type: AlertType;
-//     message: string;
-//     title: string;
-// }
-
-// export interface IUserState {
-//     name: string;
-//     fcmToken: string;
-//     messageSeenByAdmin: boolean | undefined;
-// }
-
-// export interface ISettingsState {
-//     moked: Moked;
-//     lang: Languages;
-//     tools: string[];
-// }
-
-// export interface IMedicalCode {
-//     name: string;
-//     code?: number;
-//     group: MedicalCodeGroup;
-// }
-
-// export interface ITeamMember {
-//     name: string;
-//     role: MedicalRole;
-// }
+declare global {
+    export type AlertType = "Error" | "Success" | "Settings" | "ChangeName" | "SendToMoked" | "MedicalCodePicker" | "AddTeamMember" | "UpdateNeeded";
+    export type RootState = {
+        packageVersion: string;
+        selectedMedicalCodes: number[];
+        teamMembers: TeamMember[];
+        isMetronomeActive: boolean;
+        metronomeActiveTime: string;
+        metronomeRound: number;
+    };
+    export type AlertState = {
+        show: boolean;
+        type: AlertType;
+        message: string;
+        title: string;
+    };
+    export type UserState = {
+        name: string;
+        fcmToken: string;
+        messageSeenByAdmin: boolean | undefined;
+    };
+    export type SettingsState = {
+        moked: Moked;
+        lang: Languages;
+        tools: string[];
+    };
+    export type MedicalCode = {
+        name: string;
+        code?: number;
+        group: MedicalCodeGroup;
+    };
+    export type TeamMember = {
+        name: string;
+        role: MedicalRole;
+        time?: Date;
+    };
+}
