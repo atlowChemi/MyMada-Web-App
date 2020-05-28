@@ -29,11 +29,11 @@ import { Component, Vue, Prop } from "vue-property-decorator";
 import { MedicalRolesNames } from "@/utils/helperMethods";
 
 @Component
-export default class TeamMember extends Vue {
+export default class TeamMemberData extends Vue {
     roleName!: string;
     @Prop({ required: true }) readonly index!: number;
-    get member(): ITeamMember {
-        let member: ITeamMember = this.$store.state.teamMembers[this.index];
+    get member(): TeamMember {
+        let member: TeamMember = this.$store.state.teamMembers[this.index];
         this.roleName = MedicalRolesNames[member.role];
         return member;
     }

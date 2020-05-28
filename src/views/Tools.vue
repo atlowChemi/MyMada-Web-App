@@ -3,8 +3,9 @@
         <md-empty-state v-if="!currentTool" md-icon="build" md-label="יש לבחור כלי" md-description="אנא בחר כלי מתפריט הצד."></md-empty-state>
         <contractions v-else-if="currentTool === 'contractions'"></contractions>
         <pulse v-else-if="currentTool === 'pulse'"></pulse>
-        <oxygen v-else-if="currentTool === 'oxygen'"></oxygen>
         <metronome v-else-if="currentTool === 'metronome'"></metronome>
+        <vital v-else-if="currentTool === 'vital'"></vital>
+        <oxygen v-else-if="currentTool === 'oxygen'"></oxygen>
     </div>
 </template>
 
@@ -17,6 +18,7 @@ import { ToolsPageComponents } from "../components";
         Contractions: ToolsPageComponents.Contractions,
         Pulse: ToolsPageComponents.Pulse,
         Metronome: ToolsPageComponents.Metronome,
+        Vital: ToolsPageComponents.Vital,
         Oxygen: ToolsPageComponents.Oxygen,
     },
 })

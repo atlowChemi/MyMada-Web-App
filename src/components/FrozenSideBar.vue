@@ -3,14 +3,14 @@
         <div class="content">
             <slot />
         </div>
-        <div class="side-frozen" @click="GreyMaterClicked">
+        <div class="side-frozen" :class="{ light }" @click="GreyMaterClicked">
             <slot name="side" />
         </div>
     </fragment>
 </template>
 
 <script lang="ts">
-import { Component, Vue, Emit } from "vue-property-decorator";
+import { Component, Vue, Emit, Prop } from "vue-property-decorator";
 import { Fragment } from "vue-fragment";
 
 @Component({
@@ -19,6 +19,7 @@ import { Fragment } from "vue-fragment";
     },
 })
 export default class Contractions extends Vue {
+    @Prop({ type: Boolean, required: false, default: false }) light!: boolean;
     @Emit()
     GreyMaterClicked(e: UIEvent) {
         return e;
@@ -38,19 +39,21 @@ export default class Contractions extends Vue {
 }
 .side-frozen {
     display: flex;
-    // position: absolute;
-    // bottom: 0;
-    // right: 0;
-    // left: 0;
-    padding: 10px 0;
-    justify-content: center;
+    padding: 0.7rem 0;
     align-items: center;
-    background: #5f6072;
+    flex-flow: column;
     @include tablet {
         margin-right: auto;
         padding: 0;
         position: unset !important;
         width: 33.3333333333%;
+    }
+    &:not(.light) {
+        justify-content: center;
+        background: #5f6072;
+    }
+    &.light {
+        padding: 0.7rem 1.4rem;
     }
 }
 </style>
