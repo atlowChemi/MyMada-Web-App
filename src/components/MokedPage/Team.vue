@@ -26,11 +26,11 @@
 <script lang="ts">
 import { Component, Vue, Emit } from "vue-property-decorator";
 import { MedicalRolesNames } from "../../utils/helperMethods";
-const TeamMember = () => import(/* webpackPrefetch: true */ "@/components/TeamMember.vue");
+const TeamMemberData = () => import(/* webpackPrefetch: true */ "@/components/TeamMember.vue");
 
 @Component({
     components: {
-        TeamMember,
+        TeamMemberData,
     },
 })
 export default class Team extends Vue {
@@ -45,7 +45,7 @@ export default class Team extends Vue {
         return this.$store.getters.teamMemberCount;
     }
     get teamMembers(): string {
-        let members: ITeamMember[] = this.$store.state.teamMembers;
+        let members: TeamMember[] = this.$store.state.teamMembers;
         let res: string = "";
         for (const member of members) {
             res += `\n${member.name} - ${MedicalRolesNames[member.role]}`;

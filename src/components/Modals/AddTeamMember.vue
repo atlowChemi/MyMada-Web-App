@@ -32,7 +32,7 @@ export default class AddTeamMember extends Vue {
     constructor() {
         super();
         if (this.member !== undefined) {
-            let member: ITeamMember = this.$store.state.teamMembers[+this.member];
+            let member: TeamMember = this.$store.state.teamMembers[+this.member];
             this.name = member.name;
             this.role = member.role;
         }
@@ -49,7 +49,7 @@ export default class AddTeamMember extends Vue {
         return this.name !== null && this.name!?.length <= 0 ? "md-invalid" : null;
     }
     @Emit()
-    IsValid(): boolean | ITeamMember {
+    IsValid(): boolean | TeamMember {
         if (!this.name) {
             return false;
         } else {

@@ -19,10 +19,10 @@
                 </md-field>
             </template>
             <template #side>
-                <div class="pulse-calc">
-                    <h1 class="pulse-calc__time">{{ calcResult }}</h1>
-                    <h4 class="pulse-calc__sec">דקות חמצן</h4>
-                    <p class="pulse-calc__info">בחישוב של 10-lpm זרימה.</p>
+                <div class="oxy-calc">
+                    <h1 class="oxy-calc__time">{{ calcResult }}</h1>
+                    <h4 class="oxy-calc__sec">דקות חמצן</h4>
+                    <p class="oxy-calc__info">בחישוב של 10-lpm זרימה.</p>
                 </div>
             </template>
         </frozen-side-bar>
@@ -58,7 +58,7 @@ export default class Oxygen extends Vue {
 </script>
 
 <style lang="scss" scoped>
-.pulse-calc {
+.oxy-calc {
     text-align: center;
     color: white;
     &__time {

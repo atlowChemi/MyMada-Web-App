@@ -7,7 +7,7 @@ import { settings } from "./settings.module";
 
 Vue.use(Vuex);
 
-export default new Vuex.Store<IRootState>({
+export default new Vuex.Store<RootState>({
     state: {
         packageVersion: process.env.PACKAGE_VERSION || "0",
         selectedMedicalCodes: [],
@@ -20,13 +20,13 @@ export default new Vuex.Store<IRootState>({
         setMedicalCodes({ commit }, { medicalCodes }: { medicalCodes: number[] }) {
             commit("setMedicalCodes", { medicalCodes });
         },
-        addTeamMember({ commit }, { teamMember, index }: { teamMember: ITeamMember; index?: string }) {
+        addTeamMember({ commit }, { teamMember, index }: { teamMember: TeamMember; index?: string }) {
             commit("addTeamMember", { teamMember, index });
         },
         removeTeamMember({ commit }, index: number) {
             commit("removeTeamMember", index);
         },
-        setTeamMembers({ commit }, { teamMembers }: { teamMembers: ITeamMember[] }) {
+        setTeamMembers({ commit }, { teamMembers }: { teamMembers: TeamMember[] }) {
             commit("setTeamMembers", { teamMembers });
         },
         setMetronome({ commit }, isActive: boolean) {
@@ -43,10 +43,10 @@ export default new Vuex.Store<IRootState>({
         setMedicalCodes(state, { medicalCodes }: { medicalCodes: number[] }) {
             state.selectedMedicalCodes = medicalCodes;
         },
-        setTeamMembers(state, { teamMembers }: { teamMembers: ITeamMember[] }) {
+        setTeamMembers(state, { teamMembers }: { teamMembers: TeamMember[] }) {
             state.teamMembers = teamMembers;
         },
-        addTeamMember(state, { teamMember, index }: { teamMember: ITeamMember; index?: number }) {
+        addTeamMember(state, { teamMember, index }: { teamMember: TeamMember; index?: number }) {
             if (index) {
                 state.teamMembers[index].name = teamMember.name;
                 state.teamMembers[index].role = teamMember.role;

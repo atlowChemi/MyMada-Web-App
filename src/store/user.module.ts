@@ -2,13 +2,13 @@ import { Module } from "vuex";
 import { DatabaseManager } from "./indexedDb";
 import { ContactDb } from "@/utils/firebaseConfig";
 
-export const state: IUserState = {
+export const state: UserState = {
     fcmToken: "",
     name: "",
     messageSeenByAdmin: undefined,
 };
 
-export const user: Module<IUserState, IRootState> = {
+export const user: Module<UserState, RootState> = {
     namespaced: true,
     state,
     actions: {

@@ -2,13 +2,13 @@ import { Module } from "vuex";
 import { Moked, Languages } from "../utils/types";
 import { DatabaseManager } from "./indexedDb";
 
-export const state: ISettingsState = {
+export const state: SettingsState = {
     moked: Moked.Jerusalem,
     lang: Languages.he,
     tools: ["contractions", "pulse", "metronome", "vital", "oxygen", "apgar", "glazgo", "dictionary", "protocoles"],
 };
 
-export const settings: Module<ISettingsState, IRootState> = {
+export const settings: Module<SettingsState, RootState> = {
     namespaced: true,
     state,
     actions: {
@@ -32,7 +32,7 @@ export const settings: Module<ISettingsState, IRootState> = {
         },
     },
     mutations: {
-        setState(state, sett: ISettingsState) {
+        setState(state, sett: SettingsState) {
             state.lang = sett.lang;
             state.moked = sett.moked;
             state.tools = sett.tools;

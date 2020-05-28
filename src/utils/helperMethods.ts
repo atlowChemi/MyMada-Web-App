@@ -8,7 +8,7 @@ export const convertRemToPixels = (rem: number): number => {
     return rem * parseFloat(getComputedStyle(document.documentElement).fontSize);
 };
 
-export const MedicalCodes: IMedicalCode[] = [
+export const MedicalCodes: MedicalCode[] = [
     //#region Area
     { name: "מצבי חירום סביבתיים", group: MedicalCodeGroup.Area },
     { name: "גוף זר באוזניים", code: 2000, group: MedicalCodeGroup.Area },

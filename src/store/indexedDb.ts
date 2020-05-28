@@ -69,8 +69,8 @@ class _DatabaseManager {
             nameSetRequest.onsuccess = () => resolve(undefined);
         });
     }
-    GetSettings(): Promise<ISettingsState> {
-        return new Promise<ISettingsState>((resolve, reject) => {
+    GetSettings(): Promise<SettingsState> {
+        return new Promise<SettingsState>((resolve, reject) => {
             let transaction = this.db.transaction(["Settings"], "readonly");
             let objStore = transaction.objectStore("Settings");
             let keys = ["moked", "lang", "tools"];
