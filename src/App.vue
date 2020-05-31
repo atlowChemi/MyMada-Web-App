@@ -5,6 +5,9 @@
         <main class="main-main">
             <router-view />
         </main>
+        <md-button v-if="deferredPrompt" class="md-fab md-fixed md-fab-bottom-left">
+            <md-icon>add_to_home_screen</md-icon>
+        </md-button>
     </div>
 </template>
 
@@ -19,6 +22,19 @@ import Modal from "./components/Modal.vue";
     },
 })
 export default class App extends Vue {
+    deferredPrompt: BeforeInstallPromptEvent | null = null;
+    askInstall!: boolean;
+    mounted() {
+        window.addEventListener("beforeinstallprompt", e => {
+            function isBeforeInstallPromptEvent(e: Event): e is BeforeInstallPromptEvent {
+                return Boolean(e) && "prompt" in e;
+            }
+            e.preventDefault();
+            if (isBeforeInstallPromptEvent(e)) {
+                this.deferredPrompt = e;
+            }
+        });
+    }
     created() {
         document.addEventListener("SW_CacheUpdated", this.swUpdateNeeded, { once: true });
     }
