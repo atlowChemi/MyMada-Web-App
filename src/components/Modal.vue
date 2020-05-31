@@ -96,7 +96,7 @@ export default class Modal extends Vue {
         }
     }
     updatePage() {
-        window.location.reload();
+        window.location.reload(true);
     }
 }
 </script>
