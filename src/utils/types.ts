@@ -80,6 +80,11 @@ declare global {
          */
         prompt(): Promise<void>;
     }
+    export interface InputChangeEvent extends Event {
+        readonly target: EventTarget & {
+            value: string;
+        };
+    }
     export type AlertType = "Error" | "Success" | "Settings" | "ChangeName" | "SendToMoked" | "MedicalCodePicker" | "AddTeamMember" | "UpdateNeeded";
     export type RootState = {
         packageVersion: string;

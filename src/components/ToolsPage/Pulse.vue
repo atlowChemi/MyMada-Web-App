@@ -1,35 +1,31 @@
 <template>
-    <fragment>
-        <frozen-side-bar @grey-mater-clicked="startTimer">
-            <template>
-                <md-field>
-                    <label>דופק ב15 שניות</label>
-                    <md-input type="number" min="1" v-model="pulseSeconds"></md-input>
-                </md-field>
-                <md-field>
-                    <label>דופק בדקה</label>
-                    <md-input type="number" min="1" v-model="pulseMinutes"></md-input>
-                </md-field>
-            </template>
-            <template #side>
-                <div class="pulse-calc">
-                    <h1 class="pulse-calc__time">{{ timer }}</h1>
-                    <h4 class="pulse-calc__sec">שניות</h4>
-                    <p class="pulse-calc__info">לחץ על האזור האפור למדידת דופק</p>
-                </div>
-            </template>
-        </frozen-side-bar>
-    </fragment>
+    <frozen-side-bar @grey-mater-clicked="startTimer">
+        <template>
+            <md-field>
+                <label>דופק ב15 שניות</label>
+                <md-input type="number" min="1" v-model="pulseSeconds" @input.native="secInput"></md-input>
+            </md-field>
+            <md-field>
+                <label>דופק בדקה</label>
+                <md-input type="number" min="1" v-model="pulseMinutes" @input.native="minInput"></md-input>
+            </md-field>
+        </template>
+        <template #side>
+            <div class="pulse-calc">
+                <h1 class="pulse-calc__time">{{ timer }}</h1>
+                <h4 class="pulse-calc__sec">שניות</h4>
+                <p class="pulse-calc__info">לחץ על האזור האפור למדידת דופק</p>
+            </div>
+        </template>
+    </frozen-side-bar>
 </template>
 
 <script lang="ts">
 import { Component, Vue } from "vue-property-decorator";
-import { Fragment } from "vue-fragment";
 import FrozenSideBar from "@/components/FrozenSideBar.vue";
 
 @Component({
     components: {
-        Fragment,
         FrozenSideBar,
     },
 })
@@ -37,11 +33,14 @@ export default class Pulse extends Vue {
     timer = 15;
     interval: number | undefined;
     pulseSeconds: number | null = null;
-    get pulseMinutes() {
-        return this.pulseSeconds ? this.pulseSeconds * 4 : null;
+    pulseMinutes: number | null = null;
+    secInput(e: InputChangeEvent) {
+        let sec = e.target.value;
+        this.pulseMinutes = sec ? +sec * 4 : null;
     }
-    set pulseMinutes(val) {
-        this.pulseSeconds = val ? (val / 4) | 0 : null;
+    minInput(e: InputChangeEvent) {
+        let min = e.target.value;
+        this.pulseSeconds = min ? Math.ceil(+min / 4) : null;
     }
     startTimer() {
         this.timer = 15;
