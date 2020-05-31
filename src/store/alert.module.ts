@@ -35,6 +35,9 @@ export const alert: Module<AlertState, RootState> = {
         requestUserUpdate({ commit }) {
             commit("requestUserUpdate");
         },
+        restoreContractions({ commit }) {
+            commit("restoreContractions");
+        },
         clear({ commit }) {
             commit("clear");
         },
@@ -87,6 +90,12 @@ export const alert: Module<AlertState, RootState> = {
             state.type = "UpdateNeeded";
             state.message = "ישנו עדכון חדש המוסיף שיפורים ואפשרויות נוספות לשירות.\nהעדכון יכנס לתוקף מיד לאחר רענון העמוד.";
             state.title = "קיים עדכון גרסה";
+        },
+        restoreContractions(state) {
+            state.show = true;
+            state.type = "ContractionRetrieve";
+            state.message = "זיהינו שביצעת פעילות בשעון צירים ב20 דקות האחרונות. האם ברצונך לשחזר את הנתונים?";
+            state.title = "האם לשחזר נתונים קודמים?";
         },
         clear(state) {
             state.show = false;

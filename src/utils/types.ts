@@ -85,7 +85,21 @@ declare global {
             value: string;
         };
     }
-    export type AlertType = "Error" | "Success" | "Settings" | "ChangeName" | "SendToMoked" | "MedicalCodePicker" | "AddTeamMember" | "UpdateNeeded";
+    export type AlertType = "Error" | "Success" | "Settings" | "ChangeName" | "SendToMoked" | "MedicalCodePicker" | "AddTeamMember" | "UpdateNeeded" | "ContractionRetrieve";
+    export type Contraction = {
+        /**
+         * Timestamp of when contraction has begun.
+         */
+        startTime: number;
+        /**
+         * Timestamp of when contraction has ended.
+         */
+        endTime: number;
+        /**
+         * Time when previous contraction has ended
+         */
+        previousEnd: number | null;
+    };
     export type RootState = {
         packageVersion: string;
         selectedMedicalCodes: number[];
@@ -93,6 +107,8 @@ declare global {
         isMetronomeActive: boolean;
         metronomeActiveTime: string;
         metronomeRound: number;
+        contractions: Contraction[];
+        retrieveContractions: boolean;
     };
     export type AlertState = {
         show: boolean;
@@ -118,6 +134,5 @@ declare global {
     export type TeamMember = {
         name: string;
         role: MedicalRole;
-        time?: Date;
     };
 }

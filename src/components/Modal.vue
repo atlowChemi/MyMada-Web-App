@@ -25,6 +25,10 @@
                     <app-btn class="modal__footer-btn flat" v-wave.success @click="updatePage">רענן כעת</app-btn>
                     <app-btn class="modal__footer-btn flat" v-wave.danger @click="close">לא מעוניין כרגע</app-btn>
                 </div>
+                <div v-else-if="retrieveContraction">
+                    <app-btn class="modal__footer-btn flat" v-wave.success @click="retrieveContractions">שחזר</app-btn>
+                    <app-btn class="modal__footer-btn flat" v-wave.danger @click="noRetrieveContractions">ביטול</app-btn>
+                </div>
                 <md-button :disabled="validateUserName" v-else @click="close(false)">אישור</md-button>
             </div>
         </div>
@@ -70,6 +74,9 @@ export default class Modal extends Vue {
     get IsRefreshNeeded(): boolean {
         return this.type === "UpdateNeeded";
     }
+    get retrieveContraction(): boolean {
+        return this.type === "ContractionRetrieve";
+    }
     get validateUserName(): boolean {
         return this.changeName && !this.$store.getters["user/validUserName"];
     }
@@ -97,6 +104,14 @@ export default class Modal extends Vue {
     }
     updatePage() {
         window.location.reload(true);
+    }
+    noRetrieveContractions() {
+        this.$store.dispatch("setRetrieveContractions", false);
+        this.$store.dispatch("alert/clear");
+    }
+    retrieveContractions() {
+        this.$store.dispatch("setRetrieveContractions", true);
+        this.$store.dispatch("alert/clear");
     }
 }
 </script>

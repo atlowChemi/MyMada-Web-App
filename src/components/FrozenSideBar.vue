@@ -18,7 +18,7 @@ import { Fragment } from "vue-fragment";
         Fragment,
     },
 })
-export default class Contractions extends Vue {
+export default class FrozenSideBar extends Vue {
     @Prop({ type: Boolean, required: false, default: false }) light!: boolean;
     @Emit()
     GreyMaterClicked(e: UIEvent) {

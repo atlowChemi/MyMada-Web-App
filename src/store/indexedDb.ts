@@ -141,6 +141,24 @@ class _DatabaseManager {
             nameSetRequest.onsuccess = () => resolve();
         });
     }
+    GetContractions(): Promise<Contraction[]> {
+        return new Promise((resolve, reject) => {
+            let transaction = this.db.transaction(["Settings"], "readonly");
+            let objStore = transaction.objectStore("Settings");
+            let res = objStore.get("Contractions");
+            res.onerror = () => reject("שגיאה בקריאת הנתונים!");
+            res.onsuccess = () => resolve(res.result);
+        });
+    }
+    SetContractions(val: Contraction[]): Promise<void> {
+        return new Promise((resolve, reject) => {
+            let transaction = this.db.transaction(["Settings"], "readwrite");
+            let objStore = transaction.objectStore("Settings");
+            let contractionSetRequest = objStore.put(val, "Contractions");
+            contractionSetRequest.onerror = () => reject("אירעה שגיאה בשמירה!");
+            contractionSetRequest.onsuccess = () => resolve();
+        });
+    }
 }
 
 export const DatabaseManager = new _DatabaseManager();

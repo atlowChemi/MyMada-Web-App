@@ -4,6 +4,7 @@ import Vuex from "vuex";
 import { alert } from "./alert.module";
 import { user } from "./user.module";
 import { settings } from "./settings.module";
+import { DatabaseManager } from "./indexedDb";
 
 Vue.use(Vuex);
 
@@ -15,6 +16,8 @@ export default new Vuex.Store<RootState>({
         isMetronomeActive: false,
         metronomeActiveTime: "00:00",
         metronomeRound: 0,
+        contractions: [],
+        retrieveContractions: false,
     },
     actions: {
         setMedicalCodes({ commit }, { medicalCodes }: { medicalCodes: number[] }) {
@@ -37,6 +40,13 @@ export default new Vuex.Store<RootState>({
         },
         setMetronomeRound({ commit }, roundNum: number) {
             commit("setMetronomeRound", roundNum);
+        },
+        setContractions({ commit }, contractions: Contraction[]) {
+            DatabaseManager.SetContractions(contractions).then(() => commit("setContractions", contractions));
+        },
+        setRetrieveContractions({ commit, dispatch }, ret: boolean) {
+            if (!ret) dispatch("setContractions", []);
+            commit("setRetrieveContractions", ret);
         },
     },
     mutations: {
@@ -72,6 +82,12 @@ export default new Vuex.Store<RootState>({
         },
         setMetronomeRound(state, roundNum: number) {
             state.metronomeRound = roundNum;
+        },
+        setContractions(state, contractions: Contraction[]) {
+            state.contractions = contractions;
+        },
+        setRetrieveContractions(state, ret: boolean) {
+            state.retrieveContractions = ret;
         },
     },
     modules: {

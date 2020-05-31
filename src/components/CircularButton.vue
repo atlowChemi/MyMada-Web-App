@@ -33,7 +33,17 @@ export default class CircularButton extends Vue {
     @Emit()
     Click(e: UIEvent) {
         this.working = !this.working;
+        if (this.working) this.Started();
+        else this.Stopped();
         return e;
+    }
+    @Emit()
+    Started() {
+        return;
+    }
+    @Emit()
+    Stopped() {
+        return;
     }
 }
 </script>
