@@ -10,7 +10,7 @@ class _DatabaseManager {
                 reject("הדפדפן שלך אינו תומך באפשרות של שמירת המידע. אי לכך, האתר לא יפעל כמצופה.");
                 //We will work on LocalStorage later.
             } else {
-                let openRequest = indexedDB.open(this.dbName, 1);
+                let openRequest = indexedDB.open(this.dbName, 2);
                 openRequest.onupgradeneeded = this.AddTables;
                 openRequest.onerror = () => reject(openRequest.error?.message ?? "");
                 openRequest.onsuccess = () => {
@@ -37,6 +37,7 @@ class _DatabaseManager {
             objStore.add(Moked.Jerusalem, "moked");
             objStore.add(Languages.he, "lang");
             objStore.add(["contractions", "pulse", "metronome", "vital", "oxygen", "apgar", "glazgo", "dictionary", "protocoles"], "tools");
+            objStore.add(false, "AskedForInstallation");
         }
     }
     //#endregion
@@ -120,6 +121,24 @@ class _DatabaseManager {
             let nameSetRequest = objStore.put(lang, "lang");
             nameSetRequest.onerror = () => reject("אירעה שגיאה בשמירה!");
             nameSetRequest.onsuccess = () => resolve(undefined);
+        });
+    }
+    GetAskedInstall(): Promise<boolean> {
+        return new Promise<boolean>(resolve => {
+            let transaction = this.db.transaction(["Settings"], "readonly");
+            let objStore = transaction.objectStore("Settings");
+            let res = objStore.get("AskedForInstallation");
+            res.onerror = () => resolve(false);
+            res.onsuccess = () => resolve(res.result);
+        });
+    }
+    SetAskedInstall(val: boolean): Promise<void> {
+        return new Promise<void>((resolve, reject) => {
+            let transaction = this.db.transaction(["Settings"], "readwrite");
+            let objStore = transaction.objectStore("Settings");
+            let nameSetRequest = objStore.put(val, "AskedForInstallation");
+            nameSetRequest.onerror = () => reject("אירעה שגיאה בשמירה!");
+            nameSetRequest.onsuccess = () => resolve();
         });
     }
 }

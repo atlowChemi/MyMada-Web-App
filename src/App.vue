@@ -5,34 +5,37 @@
         <main class="main-main">
             <router-view />
         </main>
-        <md-button v-if="deferredPrompt" class="md-fab md-fixed md-fab-bottom-left">
-            <md-icon>add_to_home_screen</md-icon>
-        </md-button>
+        <installer-prompt v-click-outside="hideFeature" v-if="deferredPrompt" :open="deferredPrompt" @add-to-home="addToHomeScreen"></installer-prompt>
     </div>
 </template>
 
 <script lang="ts">
 import { Component, Vue, Watch } from "vue-property-decorator";
 import Modal from "./components/Modal.vue";
+import InstallerPrompt from "./components/InstallerPrompt.vue";
+import { DatabaseManager } from "./store/indexedDb";
 
 @Component({
     name: "App",
     components: {
         Modal,
+        InstallerPrompt,
     },
 })
 export default class App extends Vue {
     deferredPrompt: BeforeInstallPromptEvent | null = null;
-    askInstall!: boolean;
+    openInstaller: boolean = false;
     mounted() {
         window.addEventListener("beforeinstallprompt", e => {
             function isBeforeInstallPromptEvent(e: Event): e is BeforeInstallPromptEvent {
                 return Boolean(e) && "prompt" in e;
             }
             e.preventDefault();
-            if (isBeforeInstallPromptEvent(e)) {
-                this.deferredPrompt = e;
-            }
+            DatabaseManager.GetAskedInstall().then(res => {
+                if (!res && isBeforeInstallPromptEvent(e)) {
+                    this.deferredPrompt = e;
+                }
+            });
         });
     }
     created() {
@@ -59,6 +62,21 @@ export default class App extends Vue {
     }
     swUpdateNeeded() {
         this.$store.dispatch("alert/requestUserUpdate");
+    }
+    hideFeature() {
+        this.deferredPrompt = null;
+    }
+    addToHomeScreen() {
+        if (!this.deferredPrompt) return;
+        this.deferredPrompt.prompt(); // Wait for the user to respond to the prompt
+        this.deferredPrompt.userChoice.then(choiceResult => {
+            if (choiceResult.outcome === "accepted") {
+                console.log("User accepted the A2HS prompt");
+            } else {
+                DatabaseManager.SetAskedInstall(true);
+            }
+        });
+        this.deferredPrompt = null;
     }
 }
 </script>

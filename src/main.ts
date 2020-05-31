@@ -4,6 +4,7 @@ import { MdAutocomplete, MdButton, MdCard, MdCheckbox, MdChips, MdEmptyState, Md
 import "vue-material/dist/vue-material.min.css";
 import "vue-material/dist/theme/default.css";
 
+import "@/utils/directives";
 import App from "./App.vue";
 import "./registerServiceWorker";
 import router from "./router";
