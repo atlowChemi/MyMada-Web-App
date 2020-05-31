@@ -63,7 +63,7 @@ export default class ContactMessage extends Vue {
     &__content {
         #{ $msg }__whatsapp {
             display: block;
-            padding-bottom: .5rem;
+            padding-bottom: 0.5rem;
         }
         display: block;
         margin-top: 1.6rem;
