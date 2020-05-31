@@ -66,7 +66,7 @@ export default class HomeButton extends Vue {
     color: black;
     border-radius: 25px;
     padding: 0.2rem 0.5rem;
-    @include vendor(transition, box-shadow 0.25s);
+    @include transition(box-shadow 0.25s, transform 0.35s);
     box-shadow: 0 2px 2px 0 rgba(0, 0, 0, 0.14), 0 3px 1px -2px rgba(0, 0, 0, 0.12), 0 1px 5px 0 rgba(0, 0, 0, 0.2);
     &:hover {
         transform: scale(1.03);
