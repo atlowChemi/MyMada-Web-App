@@ -32,6 +32,9 @@ import FrozenSideBar from "@/components/FrozenSideBar.vue";
 export default class Pulse extends Vue {
     timer = 15;
     interval: number | undefined;
+    context!: AudioContext;
+    osc!: OscillatorNode;
+    gain!: GainNode;
     pulseSeconds: number | null = null;
     pulseMinutes: number | null = null;
     secInput(e: InputChangeEvent) {
@@ -47,27 +50,29 @@ export default class Pulse extends Vue {
         if (this.interval) {
             this.clearTimer();
         } else {
-            let context = new AudioContext();
-            let osc = context.createOscillator();
-            let gain = context.createGain();
-            this.interval = setInterval(() => {
-                this.timer--;
-                if (this.timer === 0) {
-                    osc.type = "sine";
-                    osc.frequency.value = 277.2;
-                    osc.connect(gain);
-                    gain.connect(context.destination);
-                    gain.gain.exponentialRampToValueAtTime(0.00001, context.currentTime + 0.9);
-                    osc.start();
-                    osc.stop(context.currentTime + 0.9);
-                    this.clearTimer();
-                }
-            }, 1000);
+            this.context = new AudioContext();
+            this.osc = this.context.createOscillator();
+            this.gain = this.context.createGain();
+            this.runTimer();
         }
     }
+    private runTimer() {
+        this.timer--;
+        if (this.timer === 0) {
+            this.osc.type = "sine";
+            this.osc.frequency.value = 277.2;
+            this.osc.connect(this.gain);
+            this.gain.connect(this.context.destination);
+            this.gain.gain.exponentialRampToValueAtTime(0.00001, this.context.currentTime + 0.9);
+            this.osc.start();
+            this.osc.stop(this.context.currentTime + 0.9);
+            return this.clearTimer();
+        }
+        this.interval = window.setTimeout(this.runTimer, 1000);
+    }
     private clearTimer() {
-        clearInterval(this.interval);
-        this.interval = undefined;
+        window.clearTimeout(this.interval);
+        //this.interval = undefined;
         this.timer = 15;
     }
 }
