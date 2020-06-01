@@ -8,6 +8,7 @@
         <oxygen v-else-if="currentTool === 'oxygen'"></oxygen>
         <apgar v-else-if="currentTool === 'apgar'"></apgar>
         <glazgo v-else-if="currentTool === 'glazgo'"></glazgo>
+        <dictionary v-else-if="currentTool === 'dictionary'"></dictionary>
     </div>
 </template>
 
@@ -24,6 +25,7 @@ import { ToolsPageComponents } from "../components";
         Oxygen: ToolsPageComponents.Oxygen,
         Apgar: ToolsPageComponents.Apgar,
         Glazgo: ToolsPageComponents.Glazgo,
+        Dictionary: ToolsPageComponents.Dictionary,
     },
 })
 export default class Tools extends Vue {

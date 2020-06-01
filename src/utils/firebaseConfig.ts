@@ -2,6 +2,7 @@ import firebase from "firebase/app";
 import "firebase/analytics";
 import "firebase/messaging";
 import "firebase/database";
+import "firebase/firestore";
 
 const firebaseConfig = {
     apiKey: "AIzaSyBexDweJCEqx-6nQWPdAHxztngxVKsMCeg",
@@ -22,6 +23,11 @@ defaultAnalytics.logEvent("Web App Open", { name: "website Opened!" });
 messaging.usePublicVapidKey("BEFLpvSn04jJC8mgoS4k7zBzDBN3GEq_GXPHpp1d4Q6VePrq3yyRFh0SeBtAEqf156xuJ811CGC8ipfGdcMIj4Y");
 
 const DB = firebase.database();
+const FB = firebase.firestore();
+
+FB.enablePersistence().catch(function(err) {
+    console.log(err);
+});
 
 const setup = () => {
     return new Promise<string>((resolve, reject) => {
@@ -40,4 +46,4 @@ const setup = () => {
 
 const ContactDb = (fcmToken: string) => DB.ref(`chats/${fcmToken}`);
 
-export { setup, ContactDb, DB };
+export { setup, ContactDb, DB, FB };

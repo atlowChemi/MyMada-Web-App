@@ -7,12 +7,14 @@
             </template>
             <template #md-autocomplete-empty="{ term }"> לא מצאנו קודים מתאימים לחיפוש: "{{ term }}"</template>
         </md-autocomplete>
-        <md-list class="md-dense">
+        <md-list>
             <div v-for="(mc, index) in FilteredMedicalCodeList" :key="index">
                 <md-subheader v-if="!mc.code" v-show="FilteredMedicalCodeList.some(m => m.code && m.group === mc.group)" :class="GroupName(mc.group)">{{ mc.name }}</md-subheader>
                 <md-list-item v-else>
                     <md-checkbox v-model="selectedCodes" :value="mc.code" @change="codeSelected" :disabled="isDisabled(mc.code)" />
-                    <span class="md-list-item-text">{{ mc.name }}</span>
+                    <span class="md-list-item-text">
+                        <md-highlight-text :md-term="searchText">{{ mc.name }}</md-highlight-text>
+                    </span>
                 </md-list-item>
             </div>
         </md-list>

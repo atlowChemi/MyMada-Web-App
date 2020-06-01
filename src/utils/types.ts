@@ -131,6 +131,11 @@ declare global {
         code?: number;
         group: MedicalCodeGroup;
     };
+    export type DictionaryItem = {
+        key: string;
+        name: string;
+        definition: string;
+    };
     export type TeamMember = {
         name: string;
         role: MedicalRole;
