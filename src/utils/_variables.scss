@@ -38,6 +38,11 @@ $Paramedic: #ff5200;
 $Medic: #5a5a5a;
 $Volunteer: #e61f1f;
 
+//Tools Grades
+$badShape: #B71C1C;
+$medShape: #fbc02d;
+$goodShape: #4CAF50;
+
 @mixin medicalCodeSelectors($name, $bg) {
     .grp-#{$name} {
         color: white;

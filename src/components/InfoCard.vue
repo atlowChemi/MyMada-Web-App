@@ -1,6 +1,6 @@
 <template>
-    <div class="info-card">
-        <div class="info-card__icon">
+    <div class="info-card" :class="gradeClass">
+        <div class="info-card__icon" v-if="grade === undefined">
             <i class="material-icons">info</i>
         </div>
         <div class="info-card__text"><slot>לא נכתבה פה הודעה!</slot></div>
@@ -8,14 +8,24 @@
 </template>
 
 <script lang="ts">
-import { Component, Vue } from "vue-property-decorator";
+import { Component, Vue, Prop } from "vue-property-decorator";
 
 @Component
-export default class InfoCard extends Vue {}
+export default class InfoCard extends Vue {
+    @Prop({ type: Number, required: false, default: undefined }) grade!: number;
+    get gradeClass(): string | null {
+        if (this.grade === undefined) return null;
+        if (this.grade === 0) return "grade grade-bad";
+        else if (this.grade === 1) return "grade grade-med";
+        else if (this.grade === 2) return "grade grade-good";
+        else return null;
+    }
+}
 </script>
 
 <style lang="scss" scoped>
 .info-card {
+    $ic: &;
     display: flex;
     flex-flow: row;
     background: white;
@@ -30,6 +40,26 @@ export default class InfoCard extends Vue {}
         font-size: 1rem;
         p {
             margin: 0;
+        }
+    }
+    &.grade {
+        justify-content: center;
+        @include transition(background-color 1s linear);
+        &.grade {
+            &-bad {
+                background-color: $badShape;
+            }
+            &-med {
+                background-color: $medShape;
+            }
+            &-good {
+                background-color: $goodShape;
+            }
+        }
+        #{ $ic }__text {
+            margin: 0;
+            padding: 0;
+            border: none;
         }
     }
 }
