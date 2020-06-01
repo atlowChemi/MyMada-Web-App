@@ -46,7 +46,7 @@ export default class FrozenSideBar extends Vue {
         margin-right: auto;
         padding: 0;
         position: unset !important;
-        width: 33.3333333333%;
+        width: 40%;
     }
     &:not(.light) {
         justify-content: center;

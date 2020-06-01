@@ -32,7 +32,10 @@ export default class InfoCard extends Vue {
     width: 100%;
     border-radius: 8px;
     padding: 1rem;
-    margin: 0.5rem 2rem;
+    margin: 0.2rem 2rem;
+    @include tablet {
+        margin: 0.5rem 2rem;
+    }
     &__text {
         margin-right: 0.8rem;
         padding-right: 0.4rem;
