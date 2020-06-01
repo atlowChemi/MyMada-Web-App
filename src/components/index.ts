@@ -28,6 +28,7 @@ export namespace ToolsPageComponents {
     export const Glazgo = () => import("@/components/ToolsPage/Glazgo.vue");
     export const Metronome = () => import("@/components/ToolsPage/Metronome.vue");
     export const Oxygen = () => import("@/components/ToolsPage/Oxygen.vue");
+    export const Ptotocoles = () => import("@/components/ToolsPage/Protocoles.vue");
     export const Pulse = () => import("@/components/ToolsPage/Pulse.vue");
     export const Vital = () => import("@/components/ToolsPage/Vital.vue");
 }

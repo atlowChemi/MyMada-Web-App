@@ -9,6 +9,7 @@
         <apgar v-else-if="currentTool === 'apgar'"></apgar>
         <glazgo v-else-if="currentTool === 'glazgo'"></glazgo>
         <dictionary v-else-if="currentTool === 'dictionary'"></dictionary>
+        <ptotocoles v-else-if="currentTool === 'als' || currentTool === 'bls' || currentTool === 'dead'"></ptotocoles>
     </div>
 </template>
 
@@ -26,6 +27,7 @@ import { ToolsPageComponents } from "../components";
         Apgar: ToolsPageComponents.Apgar,
         Glazgo: ToolsPageComponents.Glazgo,
         Dictionary: ToolsPageComponents.Dictionary,
+        Ptotocoles: ToolsPageComponents.Ptotocoles,
     },
 })
 export default class Tools extends Vue {
