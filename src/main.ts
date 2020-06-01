@@ -13,7 +13,6 @@ import Navigation from "./components/AppBar.vue";
 import Button from "./components/Button.vue";
 import { DatabaseManager } from "./store/indexedDb";
 import { setup } from "./utils/firebaseConfig";
-
 DatabaseManager.InitDb()
     .then(() => {
         store.dispatch("user/initialize");
