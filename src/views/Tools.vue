@@ -7,6 +7,7 @@
         <vital v-else-if="currentTool === 'vital'"></vital>
         <oxygen v-else-if="currentTool === 'oxygen'"></oxygen>
         <apgar v-else-if="currentTool === 'apgar'"></apgar>
+        <glazgo v-else-if="currentTool === 'glazgo'"></glazgo>
     </div>
 </template>
 
@@ -22,6 +23,7 @@ import { ToolsPageComponents } from "../components";
         Vital: ToolsPageComponents.Vital,
         Oxygen: ToolsPageComponents.Oxygen,
         Apgar: ToolsPageComponents.Apgar,
+        Glazgo: ToolsPageComponents.Glazgo,
     },
 })
 export default class Tools extends Vue {

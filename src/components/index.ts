@@ -24,6 +24,7 @@ export namespace MokedPageComponents {
 export namespace ToolsPageComponents {
     export const Apgar = () => import("@/components/ToolsPage/Apgar.vue");
     export const Contractions = () => import("@/components/ToolsPage/Contractions.vue");
+    export const Glazgo = () => import("@/components/ToolsPage/Glazgo.vue");
     export const Metronome = () => import("@/components/ToolsPage/Metronome.vue");
     export const Oxygen = () => import("@/components/ToolsPage/Oxygen.vue");
     export const Pulse = () => import("@/components/ToolsPage/Pulse.vue");

@@ -47,6 +47,7 @@ export default class InfoCard extends Vue {
     }
     &.grade {
         justify-content: center;
+        text-align: center;
         @include transition(background-color 1s linear);
         &.grade {
             &-bad {

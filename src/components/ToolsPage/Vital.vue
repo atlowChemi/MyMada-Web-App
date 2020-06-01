@@ -76,12 +76,21 @@ export default class Oxygen extends Vue {
 }
 .blood-pressure {
     display: flex;
-    flex-flow: row-reverse;
+    flex-flow: column;
+    @include tablet {
+        flex-flow: row-reverse;
+    }
     /deep/ .md-field:first-of-type {
-        margin-right: 0.5rem;
+        @include tablet {
+            margin: 0;
+            margin-right: 0.5rem;
+        }
     }
     /deep/ .md-field:last-of-type {
-        margin-left: 0.5rem;
+        @include tablet {
+            margin: 0;
+            margin-left: 0.5rem;
+        }
     }
 }
 </style>
