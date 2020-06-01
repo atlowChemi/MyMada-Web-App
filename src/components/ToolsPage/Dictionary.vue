@@ -1,8 +1,8 @@
 <template>
     <div class="dictionary">
         <md-autocomplete md-open-on-focus v-model="searchText" :md-options="items">
-            <md-icon>search</md-icon>
-            <label>חיפוש במילון</label>
+            
+            <label><md-icon class="searcher">search</md-icon>חיפוש במילון</label>
             <template #md-autocomplete-item="{ item, term }">
                 <md-highlight-text :md-term="term">{{ item.name }}</md-highlight-text>
             </template>
@@ -10,7 +10,7 @@
         </md-autocomplete>
         <md-list :md-expand-single="true">
             <md-list-item md-expand v-for="item in filteredItems" :key="item.key">
-                <md-icon>article</md-icon>
+                <md-icon>topic</md-icon>
                 <span class="md-list-item-text">{{ item.name }}</span>
                 <p slot="md-expand" class="definition">{{ item.definition }}</p>
             </md-list-item>
@@ -51,6 +51,11 @@ export default class Dictionary extends Vue {
 .dictionary {
     padding: 0 2rem;
     width: 100%;
+    overflow-y: auto;
+    .searcher {
+        transition: inherit;
+        color: inherit;
+    }
     .md-list {
         &-item {
             &-expand {
