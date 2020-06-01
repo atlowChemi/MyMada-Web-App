@@ -25,7 +25,7 @@ messaging.usePublicVapidKey("BEFLpvSn04jJC8mgoS4k7zBzDBN3GEq_GXPHpp1d4Q6VePrq3yy
 const DB = firebase.database();
 const FB = firebase.firestore();
 
-FB.enablePersistence().catch(function(err) {
+FB.enablePersistence({ synchronizeTabs: true }).catch(function(err) {
     console.log(err);
 });
 

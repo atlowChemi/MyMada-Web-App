@@ -1,7 +1,6 @@
 <template>
     <div class="dictionary">
         <md-autocomplete md-open-on-focus v-model="searchText" :md-options="items">
-            
             <label><md-icon class="searcher">search</md-icon>חיפוש במילון</label>
             <template #md-autocomplete-item="{ item, term }">
                 <md-highlight-text :md-term="term">{{ item.name }}</md-highlight-text>
