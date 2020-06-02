@@ -3,8 +3,8 @@
         <div class="tap-target" :class="{ open }">
             <div class="tap-target-content">
                 <div class="tap-target-content__flex-wrap">
-                    <h5>{{ $t("a2hp.title") }}</h5>
-                    <p v-html="$t('a2hp.info')"></p>
+                    <h5>{{ $t("a2hs.title") }}</h5>
+                    <p v-html="$t('a2hs.info')"></p>
                 </div>
             </div>
         </div>

@@ -1,6 +1,8 @@
 import { Module } from "vuex";
+
 import { Moked, Languages } from "../utils/types";
 import { DatabaseManager } from "./indexedDb";
+import i18n from "@/i18n";
 
 export const state: SettingsState = {
     moked: Moked.Jerusalem,
@@ -13,7 +15,10 @@ export const settings: Module<SettingsState, RootState> = {
     state,
     actions: {
         initialize({ commit }) {
-            DatabaseManager.GetSettings().then(sett => commit("setState", sett));
+            DatabaseManager.GetSettings().then(sett => {
+                i18n.locale = Languages[sett.lang];
+                commit("setState", sett);
+            });
         },
         changeTools({ commit }, tools: string[]) {
             DatabaseManager.SetTools(tools)
@@ -27,7 +32,10 @@ export const settings: Module<SettingsState, RootState> = {
         },
         changeLang({ commit }, lang: Languages) {
             DatabaseManager.SetLang(lang)
-                .then(() => commit("setLang", lang))
+                .then(() => {
+                    i18n.locale = Languages[lang];
+                    commit("setLang", lang);
+                })
                 .catch(err => commit("alert/error", { message: err }));
         },
     },

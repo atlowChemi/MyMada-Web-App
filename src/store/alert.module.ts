@@ -1,5 +1,7 @@
 import { Module } from "vuex";
 
+import i18n from "@/i18n";
+
 export const state: AlertState = {
     show: false,
     type: "Success",
@@ -53,49 +55,49 @@ export const alert: Module<AlertState, RootState> = {
             state.show = true;
             state.type = "Error";
             state.message = message;
-            state.title = title ?? "תקלה";
+            state.title = title ?? i18n.t("common.error");
         },
         settings(state) {
             state.show = true;
             state.type = "Settings";
             state.message = "";
-            state.title = "הגדרות";
+            state.title = i18n.t("modals.settings.title").toString();
         },
         changeName(state) {
             state.show = true;
             state.type = "ChangeName";
             state.message = "";
-            state.title = "רשמו שם משתמש";
+            state.title = i18n.t("modals.change-name.title").toString();
         },
         sendToMoked(state, { message }: { message: string }) {
             state.show = true;
             state.type = "SendToMoked";
             state.message = message;
-            state.title = "אשר לפני שליחה";
+            state.title = i18n.t("modals.send-moked.title").toString();
         },
         medicalCodes(state, medicalCodes: number[]) {
             state.show = true;
             state.type = "MedicalCodePicker";
             state.message = medicalCodes.join(",");
-            state.title = "אנא בחר קוד רפואי";
+            state.title = i18n.t("modals.medical-codes.title").toString();
         },
         addTeamMember(state, teamMemberIndex?: number) {
             state.show = true;
             state.type = "AddTeamMember";
             state.message = teamMemberIndex!?.toString();
-            state.title = "הוספת איש צוות";
+            state.title = i18n.t("modals.team-member.title").toString();
         },
         requestUserUpdate(state) {
             state.show = true;
             state.type = "UpdateNeeded";
-            state.message = "ישנו עדכון חדש המוסיף שיפורים ואפשרויות נוספות לשירות.\nהעדכון יכנס לתוקף מיד לאחר רענון העמוד.";
-            state.title = "קיים עדכון גרסה";
+            state.message = i18n.t("modals.refresh.message").toString();
+            state.title = i18n.t("modals.refresh.title").toString();
         },
         restoreContractions(state) {
             state.show = true;
             state.type = "ContractionRetrieve";
-            state.message = "זיהינו שביצעת פעילות בשעון צירים ב20 דקות האחרונות. האם ברצונך לשחזר את הנתונים?";
-            state.title = "האם לשחזר נתונים קודמים?";
+            state.message = i18n.t("modals.retrieve.message").toString();
+            state.title = i18n.t("modals.retrieve.title").toString();
         },
         clear(state) {
             state.show = false;

@@ -1,14 +1,3 @@
-// export enum AlertType {
-//     Error,
-//     Success,
-//     Settings,
-//     ChangeName,
-//     SendToMoked,
-//     MedicalCodePicker,
-//     AddTeamMember,
-//     UpdateNeeded,
-// }
-
 export enum Languages {
     he,
     en,
