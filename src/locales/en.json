@@ -1,0 +1,233 @@
+{
+    "common": {
+        "app-name": "MADA reports",
+        "app-desc": "Web version of the MADA reports app.",
+        "error": "Error",
+        "send": "Send",
+        "cancel": "Cancel",
+        "name": "Name",
+        "name-err": "You didn't write a name!",
+        "no-msg": "No message typed!"
+    },
+    "modals": {
+        "save": "Save",
+        "add": "Add",
+        "ok": "OK",
+        "team-member": {
+            "title": "Add team member",
+            "role": "Role in team"
+        },
+        "medical-codes": {
+            "title": "Select medical code",
+            "search": "Search code",
+            "not-found": "No code was found for search"
+        },
+        "send-moked": {
+            "title": "Please approve before sending",
+            "which": "Message will be sent to",
+            "length": "{0} characteres. {1} SMS messages."
+        },
+        "settings": {
+            "title": "Settings",
+            "select-tools": "Pick tools to show on tools page",
+            "select-moked": "Pick default MADA region, for reports page.",
+            "select-lang": "Pick language"
+        },
+        "refresh": {
+            "title": "New version available",
+            "message": "Ther'e is a new version available for our web app, with new features.\nThe update will be available immediately.",
+            "update": "Update now",
+            "not-now": "Later"
+        },
+        "retrieve": {
+            "title": "Restore previous data?",
+            "message": "We've detected you've used the contractions timer in the last 20 minutes. Should we restore the data?",
+            "yes": "Restore"
+        },
+        "change-name": {
+            "title": "Write your name"
+        }
+    },
+    "a2hs": {
+        "title": "Add to home screen",
+        "info": "Your browser allows installing the web page as an app.<br />It's completly free, and uses no extra storage!<br />Click here!"
+    },
+    "home-buttons": {
+        "tools": "Utilities & tools",
+        "moked": "Reports",
+        "contact": "Contact us",
+        "info": "About the app",
+        "play": "Get at Google Play",
+        "privacy": "Privacy policy"
+    },
+    "tools-page": {
+        "name": "Utilities & tools",
+        "desc": "Utilities & tools for volunteers.",
+        "contractions": {
+            "name": "Contractions timer",
+            "start": "Contraction start",
+            "end": "Contraction end",
+            "length": "Duration:",
+            "elapse": "Time between contractions:",
+            "minutes": "1 minute and | {n} minutes and",
+            "seconds": "0 seconds | 1 second | {n} seconds"
+        },
+        "pulse": {
+            "name": "Pulse calculator",
+            "pulse-seconds": "Pulse in 15 second",
+            "pulse-minutes": "Beats per minute",
+            "seconds": "Seconds",
+            "click-area": "Click the grey area to start timer"
+        },
+        "metronome": {
+            "name": "CPR Metronome",
+            "touch": "Touch the screen to start metronome",
+            "round": "round"
+        },
+        "vital": {
+            "name": "Vital signs calculator",
+            "ages": ["Adult", "Child", "Baby"],
+            "min": "per minute",
+            "pulse": "Pulse",
+            "breath": "Breaths",
+            "bp": "Blood preasure",
+            "sys": "Systolic",
+            "dys": "Diastolic",
+            "propper": "{age}'s vital normal range:",
+            "range": "Out of range",
+            "clarify": "The information brought here is based on MADA's medical literature, and may vary between patients. This information is not medical advice."
+        },
+        "oxygen": {
+            "name": "Oxygen calculator",
+            "type": "Oxygen tank size",
+            "small": "Small oxygen tank",
+            "big": "Big oxygen tank",
+            "atm": "Atmospheric pressure",
+            "psi": "PSI pressure",
+            "oxy-time": "Minutes left",
+            "by-10-lpm": "Assuming oxygen rate is 10-lpm."
+        },
+        "apgar": {
+            "name": "APGAR calculator",
+            "appearance": {
+                "name": "Appearance",
+                "score": ["Blue or pale", "Blue at extremities, pink body", "Pink"]
+            },
+            "pulse": {
+                "name": "Pulse",
+                "score": ["Absent", "Less than 100 bpm", "Above 100 bpm"]
+            },
+            "grimace": {
+                "name": "Grimace",
+                "score": ["No response to simulation", "Slight grimace upon simulation", "Cry on simulation"]
+            },
+            "activity": {
+                "name": "Activity (muscle tone)",
+                "score": ["None", "Some flexion", "Flexed arms and legs"]
+            },
+            "respiration": {
+                "name": "Respiration",
+                "score": ["None", "Slow, irregular, gasping", "Strong, vigorous cry"]
+            },
+            "score": "Apgar score is",
+            "info": ["If apgar score is below 4, start CPR immediately.", "If Apgar score is between 4 and 6, oxygenate the baby.", "Apgar score higher than 6 is considered normal."]
+        },
+        "glazgo": {
+            "name": "Glasgow calculator",
+            "eyes": {
+                "name": "Eyes opening",
+                "score": ["None", "To pain", "To speech", "Spontaneous"]
+            },
+            "speech": {
+                "name": "Verbal response",
+                "score": ["None", "Incomprehensible souns", "Inappropiate words", "Confused", "Orientated"]
+            },
+            "motor": {
+                "name": "Motor response",
+                "score": ["None", "Abnormal extension", "Abnormal flexion", "Flexion withdrawal from pain", "Moves to localized pain", "Obeying commands"]
+            },
+            "score": "Glasgow score is",
+            "score-state": ["Deep coma", "Moderate coma", "Light coma"],
+            "info": ["Glasgow lower than 9 is a deep coma.", "A score between 9 to 12 is a moderate coma.", "Glasgow 12 or higher is a light coma."]
+        },
+        "dictionary": {
+            "name": "Medical dictionary",
+            "search": "Search dictionary",
+            "not-found": "No items in dictionary match the term"
+        },
+        "protocoles": {
+            "name": "Protocoles",
+            "als": "ALS protocols",
+            "bls": "BLS protocole",
+            "dead": "\"Handling the deceased\" pamphlet"
+        }
+    },
+    "moked-page": {
+        "name": "Reports",
+        "desc": "Reports to regional dispatch",
+        "amb": "amb. number",
+        "amb-error": "Please write ambulance number",
+        "via-sms": "Sent via SMS",
+        "forms": {
+            "name": "Form dictation",
+            "visa": "Visa number",
+            "visa-err": "Please write visa number",
+            "address": "Call's address",
+            "address-err": "Please write address.",
+            "tofes": "Patient form",
+            "tofes-err": "Please write form number",
+            "bill": "Bill",
+            "bill-err": "Bill needs to have a price",
+            "price": "Price",
+            "price-err": "Price needs to belong to a bill",
+            "private": "First name",
+            "private-err": "Please write first name",
+            "family": "Family name",
+            "family-err": "Please write family name",
+            "medical-code": "Medical code",
+            "medical-code-helper": "Pick up to 5 codes",
+            "medical-code-err": "Pick at least 1 code"
+        },
+        "team": {
+            "name": "Team report",
+            "add-member": "Add team member",
+            "edit": "Edit",
+            "del": "Delete"
+        },
+        "general": {
+            "name": "Custom message",
+            "err": "You didn't type a message!"
+        }
+    },
+    "contact-page": {
+        "name": "Contact us",
+        "desc": "Contact the application developers.",
+        "change-name-btn": "Click here to change your name",
+        "no-message": "No messages",
+        "no-message-desc": "No messages were sent from this account. You can send a message right here.",
+        "admin": "Administrator",
+        "write-here": "Write your message here",
+        "msg-required": "Please write a message!",
+        "seen": "Your message was seen by an admin",
+        "not-seen": "Your message wasn't seen yet",
+        "important-note": "Please note!",
+        "warning-msg": "We're app devlopers, completely unrelated to MADA, therefore <b>don't send us emergency calls. call 101!</b><br />We're not related to the official MADA app, we cannot help eith issues there, and we can't send you medical calls.<br />Please help us' and contact only with issues or requests we can help you with, so we can keep our response efficient.",
+        "send": {
+            "error": "Error while sending. try again!",
+            "success": "Message sent successflly!"
+        }
+    },
+    "info-page": {
+        "name": "About the app",
+        "desc": "About the app and the web version",
+        "version": "Version number:",
+        "section1": "This app was created by the \"AtlowApps\" team. All rights are reserved to Chemi@low and Itiel Atlow.<br />We thank Yossi Cassouto, Yochai Benita and Shakom Sacks for all their help, as well as Rabi Zohar Maman for the \"Handling the deceased\" pamphlet.",
+        "section2": "The application was built by MADA volunteers in order to improve existing functionalities, and to create new ones, in order to improve the volunteers abilities.",
+        "section3": "In case you find an error or a problem in the application, ot if you've got a question or a request for us, you may contact us via the \"Contact us\" page and we will do our best to respond A.S.A.P.",
+        "section4": "This application is not an official MADA app.<br />Any possible implication of using this app, is the complete responsibilty of the user."
+    },
+    "privacy-page": {
+        "name": "Privacy policy",
+        "desc": "The website and application's privacy policy"
+    }
+}
