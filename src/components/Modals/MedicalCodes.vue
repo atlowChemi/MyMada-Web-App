@@ -1,11 +1,11 @@
 <template>
     <div class="control">
         <md-autocomplete md-open-on-focus v-model="searchText" :md-options="MedicalCodesSearchList">
-            <label>חיפוש</label>
+            <label>{{ $t("modals.medical-codes.search") }}</label>
             <template #md-autocomplete-item="{ item, term }">
                 <md-highlight-text :md-term="term">{{ item }}</md-highlight-text>
             </template>
-            <template #md-autocomplete-empty="{ term }"> לא מצאנו קודים מתאימים לחיפוש: "{{ term }}"</template>
+            <template #md-autocomplete-empty="{ term }">{{ $t("modals.medical-codes.not-found") }}: "{{ term }}"</template>
         </md-autocomplete>
         <md-list>
             <div v-for="(mc, index) in FilteredMedicalCodeList" :key="index">

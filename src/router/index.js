@@ -1,6 +1,7 @@
 import Vue from "vue";
 import VueRouter from "vue-router";
 import Home from "../views/Home.vue";
+import i18n from "@/i18n";
 
 Vue.use(VueRouter);
 
@@ -14,8 +15,8 @@ const routes = [
         path: "/tools/:tool?",
         name: "Tools",
         meta: {
-            title: "כלי עזר",
-            description: "כלי עזר לנוחיות מתנדבים",
+            title: i18n.t("tools-page.name"),
+            description: i18n.t("tools-page.desc"),
         },
         component: () => import("../views/Tools.vue"),
     },
@@ -23,8 +24,8 @@ const routes = [
         path: "/moked/:page",
         name: "Moked",
         meta: {
-            title: "דיווחים למוקד",
-            description: "עמוד שליחת דיווחים למוקד",
+            title: i18n.t("moked-page.name"),
+            description: i18n.t("moked-page.desc"),
         },
         component: () => import("../views/Moked.vue"),
     },
@@ -32,8 +33,8 @@ const routes = [
         path: "/contact",
         name: "Contact",
         meta: {
-            title: "יצירת קשר",
-            description: "עמוד יצירת קשר עם מפתחי האתר",
+            title: i18n.t("contact-page.name"),
+            description: i18n.t("contact-page.desc"),
         },
         component: () => import("../views/Contact.vue"),
     },
@@ -41,8 +42,8 @@ const routes = [
         path: "/info",
         name: "Info",
         meta: {
-            title: "אודות",
-            description: "אודות האתר והאפליקציה",
+            title: i18n.t("info-page.name"),
+            description: i18n.t("info-page.desc"),
         },
         component: () => import("../views/Info.vue"),
     },
@@ -50,8 +51,8 @@ const routes = [
         path: "/privacy",
         name: "Privacy",
         meta: {
-            title: "מדיניות פרטיות",
-            description: "מדיניות הפרטיות של האתר והאפליקציה",
+            title: i18n.t("privacy-page.name"),
+            description: i18n.t("privacy-page.desc"),
         },
         component: () => import("../views/Privacy.vue"),
     },

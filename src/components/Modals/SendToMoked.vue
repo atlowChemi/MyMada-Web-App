@@ -1,8 +1,8 @@
 <template>
     <div>
-        <p class="mokedTo">הודעה זו תשלח למוקד: {{ mokdim[moked] }}</p>
+        <p class="mokedTo">{{ $t("modals.send-moked.which") }}: {{ mokdim[moked] }}</p>
         <p class="message">{{ msg }}</p>
-        <p class="counter">{{ chars }} תווים בהודעה. {{ msgs }} הודעות.</p>
+        <p class="counter">{{ $t("modals.send-moked.length", [chars, msgs]) }}</p>
     </div>
 </template>
 

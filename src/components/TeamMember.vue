@@ -10,12 +10,12 @@
                 </md-button>
                 <md-menu-content>
                     <md-menu-item @click="editMember">
-                        <span>ערוך</span>
+                        <span>{{ $t("moked-page.team.edit") }}</span>
                         <md-icon>edit</md-icon>
                     </md-menu-item>
 
                     <md-menu-item @click="deleteMember">
-                        <span>מחק</span>
+                        <span>{{ $t("moked-page.team.del") }}</span>
                         <md-icon>delete</md-icon>
                     </md-menu-item>
                 </md-menu-content>
@@ -99,5 +99,9 @@ export default class TeamMemberData extends Vue {
 }
 .md-menu-content {
     background: white;
+    .md-icon {
+        margin-right: 16px;
+        margin-left: 0;
+    }
 }
 </style>

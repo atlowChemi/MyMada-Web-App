@@ -1,13 +1,13 @@
 <template>
     <div class="form">
         <md-field md-clearable :class="hasErrors">
-            <label>שם</label>
+            <label>{{ $t("common.name") }}</label>
             <md-input v-model="name"></md-input>
-            <span class="md-error">לא רשמת שם!</span>
+            <span class="md-error">{{ $t("common.name-err") }}</span>
         </md-field>
         <md-field>
-            <label for="role">תפקיד בצוות</label>
-            <md-select @md-selected="IsValid" v-model="role" md-dense placeholder="תפקיד בצוות" name="role" id="role">
+            <label for="role">{{ $t("modals.team-member.role") }}</label>
+            <md-select @md-selected="IsValid" v-model="role" md-dense :placeholder="$t('modals.team-member.role')" name="role" id="role">
                 <md-option value="0">נהג</md-option>
                 <md-option value="1">חובש</md-option>
                 <md-option value="2">פראמדיק</md-option>

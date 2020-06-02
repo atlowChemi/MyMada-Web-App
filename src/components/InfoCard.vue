@@ -3,7 +3,9 @@
         <div class="info-card__icon" v-if="grade === undefined">
             <i class="material-icons">info</i>
         </div>
-        <div class="info-card__text"><slot>לא נכתבה פה הודעה!</slot></div>
+        <div class="info-card__text">
+            <slot>{{ $t("common.no-msg") }}</slot>
+        </div>
     </div>
 </template>
 

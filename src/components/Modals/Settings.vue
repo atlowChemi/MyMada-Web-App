@@ -1,18 +1,18 @@
 <template>
     <div class="container">
-        <b>בחר אילו כלים יוצגו בכלי עזר</b>
+        <b>{{ $t("modals.settings.select-tools") }}</b>
         <div class="radio-grid radio-grid__large">
-            <md-checkbox v-model="tools" @change="toolsChanged" value="contractions">שעון צירים</md-checkbox>
-            <md-checkbox v-model="tools" @change="toolsChanged" value="pulse">שעון דופק</md-checkbox>
-            <md-checkbox v-model="tools" @change="toolsChanged" value="metronome">מטרונום</md-checkbox>
-            <md-checkbox v-model="tools" @change="toolsChanged" value="vital">מחשבון מדדים</md-checkbox>
-            <md-checkbox v-model="tools" @change="toolsChanged" value="oxygen">מחשבון חמצן</md-checkbox>
-            <md-checkbox v-model="tools" @change="toolsChanged" value="apgar">מחשבון אפגאר</md-checkbox>
-            <md-checkbox v-model="tools" @change="toolsChanged" value="glazgo">מחשבון גלאזגו</md-checkbox>
-            <md-checkbox v-model="tools" @change="toolsChanged" value="dictionary">מילון רפואי</md-checkbox>
-            <md-checkbox v-model="tools" @change="toolsChanged" value="protocoles">פרוטוקולים</md-checkbox>
+            <md-checkbox v-model="tools" @change="toolsChanged" value="contractions">{{ $t("tools-page.contractions.name") }}</md-checkbox>
+            <md-checkbox v-model="tools" @change="toolsChanged" value="pulse">{{ $t("tools-page.pulse.name") }}</md-checkbox>
+            <md-checkbox v-model="tools" @change="toolsChanged" value="metronome">{{ $t("tools-page.metronome.name") }}</md-checkbox>
+            <md-checkbox v-model="tools" @change="toolsChanged" value="vital">{{ $t("tools-page.vital.name") }}</md-checkbox>
+            <md-checkbox v-model="tools" @change="toolsChanged" value="oxygen">{{ $t("tools-page.oxygen.name") }}</md-checkbox>
+            <md-checkbox v-model="tools" @change="toolsChanged" value="apgar">{{ $t("tools-page.apgar.name") }}</md-checkbox>
+            <md-checkbox v-model="tools" @change="toolsChanged" value="glazgo">{{ $t("tools-page.glazgo.name") }}</md-checkbox>
+            <md-checkbox v-model="tools" @change="toolsChanged" value="dictionary">{{ $t("tools-page.dictionary.name") }}</md-checkbox>
+            <md-checkbox v-model="tools" @change="toolsChanged" value="protocoles">{{ $t("tools-page.protocoles.name") }}</md-checkbox>
         </div>
-        <b>בחר מרחב ברירת מחדל (לצורך עמוד דיווחים למוקד)</b>
+        <b>{{ $t("modals.settings.select-moked") }}</b>
         <div class="radio-grid">
             <md-radio v-model="moked" :value="0">ירושלים</md-radio>
             <md-radio v-model="moked" :value="1">איילון</md-radio>
@@ -27,7 +27,7 @@
             <md-radio v-model="moked" :value="10">שרון</md-radio>
             <md-radio v-model="moked" :value="11">מוקד 4</md-radio>
         </div>
-        <b>בחר שפה</b>
+        <b>{{ $t("modals.settings.select-lang") }}</b>
         <div class="centered">
             <md-radio v-model="lang" :value="0">עברית</md-radio>
             <md-radio v-model="lang" :value="1">English</md-radio>

@@ -1,8 +1,8 @@
 <template>
     <md-field md-clearable :class="hasErrors">
-        <label>שם</label>
+        <label>{{ $t("common.name") }}</label>
         <md-input v-model="nameTemp"></md-input>
-        <span class="md-error">לא רשמת שם!</span>
+        <span class="md-error">{{ $t("common.name-err") }}</span>
     </md-field>
 </template>
 

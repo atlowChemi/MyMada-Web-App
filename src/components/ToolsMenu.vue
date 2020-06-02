@@ -55,24 +55,24 @@
             </li>
         </ul>
         <div class="tools-nav__seperator" v-if="hasProtocoles"></div>
-        <p class="tools-nav__title" v-if="hasProtocoles">פרוטוקולים</p>
+        <p class="tools-nav__title" v-if="hasProtocoles">{{ $t("tools-page.protocoles.name") }}</p>
         <ul class="tools-nav__menu" v-if="hasProtocoles">
             <li class="tools-nav__menu-item" @click="close">
                 <router-link to="/tools/als">
                     <i class="tools-nav__menu-item__icon icon-als"></i>
-                    {{ $t("tools-page.als.name") }}
+                    {{ $t("tools-page.protocoles.als") }}
                 </router-link>
             </li>
             <li class="tools-nav__menu-item" @click="close">
                 <router-link to="/tools/bls">
                     <i class="tools-nav__menu-item__icon icon-bls"></i>
-                    {{ $t("tools-page.bls.name") }}
+                    {{ $t("tools-page.protocoles.bls") }}
                 </router-link>
             </li>
             <li class="tools-nav__menu-item" @click="close">
                 <router-link to="/tools/dead">
                     <i class="tools-nav__menu-item__icon icon-dead"></i>
-                    {{ $t("tools-page.dead.name") }}
+                    {{ $t("tools-page.protocoles.dead") }}
                 </router-link>
             </li>
         </ul>

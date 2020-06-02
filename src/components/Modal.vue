@@ -3,7 +3,7 @@
         <div class="modal-backdrop" @click="close(true)"></div>
         <div class="modal" :class="{ 'modal-error': error }">
             <div class="modal__content">
-                <h1 class="modal__content-title">{{ title || "הגדרות" }}</h1>
+                <h1 class="modal__content-title">{{ title || $t("modals.settings.title") }}</h1>
                 <change-name v-if="changeName" />
                 <settings v-else-if="settings" />
                 <send-to-moked v-else-if="SendToMoked" :msg="message"></send-to-moked>
@@ -13,23 +13,23 @@
             </div>
             <div class="modal__footer">
                 <div v-if="SendToMoked">
-                    <app-btn class="modal__footer-btn flat" v-wave.success @click="sendMsgToMoked">שלח</app-btn>
-                    <app-btn class="modal__footer-btn flat" v-wave.danger @click="close">ביטול</app-btn>
+                    <app-btn class="modal__footer-btn flat" v-wave.success @click="sendMsgToMoked">{{ $t("common.send") }}</app-btn>
+                    <app-btn class="modal__footer-btn flat" v-wave.danger @click="close">{{ $t("common.cancel") }}</app-btn>
                 </div>
                 <div v-else-if="IsAddTeamMember">
-                    <app-btn class="modal__footer-btn flat" v-if="message" v-wave.success @click="AddMember" :disabled="!addTeamBtnEnabled">שמור</app-btn>
-                    <app-btn class="modal__footer-btn flat" v-else v-wave.success @click="AddMember" :disabled="!addTeamBtnEnabled">הוסף</app-btn>
-                    <app-btn class="modal__footer-btn flat" v-wave.danger @click="close">ביטול</app-btn>
+                    <app-btn class="modal__footer-btn flat" v-if="message" v-wave.success @click="AddMember" :disabled="!addTeamBtnEnabled">{{ $t("modals.save") }}</app-btn>
+                    <app-btn class="modal__footer-btn flat" v-else v-wave.success @click="AddMember" :disabled="!addTeamBtnEnabled">{{ $t("modals.add") }}</app-btn>
+                    <app-btn class="modal__footer-btn flat" v-wave.danger @click="close">{{ $t("common.cancel") }}</app-btn>
                 </div>
                 <div v-else-if="IsRefreshNeeded">
-                    <app-btn class="modal__footer-btn flat" v-wave.success @click="updatePage">רענן כעת</app-btn>
-                    <app-btn class="modal__footer-btn flat" v-wave.danger @click="close">לא מעוניין כרגע</app-btn>
+                    <app-btn class="modal__footer-btn flat" v-wave.success @click="updatePage">{{ $t("modals.refresh.update") }}</app-btn>
+                    <app-btn class="modal__footer-btn flat" v-wave.danger @click="close">{{ $t("modals.refresh.not-now") }}</app-btn>
                 </div>
                 <div v-else-if="retrieveContraction">
-                    <app-btn class="modal__footer-btn flat" v-wave.success @click="retrieveContractions">שחזר</app-btn>
-                    <app-btn class="modal__footer-btn flat" v-wave.danger @click="noRetrieveContractions">ביטול</app-btn>
+                    <app-btn class="modal__footer-btn flat" v-wave.success @click="retrieveContractions">{{ $t("modals.retrieve.yes") }}</app-btn>
+                    <app-btn class="modal__footer-btn flat" v-wave.danger @click="noRetrieveContractions">{{ $t("common.cancel") }}</app-btn>
                 </div>
-                <md-button :disabled="validateUserName" v-else @click="close(false)">אישור</md-button>
+                <md-button :disabled="validateUserName" v-else @click="close(false)">{{ $t("modals.ok") }}</md-button>
             </div>
         </div>
     </div>

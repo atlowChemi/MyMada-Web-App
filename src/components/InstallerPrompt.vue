@@ -3,11 +3,8 @@
         <div class="tap-target" :class="{ open }">
             <div class="tap-target-content">
                 <div class="tap-target-content__flex-wrap">
-                    <h5>שמור במסך הבית</h5>
-                    <p>
-                        הדפדפן שלך והמכשיר שמריץ את האתר מאפשרים לך להוסיף את האתר הזה לדף הבית, וכך להשתמש בו כמו אפליקציה לכל דבר ועניין.
-                        <br />זה לא דורש הרשאות, ולא תופס מקום אחסון נוסף על המכשיר!<br />להוספה לעמוד הבית לחץ כאן!
-                    </p>
+                    <h5>{{ $t("a2hp.title") }}</h5>
+                    <p v-html="$t('a2hp.info')"></p>
                 </div>
             </div>
         </div>
