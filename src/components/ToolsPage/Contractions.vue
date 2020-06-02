@@ -24,26 +24,26 @@ import { DatabaseManager } from "@/store/indexedDb";
     },
 })
 export default class Contractions extends Vue {
-    btnText: string = "תחילת ציר";
+    btnText: string | any = "";
     startTime!: number;
     contractions: globalThis.Contraction[] = [];
 
     async created() {
+        this.btnText = this.$t("tools-page.contractions.start");
         let tmpContractions = await DatabaseManager.GetContractions();
-        let lastData = tmpContractions[tmpContractions.length - 1].endTime;
+        let lastData = tmpContractions[tmpContractions.length - 1]!?.endTime;
         let lastDataAge = (new Date().getTime() - lastData) / (1000 * 60);
         if (lastDataAge <= 20) {
             this.$store.dispatch("setContractions", tmpContractions);
             this.$store.dispatch("alert/restoreContractions");
-            console.log(lastDataAge);
         }
     }
     startContractions() {
-        this.btnText = "סוף ציר";
+        this.btnText = this.$t("tools-page.contractions.end");
         this.startTime = new Date().getTime();
     }
     stopContractions() {
-        this.btnText = "תחילת ציר";
+        this.btnText = this.$t("tools-page.contractions.start");
         let oldEnd = this.contractions[this.contractions.length - 1]?.endTime;
         this.contractions.push({ startTime: this.startTime, endTime: new Date().getTime(), previousEnd: oldEnd });
         this.$store.dispatch("setContractions", this.contractions);
@@ -59,5 +59,3 @@ export default class Contractions extends Vue {
     }
 }
 </script>
-
-<style lang="scss" scoped></style>

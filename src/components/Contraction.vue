@@ -3,10 +3,10 @@
         <div class="contraction__number">{{ id }}</div>
         <div class="contraction__content">
             <div class="contraction__content-length">
-                <span>אורך הציר: {{ timeString(Math.round((contraction.endTime - contraction.startTime) / 1000)) }}</span>
+                <span>{{ $t("tools-page.contractions.length") }} {{ timeString(Math.round((contraction.endTime - contraction.startTime) / 1000)) }}</span>
             </div>
             <div class="contraction__content-elapse">
-                <span v-if="contraction.previousEnd">הפרש מציר קודם: {{ timeString(Math.round((contraction.endTime - contraction.previousEnd) / 1000)) }}</span>
+                <span v-if="contraction.previousEnd">{{ $t("tools-page.contractions.elapse") }} {{ timeString(Math.round((contraction.endTime - contraction.previousEnd) / 1000)) }}</span>
             </div>
         </div>
     </div>
@@ -20,15 +20,16 @@ export default class Contraction extends Vue {
     @Prop({ required: true }) contraction!: globalThis.Contraction;
     @Prop({ required: true, type: Number }) id!: number;
     timeString(time: number) {
+        let minutes: number, seconds: number, minutesOut: any, secondsOut: any;
         time = time % 3600;
-        let minutes: number | string = Math.floor(time / 60);
+        minutes = Math.floor(time / 60);
         time = time % 60;
-        let seconds: number | string = Math.floor(time);
-        seconds = seconds == 1 ? "שנייה אחת" : `${seconds} שניות`;
+        seconds = Math.floor(time);
+        secondsOut = this.$tc("tools-page.contractions.seconds", seconds);
         if (minutes > 0) {
-            minutes = minutes == 1 ? "דקה ו" : `${minutes} דקות ו`;
+            minutesOut = this.$tc("tools-page.contractions.minutes", minutes);
         }
-        return minutes > 0 ? `${minutes}${seconds}` : seconds;
+        return minutes > 0 ? `${minutesOut}${secondsOut}` : secondsOut;
     }
 }
 </script>

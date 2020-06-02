@@ -1,11 +1,11 @@
 <template>
     <div class="dictionary">
-        <md-autocomplete md-open-on-focus v-model="searchText" :md-options="items">
-            <label><md-icon class="searcher">search</md-icon>חיפוש במילון</label>
+        <md-autocomplete md-open-on-focus v-model="searchText" :md-options="nameItems">
+            <label><md-icon class="searcher">search</md-icon>{{ $t("tools-page.dictionary.search") }}</label>
             <template #md-autocomplete-item="{ item, term }">
-                <md-highlight-text :md-term="term">{{ item.name }}</md-highlight-text>
+                <md-highlight-text :md-term="term">{{ item }}</md-highlight-text>
             </template>
-            <template #md-autocomplete-empty="{ term }"> לא מצאנו במילון ערכים התואמים את החיפוש: "{{ term }}"</template>
+            <template #md-autocomplete-empty="{ term }">{{ $t("tools-page.dictionary.not-found") }}: "{{ term }}"</template>
         </md-autocomplete>
         <md-list :md-expand-single="true">
             <md-list-item md-expand v-for="item in filteredItems" :key="item.key">
@@ -24,6 +24,7 @@ import { FB } from "@/utils/firebaseConfig";
 @Component
 export default class Dictionary extends Vue {
     searchText: string = "";
+    nameItems: string[] = [];
     items: DictionaryItem[] = [];
     created() {
         FB.collection("dictionary")
@@ -35,6 +36,7 @@ export default class Dictionary extends Vue {
                     const { name, definition, key } = doc.data();
                     words.push({ name, definition, key });
                 });
+                this.nameItems = words.map(mc => mc.name);
                 this.items = words;
             });
     }

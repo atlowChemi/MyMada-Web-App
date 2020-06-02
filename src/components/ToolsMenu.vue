@@ -8,49 +8,49 @@
             <li class="tools-nav__menu-item" @click="close" v-if="hasContractions">
                 <router-link to="/tools/contractions">
                     <i class="tools-nav__menu-item__icon icon-contractions"></i>
-                    שעון צירים
+                    {{ $t("tools-page.contractions.name") }}
                 </router-link>
             </li>
             <li class="tools-nav__menu-item" @click="close" v-if="hasPulse">
                 <router-link to="/tools/pulse">
                     <i class="tools-nav__menu-item__icon icon-pulse"></i>
-                    שעון דופק
+                    {{ $t("tools-page.pulse.name") }}
                 </router-link>
             </li>
             <li class="tools-nav__menu-item" @click="close" v-if="hasMetronome">
                 <router-link to="/tools/metronome">
                     <i class="tools-nav__menu-item__icon icon-metronome"></i>
-                    מטרונום
+                    {{ $t("tools-page.metronome.name") }}
                 </router-link>
             </li>
             <li class="tools-nav__menu-item" @click="close" v-if="hasVital">
                 <router-link to="/tools/vital">
                     <i class="tools-nav__menu-item__icon icon-vital"></i>
-                    מחשבון מדדים
+                    {{ $t("tools-page.vital.name") }}
                 </router-link>
             </li>
             <li class="tools-nav__menu-item" @click="close" v-if="hasOxygen">
                 <router-link to="/tools/oxygen">
                     <i class="tools-nav__menu-item__icon icon-oxygen"></i>
-                    מחשבון חמצן
+                    {{ $t("tools-page.oxygen.name") }}
                 </router-link>
             </li>
             <li class="tools-nav__menu-item" @click="close" v-if="hasApgar">
                 <router-link to="/tools/apgar">
                     <i class="tools-nav__menu-item__icon icon-apgar"></i>
-                    מחשבון אפגאר
+                    {{ $t("tools-page.apgar.name") }}
                 </router-link>
             </li>
             <li class="tools-nav__menu-item" @click="close" v-if="hasGlazgo">
                 <router-link to="/tools/glazgo">
                     <i class="tools-nav__menu-item__icon icon-glazgow"></i>
-                    מחשבון גלאזגו
+                    {{ $t("tools-page.glazgo.name") }}
                 </router-link>
             </li>
             <li class="tools-nav__menu-item" @click="close" v-if="hasDictionary">
                 <router-link to="/tools/dictionary">
                     <i class="tools-nav__menu-item__icon icon-dictionary"></i>
-                    מילון רפואי
+                    {{ $t("tools-page.dictionary.name") }}
                 </router-link>
             </li>
         </ul>
@@ -60,19 +60,19 @@
             <li class="tools-nav__menu-item" @click="close">
                 <router-link to="/tools/als">
                     <i class="tools-nav__menu-item__icon icon-als"></i>
-                    פרוטוקולי ALS
+                    {{ $t("tools-page.als.name") }}
                 </router-link>
             </li>
             <li class="tools-nav__menu-item" @click="close">
                 <router-link to="/tools/bls">
                     <i class="tools-nav__menu-item__icon icon-bls"></i>
-                    פרוטוקולי BLS
+                    {{ $t("tools-page.bls.name") }}
                 </router-link>
             </li>
             <li class="tools-nav__menu-item" @click="close">
                 <router-link to="/tools/dead">
                     <i class="tools-nav__menu-item__icon icon-dead"></i>
-                    קונטרס "גישה לנפטר"
+                    {{ $t("tools-page.dead.name") }}
                 </router-link>
             </li>
         </ul>

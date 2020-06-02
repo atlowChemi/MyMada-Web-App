@@ -2,19 +2,19 @@
     <frozen-side-bar @grey-mater-clicked="startTimer">
         <template>
             <md-field>
-                <label>דופק ב15 שניות</label>
+                <label>{{ $t("tools-page.pulse.pulse-seconds") }}</label>
                 <md-input type="number" min="1" v-model="pulseSeconds" @input.native="secInput"></md-input>
             </md-field>
             <md-field>
-                <label>דופק בדקה</label>
+                <label>{{ $t("tools-page.pulse.pulse-minutes") }}</label>
                 <md-input type="number" min="1" v-model="pulseMinutes" @input.native="minInput"></md-input>
             </md-field>
         </template>
         <template #side>
             <div class="pulse-calc">
                 <h1 class="pulse-calc__time">{{ timer }}</h1>
-                <h4 class="pulse-calc__sec">שניות</h4>
-                <p class="pulse-calc__info">לחץ על האזור האפור למדידת דופק</p>
+                <h4 class="pulse-calc__sec">{{ $t("tools-page.pulse.seconds") }}</h4>
+                <p class="pulse-calc__info">{{ $t("tools-page.pulse.click-area") }}</p>
             </div>
         </template>
     </frozen-side-bar>

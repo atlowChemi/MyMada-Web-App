@@ -1,10 +1,10 @@
 <template>
     <div class="metro__valign">
         <div class="metro__valign-row">
-            <p class="metro__info">לחץ בכל נקודה להתחלת המטרונום</p>
+            <p class="metro__info">{{ $t("tools-page.metronome.touch") }}</p>
             <circular-button metronome @click="startMetronome" :preWorking="isPlaying">
                 {{ activeTime }}
-                <p class="round-num">סבב: {{ round }}</p>
+                <p class="round-num">{{ $t("tools-page.metronome.round") }}: {{ round }}</p>
             </circular-button>
         </div>
     </div>
