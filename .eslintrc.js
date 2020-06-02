@@ -1,16 +1,11 @@
 module.exports = {
     root: true,
     env: {
-        node: true
+        node: true,
     },
-    extends: [
-        "plugin:vue/essential",
-        "eslint:recommended",
-        "@vue/prettier",
-        "@vue/typescript"
-    ],
+    extends: ["plugin:vue/essential", "eslint:recommended", "@vue/prettier", "@vue/typescript"],
     parserOptions: {
-        parser: "@typescript-eslint/parser"
+        parser: "@typescript-eslint/parser",
     },
     rules: {
         "prettier/prettier": [
@@ -26,11 +21,11 @@ module.exports = {
                         singleline: 20,
                         multiline: {
                             max: 5,
-                            allowFirstLine: false
-                        }
-                    }
-                ]
-            }
+                            allowFirstLine: false,
+                        },
+                    },
+                ],
+            },
         ],
         "vue/max-attributes-per-line": [
             2,
@@ -38,9 +33,9 @@ module.exports = {
                 singleline: 20,
                 multiline: {
                     max: 5,
-                    allowFirstLine: false
-                }
-            }
-        ]
-    }
+                    allowFirstLine: false,
+                },
+            },
+        ],
+    },
 };

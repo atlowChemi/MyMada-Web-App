@@ -12,6 +12,7 @@ module.exports = {
             }),
         ],
     },
+
     css: {
         loaderOptions: {
             sass: {
@@ -19,12 +20,13 @@ module.exports = {
             },
         },
     },
+
     pwa: {
         name: "דיווחי מגן דוד אדום",
         themeColor: "#10133B",
         msTileColor: "#10133B",
         appleMobileWebAppStatusBarStyle: "black-translucent",
-        appleMobileWebAppCapable: 'yes',
+        appleMobileWebAppCapable: "yes",
         assetsVersion: version,
         workboxPluginMode: "InjectManifest",
         workboxOptions: {
@@ -36,6 +38,15 @@ module.exports = {
         manifestOptions: {
             short_name: 'דיווחי מד"א',
             background_color: "#E0E0E0",
+        },
+    },
+
+    pluginOptions: {
+        i18n: {
+            locale: "he",
+            fallbackLocale: "he",
+            localeDir: "locales",
+            enableInSFC: true,
         },
     },
 };

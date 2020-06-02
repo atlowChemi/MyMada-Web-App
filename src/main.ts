@@ -13,6 +13,7 @@ import Navigation from "./components/AppBar.vue";
 import Button from "./components/Button.vue";
 import { DatabaseManager } from "./store/indexedDb";
 import { setup } from "./utils/firebaseConfig";
+import i18n from "./i18n";
 DatabaseManager.InitDb()
     .then(() => {
         store.dispatch("user/initialize");
@@ -49,5 +50,6 @@ Vue.config.productionTip = false;
 new Vue({
     router,
     store,
+    i18n,
     render: h => h(App),
 }).$mount("#app");

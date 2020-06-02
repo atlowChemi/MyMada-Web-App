@@ -5,13 +5,13 @@
                 <div @click="changeName">
                     <md-card md-with-hover>
                         <md-ripple>
-                            <md-card-content>לחץ כאן בכדי לשנות את שם התצוגה שלך</md-card-content>
+                            <md-card-content>{{ $t("contact-page.change-name-btn") }}</md-card-content>
                         </md-ripple>
                     </md-card>
                 </div>
-                <md-empty-state v-if="!retrievedMessages" md-icon="chat" md-label="לא קיימות הודעות" md-description="לא הצלחנו לזהות הודעות שנשלחו ממכשיר זה. תוכל לשלוח לנו הודעה מעמוד זה."></md-empty-state>
+                <md-empty-state v-if="!retrievedMessages" md-icon="chat" :md-label="$t('contact-page.no-message')" :md-description="$t('contact-page.no-message-desc')"></md-empty-state>
                 <div v-else :key="lastSent">
-                    <contact-message v-for="(msg, key) in retrievedMessages" :key="key" :msg="msg" :name="msg.sender === 'admin' ? 'מנהל' : name" />
+                    <contact-message v-for="(msg, key) in retrievedMessages" :key="key" :msg="msg" :name="msg.sender === 'admin' ? $t('contact-page.admin') : name" />
                 </div>
                 <md-snackbar md-position="center" :md-duration="3000" :md-active.sync="showSnackbar">
                     <span>{{ sendingStatus }}</span>
@@ -23,14 +23,14 @@
             <div class="container new-msg__container">
                 <div class="new-msg__input">
                     <md-field md-clearable :class="hasErrors">
-                        <label>כתוב הודעתך כאן</label>
+                        <label>{{ $t("contact-page.write-here") }}</label>
                         <md-textarea v-model="msg" rows="3" required md-autogrow></md-textarea>
-                        <span class="md-error">חובה לרשום הודעה!</span>
+                        <span class="md-error">{{ $t("contact-page.msg-required") }}</span>
                     </md-field>
                 </div>
                 <div class="new-msg__submit">
                     <app-btn long v-wave.light @click="sendMsg" :disabled="sending">
-                        שלח
+                        {{ $t("common.send") }}
                         <i class="material-icons left">send</i>
                     </app-btn>
                 </div>
@@ -43,13 +43,6 @@
 import { Component, Vue } from "vue-property-decorator";
 import { ContactDb } from "../utils/firebaseConfig";
 import ContactMessage from "@/components/ContactMessage.vue";
-
-const warningMsg = `אנו גוף עצמאי שאינו בקשר עם מד"א. לכן
-                <b>אין</b> לשלוח לנו פניות למקרים דחופים הדורשים מענה רפואי.
-                <br />כמו כן, איננו קשורים לאפליקציית הצוותים. אין ביכולתנו
-                לסייע בה, או לטפל בתקלות בשליחת וקבלת מקרים. <br />עיזרו לנו,
-                ואל תיפנו בנושאים שאינם תחום אחריותנו, בכדי שנוכל לתת לכם את
-                המענה המיטבי!`;
 
 @Component({
     components: {
@@ -91,7 +84,7 @@ export default class Contact extends Vue {
             }
         });
         this.$store.dispatch("alert/error", {
-            message: warningMsg,
+            message: this.$t("contact-page.warning-msg"),
             title: "הודעה חשובה",
         });
     }

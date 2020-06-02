@@ -1,10 +1,10 @@
 <template>
     <div class="grid-container">
-        <home-button of="tools">כלי עזר למתנדב</home-button>
-        <home-button of="moked/team">דיווחים למוקד</home-button>
-        <home-button of="contact">צור קשר</home-button>
-        <home-button of="info">אודות האפליקציה</home-button>
-        <home-button of="play">הורדה בגוגל פליי</home-button>
+        <home-button of="tools">{{ $t("home-buttons.tools") }}</home-button>
+        <home-button of="moked/team">{{ $t("home-buttons.moked") }}</home-button>
+        <home-button of="contact">{{ $t("home-buttons.contact") }}</home-button>
+        <home-button of="info">{{ $t("home-buttons.info") }}</home-button>
+        <home-button of="play">{{ $t("home-buttons.play") }}</home-button>
     </div>
 </template>
 
