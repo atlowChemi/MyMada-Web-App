@@ -1,22 +1,22 @@
 <template>
     <div class="container">
         <md-field md-clearable :class="hasErrors">
-            <label>מספר אמבולנס</label>
+            <label>{{ $t("moked-page.amb") }}</label>
             <md-input v-model="ambulance" type="number" required min="1" max="9999"></md-input>
-            <span class="md-error">לא רשמת מספר אמבולנס</span>
+            <span class="md-error">{{ $t("moked-page.amb-error") }}</span>
         </md-field>
         <div class="team-holder">
-            <team-member v-for="index in teamMembersCount" :key="index" :index="index - 1"></team-member>
+            <team-member-data v-for="index in teamMembersCount" :key="index" :index="index - 1"></team-member-data>
         </div>
         <div class="btn-holder">
             <div class="teams">
-                <app-btn long light @click="addTeamMembers" v-if="teamMembersCount < 4">הוספת איש צוות</app-btn>
+                <app-btn long light @click="addTeamMembers" v-if="teamMembersCount < 4">{{ $t("moked-page.team.add-member") }}</app-btn>
             </div>
             <div class="sender">
                 <app-btn :disabled="teamMembersCount <= 0" v-wave.light long @click="send">
-                    שלח
+                    {{ $t("common.send") }}
                     <i class="material-icons">send</i>
-                    <md-tooltip md-direction="bottom">כלי זה פועל באמצעות סמס</md-tooltip>
+                    <md-tooltip md-direction="bottom">{{ $t("moked-page.via-sms") }}</md-tooltip>
                 </app-btn>
             </div>
         </div>

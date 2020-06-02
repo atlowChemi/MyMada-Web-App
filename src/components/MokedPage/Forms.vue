@@ -2,70 +2,70 @@
     <div class="container">
         <div class="col">
             <md-field md-clearable :class="{ 'md-invalid': ambulance !== null && ambulance <= 0 }">
-                <label>מספר אמבולנס</label>
+                <label>{{ $t("moked-page.amb") }}</label>
                 <md-input v-model="ambulance" type="number" required min="1" max="9999"></md-input>
-                <span class="md-error">לא רשמת מספר אמבולנס</span>
+                <span class="md-error">{{ $t("moked-page.amb-error") }}</span>
             </md-field>
         </div>
         <div class="col">
             <md-field md-clearable>
-                <label>מספר ויזה</label>
+                <label>{{ $t("moked-page.forms.visa") }}</label>
                 <md-input v-model="visa" type="number" min="1" max="9999"></md-input>
-                <span class="md-error">לא רשמת מספר ויזה</span>
+                <span class="md-error">{{ $t("moked-page.forms.visa-err") }}</span>
             </md-field>
         </div>
         <div class="col">
             <md-field md-clearable>
-                <label>כתובת אירוע</label>
+                <label>{{ $t("moked-page.forms.address") }}</label>
                 <md-input v-model="address"></md-input>
-                <span class="md-error">לא רשמת מה כתובת האירוע</span>
+                <span class="md-error">{{ $t("moked-page.forms.address-err") }}</span>
             </md-field>
         </div>
         <div class="col">
             <md-field md-clearable :class="{ 'md-invalid': tofesId !== null ? tofesId <= 0 : false }">
-                <label>חולה נפגע</label>
+                <label>{{ $t("moked-page.forms.tofes") }}</label>
                 <md-input v-model="tofesId" type="number" min="1" required></md-input>
-                <span class="md-error">לא רשמת מספר טופס חולה נפגע</span>
+                <span class="md-error">{{ $t("moked-page.forms.tofes-err") }}</span>
             </md-field>
         </div>
         <div class="col">
             <md-field md-clearable :class="{ 'md-invalid': !bill && price }">
-                <label>התחייבות</label>
+                <label>{{ $t("moked-page.forms.bill") }}</label>
                 <md-input v-model="bill" type="number" min="1"></md-input>
-                <span class="md-error">לא ניתן לרשום סכום בלי התחייבות</span>
+                <span class="md-error">{{ $t("moked-page.forms.bill-err") }}</span>
             </md-field>
         </div>
         <div class="col">
             <md-field md-clearable :class="{ 'md-invalid': !price && bill }">
-                <label>סכום</label>
+                <label>{{ $t("moked-page.forms.price") }}</label>
                 <md-input v-model="price" type="number" min="1" max="5000"></md-input>
-                <span class="md-error">לא ניתן לרשום התחייבות בלי סכום</span>
+                <span class="md-error">{{ $t("moked-page.forms.price-err") }}</span>
             </md-field>
         </div>
         <div class="col">
             <md-field md-clearable :class="{ 'md-invalid': name !== null && !name.trim() }">
-                <label>שם פרטי</label>
+                <label>{{ $t("moked-page.forms.private") }}</label>
                 <md-input v-model="name" required></md-input>
-                <span class="md-error">לא רשמת שם פרטי</span>
+                <span class="md-error">{{ $t("moked-page.forms.private-err") }}</span>
             </md-field>
         </div>
         <div class="col">
             <md-field md-clearable :class="{ 'md-invalid': family !== null && !family.trim() }">
-                <label>שם משפחה</label>
+                <label>{{ $t("moked-page.forms.family") }}</label>
                 <md-input v-model="family" required></md-input>
-                <span class="md-error">לא רשמת שם משפחה</span>
+                <span class="md-error">{{ $t("moked-page.forms.familt-err") }}</span>
             </md-field>
         </div>
         <div @click="selectCodes" class="col col__full">
-            <md-chips md-static v-model="medicalCodes" :md-limit="5" md-placeholder="קוד רפואי" :class="{ 'md-invalid': wasMedicalCodesFocused && medicalCodes.length <= 0 }">
-                <div class="md-helper-text">ניתן לבחור עד 5 קודים</div>
-                <span class="md-error">לא בחרת אף קוד רפואי</span>
+            <md-chips md-static v-model="medicalCodes" :md-limit="5" :md-placeholder="$t('moked-page.forms.medical-code')" :class="{ 'md-invalid': wasMedicalCodesFocused && medicalCodes.length <= 0 }">
+                <div class="md-helper-text">{{ $t("moked-page.forms.medical-code-helper") }}</div>
+                <span class="md-error">{{ $t("moked-page.forms.medical-code-err") }}</span>
             </md-chips>
         </div>
         <app-btn v-wave.light class="sendBtn" long @click="send">
-            שלח
+            {{ $t("common.send") }}
             <i class="material-icons">send</i>
-            <md-tooltip md-direction="bottom">כלי זה פועל באמצעות סמס</md-tooltip>
+            <md-tooltip md-direction="bottom">{{ $t("moked-page.via-sms") }}</md-tooltip>
         </app-btn>
     </div>
 </template>

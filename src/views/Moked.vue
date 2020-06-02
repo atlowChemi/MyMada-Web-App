@@ -1,13 +1,12 @@
 <template>
     <div class="holder">
         <md-tabs md-sync-route :md-is-rtl="true" :md-swipeable="true" md-alignment="fixed">
-            <md-tab id="tab-forms" md-label="הכתבת טפסים" to="/moked/forms">
+            <md-tab id="tab-forms" :md-label="$t('moked-page.forms.name')" to="/moked/forms">
                 <forms @message-sent="sendModal" />
             </md-tab>
-            <md-tab id="tab-pages" md-label="דיווח צוות" to="/moked/team"><team @message-sent="sendModal"/></md-tab>
-            <md-tab id="tab-posts" md-label="הודעה כללית" to="/moked/general"><general @message-sent="sendModal"/></md-tab>
+            <md-tab id="tab-pages" :md-label="$t('moked-page.team.name')" to="/moked/team"><team @message-sent="sendModal"/></md-tab>
+            <md-tab id="tab-posts" :md-label="$t('moked-page.general.name')" to="/moked/general"><general @message-sent="sendModal"/></md-tab>
         </md-tabs>
-        <!-- <md-empty-state md-icon="devices_other" md-label="לא קיימים מוקד" md-description="ההמתנה משתלמת."></md-empty-state> -->
     </div>
 </template>
 

@@ -53,8 +53,8 @@ export default class App extends Vue {
             this.$store.dispatch("setMedicalCodes", { medicalCodes: [] });
             this.$store.dispatch("setTeamMembers", { teamMembers: [] });
         }
-        let title = `דיווחי מד"א${to.meta.title ? " - " + to.meta.title : ""}`;
-        let description = to.meta.description ?? "גרסת הרשת של אפליקציית דיווחי מגן דוד אדום";
+        let title = `${this.$t("common.app-name")}${to.meta.title ? " - " + to.meta.title : ""}`;
+        let description = to.meta.description ?? this.$t("common.app-desc");
         document.title = title;
         if (this.ogTitle) this.ogTitle.content = title;
         if (this.ogDescription) this.ogDescription.content = description;
@@ -112,6 +112,9 @@ body {
     font-family: "Heebo", serif;
     @include vendor(user-select, none);
     background-color: $background;
+    p {
+        white-space: break-spaces;
+    }
 
     .main-main {
         height: calc(100vh - 3.5rem);

@@ -1,30 +1,22 @@
 <template>
     <div class="container">
-        <p>גרסה מספר: {{ $store.getters.appVersion }}</p>
-        <p>
-            פותח על ידי צוות "AtlowApps". כל הזכויות על העיצוב, הרעיונות והביצוע שמורים לChemi@low ולאיתיאל אטלו.
-            <br />תודותינו מסורות ליוסי קסוטו, ליוחאי בניטה ולשלום סאקס על סיועם הרב, וכן לזוהר ממן על "קונטרס הגישה לנפטר".
-        </p>
-        <p>
-            האפליקציה פותחה על ידי מתנדבים, במטרה להנגיש פעולות קיימות ובמטרה ליצור פעולות חדשות שיקלו על המתנדבים בפעילות חירום ושגרה.
-        </p>
-        <p>
-            בכל שאלה, בקשה, בעיה או תקלה ניתן לפנות אלינו דרך עמוד יצירת קשר, ואנו נעשה כמיטב יכולתנו לתת מענה לכל הבקשות.
-        </p>
-        <p>
-            אפליקציה זו איננה אפליקציה רשמית של מד"א, ואיננה קשורה באופן כלשהוא למד"א.
-            <br />המשתמש בה נושא באחריות המלאה הכרוכה בהשלכות השימוש.
-        </p>
-        <HomeButton isSmall of="privacy">מדיניות הפרטיות</HomeButton>
+        <p>{{ $t("info-page.version") }} {{ $store.getters.appVersion }}</p>
+        <p v-html="$t('info-page.section1')"></p>
+        <p v-html="$t('info-page.section2')"></p>
+        <p v-html="$t('info-page.section3')"></p>
+        <p v-html="$t('info-page.section4')"></p>
+        <HomeButton isSmall of="privacy">{{ $t("home-buttons.privacy") }}</HomeButton>
     </div>
 </template>
 
-<script>
+<script lang="ts">
+import { Component, Vue } from "vue-property-decorator";
 import HomeButton from "@/components/HomeButton.vue";
 
-export default {
+@Component({
     components: {
         HomeButton,
     },
-};
+})
+export default class Info extends Vue {}
 </script>

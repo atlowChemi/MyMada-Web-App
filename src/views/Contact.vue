@@ -52,10 +52,10 @@ import ContactMessage from "@/components/ContactMessage.vue";
 export default class Contact extends Vue {
     sending = false;
     showSnackbar = false;
-    sendingStatus = "";
+    sendingStatus: string | any = "";
     msg: string | null = null;
     lastSent!: number;
-    seenMsg: string = "";
+    seenMsg: string | any = "";
     private retrievedMessages: { [key: string]: { msg: string; sender: string; time: number; WhatsApp?: boolean } } | null = null;
     get fcmToken(): string {
         return this.$store.state.user.fcmToken;
@@ -79,13 +79,13 @@ export default class Contact extends Vue {
                 this.lastSent = LastSent;
                 this.retrievedMessages = value;
                 if (typeof SeenByAdmin !== undefined) {
-                    this.seenMsg = SeenByAdmin ? "מנהל ראה את ההודעה שלך" : "מנהל טרם ראה את ההודעה";
+                    this.seenMsg = SeenByAdmin ? this.$t("contact-page.seen") : this.$t("contact-page.not-seen");
                 }
             }
         });
         this.$store.dispatch("alert/error", {
             message: this.$t("contact-page.warning-msg"),
-            title: "הודעה חשובה",
+            title: this.$t("contact-page.important-note"),
         });
     }
     changeName() {
@@ -109,10 +109,10 @@ export default class Contact extends Vue {
         this.database.update(rootUpdate, error => {
             this.sending = false;
             if (error) {
-                this.sendingStatus = "ההודעה לא נשלחה. אנא נסה שוב!";
+                this.sendingStatus = this.$t("contact-page.send.error");
             } else {
                 this.msg = null;
-                this.sendingStatus = "ההודעה נשלחה בהצלחה!";
+                this.sendingStatus = this.$t("contact-page.send.success");
             }
             this.showSnackbar = true;
         });

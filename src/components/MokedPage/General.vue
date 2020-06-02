@@ -1,14 +1,14 @@
 <template>
     <div class="container">
         <md-field md-clearable :class="hasErrors">
-            <label>הודעה כללית</label>
+            <label>{{ $t("moked-page.general.name") }}</label>
             <md-textarea v-model="msg" md-autogrow required></md-textarea>
-            <span class="md-error">לא ניתן לשלוח הודעה ריקה</span>
+            <span class="md-error">{{ $t("moked-page.general.err") }}</span>
         </md-field>
         <app-btn v-wave.light long @click="send">
-            שלח
+            {{ $t("common.send") }}
             <i class="material-icons">send</i>
-            <md-tooltip md-direction="bottom">כלי זה פועל באמצעות סמס</md-tooltip>
+            <md-tooltip md-direction="bottom">{{ $t("moked-page.via-sms") }}</md-tooltip>
         </app-btn>
     </div>
 </template>
