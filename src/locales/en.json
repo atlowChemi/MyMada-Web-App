@@ -212,6 +212,7 @@
         "seen": "Your message was seen by an admin",
         "not-seen": "Your message wasn't seen yet",
         "important-note": "Please note!",
+        "whatsapp": "Click this message to contact us via WhatsApp",
         "warning-msg": "We're app devlopers, completely unrelated to MADA, therefore <b>don't send us emergency calls. call 101!</b><br />We're not related to the official MADA app, we cannot help eith issues there, and we can't send you medical calls.<br />Please help us' and contact only with issues or requests we can help you with, so we can keep our response efficient.",
         "send": {
             "error": "Error while sending. try again!",

@@ -4,7 +4,7 @@
         <span class="message__time">{{ MillisecondsToHumanDate(msg.time) }}</span>
         <span class="message__content">
             <span v-if="msg.WhatsApp" class="message__whatsapp icon-whatsapp"></span>
-            {{ msg.msg }}
+            {{ msg.WhatsApp ? $t("contact-page.whatsapp") : msg.msg }}
         </span>
     </div>
 </template>
@@ -68,6 +68,7 @@ export default class ContactMessage extends Vue {
         display: block;
         margin-top: 1.6rem;
         font-size: 1rem;
+        direction: rtl;
     }
 }
 </style>

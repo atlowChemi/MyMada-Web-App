@@ -164,6 +164,10 @@ export default class Contact extends Vue {
                 @include tablet {
                     width: 66.6666666667%;
                     margin-left: 0.5rem;
+                    .lang-en & {
+                        margin-left: 0;
+                        margin-right: 0.5rem;
+                    }
                 }
             }
             .new-msg__submit {

@@ -53,7 +53,7 @@
             <md-field md-clearable :class="{ 'md-invalid': family !== null && !family.trim() }">
                 <label>{{ $t("moked-page.forms.family") }}</label>
                 <md-input v-model="family" required></md-input>
-                <span class="md-error">{{ $t("moked-page.forms.familt-err") }}</span>
+                <span class="md-error">{{ $t("moked-page.forms.family-err") }}</span>
             </md-field>
         </div>
         <div @click="selectCodes" class="col col__full">

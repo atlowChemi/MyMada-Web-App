@@ -95,6 +95,11 @@ export default class Button extends Vue {
         font-size: 1.3rem;
         left: 0.7rem;
         transform: scaleX(-1);
+        .lang-en & {
+            left: unset;
+            right: 0.7rem;
+            transform: unset;
+        }
     }
     &.waves-effect {
         position: relative;

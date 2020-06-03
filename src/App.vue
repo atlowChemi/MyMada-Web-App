@@ -136,6 +136,14 @@ body {
                             right: unset;
                             left: 0;
                         }
+                        &.md-required {
+                            label {
+                                &:after {
+                                    left: unset;
+                                    right: -1rem;
+                                }
+                            }
+                        }
                         .md-error,
                         .md-helper-text {
                             right: unset;

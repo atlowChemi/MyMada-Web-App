@@ -1,6 +1,6 @@
 <template>
     <div class="holder">
-        <md-tabs md-sync-route :md-is-rtl="true" :md-swipeable="true" md-alignment="fixed">
+        <md-tabs md-sync-route :md-is-rtl="$i18n.locale === 'he'" :md-swipeable="true" md-alignment="fixed">
             <md-tab id="tab-forms" :md-label="$t('moked-page.forms.name')" to="/moked/forms">
                 <forms @message-sent="sendModal" />
             </md-tab>

@@ -94,14 +94,22 @@ export default class TeamMemberData extends Vue {
             position: absolute;
             top: 0;
             left: 0;
+            .lang-en & {
+                left: unset;
+                right: 0;
+            }
         }
     }
 }
 .md-menu-content {
     background: white;
     .md-icon {
-        margin-right: 16px;
+        margin-right: 1rem;
         margin-left: 0;
+        .lang-en ~ & {
+            margin-right: 0;
+            margin-left: 1rem;
+        }
     }
 }
 </style>
