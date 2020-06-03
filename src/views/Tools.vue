@@ -47,6 +47,10 @@ export default class Tools extends Vue {
     }
     @include desktop {
         margin-right: 19rem;
+        #app.lang-en & {
+            margin-right: 0;
+            margin-left: 19rem;
+        }
     }
 }
 </style>

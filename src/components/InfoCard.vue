@@ -43,6 +43,14 @@ export default class InfoCard extends Vue {
         padding-right: 0.4rem;
         border-right: 1px solid $btnDisabledColor;
         font-size: 1rem;
+        .lang-en & {
+            margin-right: 0;
+            padding-right: 0;
+            margin-left: 0.8rem;
+            padding-left: 0.4rem;
+            border-right: none;
+            border-left: 1px solid $btnDisabledColor;
+        }
         p {
             margin: 0;
         }

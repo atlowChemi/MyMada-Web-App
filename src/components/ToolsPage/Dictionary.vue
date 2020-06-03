@@ -76,6 +76,7 @@ export default class Dictionary extends Vue {
                     white-space: pre-wrap;
                     padding: 0.5rem 1rem;
                     margin: 0;
+                    direction: rtl;
                 }
             }
         }

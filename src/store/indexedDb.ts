@@ -1,4 +1,5 @@
 import { Languages, Moked } from "@/utils/types";
+import { getBrowserLocale } from "@/utils/helperMethods";
 
 class _DatabaseManager {
     private dbName = "myMada";
@@ -31,11 +32,15 @@ class _DatabaseManager {
     private AddTables(e: any) {
         this.db = e.target.result;
         if (!this.db.objectStoreNames.contains("Settings")) {
+            //First detect if browser is in english
+            let lang: Languages = Languages.he;
+            const browserLocale = getBrowserLocale();
+            if (browserLocale == "en") lang = Languages.en;
             let objStore = this.db.createObjectStore("Settings"); // create DB
             objStore.add(undefined, "name");
             objStore.add(undefined, "fcmToken");
             objStore.add(Moked.Jerusalem, "moked");
-            objStore.add(Languages.he, "lang");
+            objStore.add(lang, "lang");
             objStore.add(["contractions", "pulse", "metronome", "vital", "oxygen", "apgar", "glazgo", "dictionary", "protocoles"], "tools");
             objStore.add(false, "AskedForInstallation");
         }

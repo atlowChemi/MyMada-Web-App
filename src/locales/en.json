@@ -63,6 +63,7 @@
     "tools-page": {
         "name": "Utilities & tools",
         "desc": "Utilities & tools for volunteers.",
+        "home": "Home page",
         "contractions": {
             "name": "Contractions timer",
             "start": "Contraction start",
@@ -93,7 +94,7 @@
             "bp": "Blood preasure",
             "sys": "Systolic",
             "dys": "Diastolic",
-            "propper": "{age}'s vital normal range:",
+            "propper": "{age}'s vitals normal range:",
             "range": "Out of range",
             "clarify": "The information brought here is based on MADA's medical literature, and may vary between patients. This information is not medical advice."
         },

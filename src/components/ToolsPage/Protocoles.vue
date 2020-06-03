@@ -16,7 +16,7 @@ export default class Protocoles extends Vue {
         this.tool = this.$route.params.tool;
     }
     get url() {
-        return `${this.viewer}${this.tool}.pdf`;
+        return `${this.viewer}${this.tool}.pdf#locale=${this.$i18n.locale === "he" ? "he" : "en-US"}`;
     }
     @Watch("$route.params.tool")
     WhichTool() {

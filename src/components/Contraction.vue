@@ -29,6 +29,7 @@ export default class Contraction extends Vue {
         if (minutes > 0) {
             minutesOut = this.$tc("tools-page.contractions.minutes", minutes);
         }
+        if (this.$i18n.locale === "en") return minutes > 0 ? `${minutesOut} ${secondsOut}` : secondsOut;
         return minutes > 0 ? `${minutesOut}${secondsOut}` : secondsOut;
     }
 }
@@ -45,10 +46,13 @@ export default class Contraction extends Vue {
         display: flex;
         width: 3rem;
         font-size: 1.1rem;
-        border-radius: 0px 15px 15px 0px;
+        border-radius: 0 15px 15px 0;
         background-color: $contractionNumber;
         align-items: center;
         justify-content: center;
+        .lang-en & {
+            border-radius: 15px 0 0 15px;
+        }
     }
     &__content {
         padding: 0.5rem;

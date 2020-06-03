@@ -1,5 +1,5 @@
 <template>
-    <div id="app">
+    <div id="app" :class="'lang-' + $i18n.locale">
         <app-nav />
         <modal v-if="alert.show" :message="alert.message" :title="alert.title" :type="alert.type" :footer="alert.footerType" />
         <main class="main-main">
@@ -53,8 +53,8 @@ export default class App extends Vue {
             this.$store.dispatch("setMedicalCodes", { medicalCodes: [] });
             this.$store.dispatch("setTeamMembers", { teamMembers: [] });
         }
-        let title = `${this.$t("common.app-name")}${to.meta.title ? " - " + to.meta.title : ""}`;
-        let description = to.meta.description ?? this.$t("common.app-desc");
+        let title = `${this.$t("common.app-name")}${to.meta.title ? " - " + this.$t(to.meta.title) : ""}`;
+        let description = this.$t(to.meta.description).toString() ?? this.$t("common.app-desc");
         document.title = title;
         if (this.ogTitle) this.ogTitle.content = title;
         if (this.ogDescription) this.ogDescription.content = description;
@@ -101,7 +101,6 @@ export default class App extends Vue {
         border-radius: 8px;
     }
 }
-
 html {
     position: relative;
     min-height: 100%;
@@ -112,10 +111,79 @@ body {
     font-family: "Heebo", serif;
     @include vendor(user-select, none);
     background-color: $background;
-    p {
-        white-space: break-spaces;
+    #app {
+        &.lang {
+            &-en {
+                direction: ltr;
+                .md {
+                    &-checkbox {
+                        margin: 0.5rem 1rem 0.5rem 0;
+                        &-label {
+                            padding-right: 0;
+                            padding-left: 1rem;
+                        }
+                    }
+                    &-radio {
+                        margin: 1rem;
+                        margin-left: 0;
+                        &-label {
+                            padding-left: 1rem;
+                            padding-right: 0;
+                        }
+                    }
+                    &-field {
+                        label {
+                            right: unset;
+                            left: 0;
+                        }
+                        .md-error,
+                        .md-helper-text {
+                            right: unset;
+                            left: 0;
+                        }
+                        &.md-clearable {
+                            .md-input {
+                                padding-left: 0;
+                                padding-right: 30px;
+                            }
+                        }
+                        .md-input-action {
+                            left: unset;
+                            right: 0;
+                        }
+                    }
+                    &-list {
+                        &-item-content {
+                            & > .md-icon {
+                                &:first-child {
+                                    margin-left: 0;
+                                    margin-right: 2rem;
+                                }
+                                &:last-child {
+                                    margin-left: 1rem;
+                                    margin-right: 0;
+                                }
+                            }
+                        }
+                    }
+                }
+                & ~ .md {
+                    &-select-menu {
+                        direction: ltr;
+                    }
+                    &-menu-content {
+                        direction: ltr;
+                        .md-highlight-text {
+                            text-align: left;
+                        }
+                    }
+                }
+            }
+            &-he {
+                direction: rtl;
+            }
+        }
     }
-
     .main-main {
         height: calc(100vh - 3.5rem);
         //padding: 1rem;
@@ -224,7 +292,6 @@ body {
 [class^="icon-"],
 [class*=" icon-"] {
     font-family: "atlowApps" !important;
-    speak: none;
     font-style: normal;
     font-weight: normal;
     font-size: 24px;

@@ -13,21 +13,21 @@
             </div>
             <div class="modal__footer">
                 <div v-if="SendToMoked">
-                    <app-btn class="modal__footer-btn flat" v-wave.success @click="sendMsgToMoked">{{ $t("common.send") }}</app-btn>
-                    <app-btn class="modal__footer-btn flat" v-wave.danger @click="close">{{ $t("common.cancel") }}</app-btn>
+                    <app-btn class="modal__footer-btn flat" v-wave.success @click="sendMsgToMoked" v-t="'common.send'"></app-btn>
+                    <app-btn class="modal__footer-btn flat" v-wave.danger @click="close" v-t="'common.cancel'"></app-btn>
                 </div>
                 <div v-else-if="IsAddTeamMember">
-                    <app-btn class="modal__footer-btn flat" v-if="message" v-wave.success @click="AddMember" :disabled="!addTeamBtnEnabled">{{ $t("modals.save") }}</app-btn>
-                    <app-btn class="modal__footer-btn flat" v-else v-wave.success @click="AddMember" :disabled="!addTeamBtnEnabled">{{ $t("modals.add") }}</app-btn>
-                    <app-btn class="modal__footer-btn flat" v-wave.danger @click="close">{{ $t("common.cancel") }}</app-btn>
+                    <app-btn class="modal__footer-btn flat" v-if="message" v-wave.success @click="AddMember" :disabled="!addTeamBtnEnabled" v-t="'modals.save'"></app-btn>
+                    <app-btn class="modal__footer-btn flat" v-else v-wave.success @click="AddMember" :disabled="!addTeamBtnEnabled" v-t="'modals.add'"></app-btn>
+                    <app-btn class="modal__footer-btn flat" v-wave.danger @click="close" v-t="'common.cancel'"></app-btn>
                 </div>
                 <div v-else-if="IsRefreshNeeded">
-                    <app-btn class="modal__footer-btn flat" v-wave.success @click="updatePage">{{ $t("modals.refresh.update") }}</app-btn>
-                    <app-btn class="modal__footer-btn flat" v-wave.danger @click="close">{{ $t("modals.refresh.not-now") }}</app-btn>
+                    <app-btn class="modal__footer-btn flat" v-wave.success @click="updatePage" v-t="'modals.refresh.update'"></app-btn>
+                    <app-btn class="modal__footer-btn flat" v-wave.danger @click="close" v-t="'modals.refresh.not-now'"></app-btn>
                 </div>
                 <div v-else-if="retrieveContraction">
-                    <app-btn class="modal__footer-btn flat" v-wave.success @click="retrieveContractions">{{ $t("modals.retrieve.yes") }}</app-btn>
-                    <app-btn class="modal__footer-btn flat" v-wave.danger @click="noRetrieveContractions">{{ $t("common.cancel") }}</app-btn>
+                    <app-btn class="modal__footer-btn flat" v-wave.success @click="retrieveContractions" v-t="'modals.retrieve.yes'"></app-btn>
+                    <app-btn class="modal__footer-btn flat" v-wave.danger @click="noRetrieveContractions" v-t="'common.cancel'"></app-btn>
                 </div>
                 <md-button :disabled="validateUserName" v-else @click="close(false)">{{ $t("modals.ok") }}</md-button>
             </div>
@@ -173,6 +173,9 @@ export default class Modal extends Vue {
         text-align: left;
         &-btn {
             margin: 0.375rem 0;
+        }
+        #app.lang-en & {
+            text-align: right;
         }
     }
 }

@@ -42,7 +42,7 @@
 </template>
 
 <script lang="ts">
-import { Component, Vue } from "vue-property-decorator";
+import { Component, Vue, Watch } from "vue-property-decorator";
 import FrozenSideBar from "@/components/FrozenSideBar.vue";
 import InfoCard from "@/components/InfoCard.vue";
 
@@ -70,6 +70,10 @@ export default class Oxygen extends Vue {
     created() {
         this.ages = this.$t("tools-page.vital.ages");
     }
+    @Watch("$i18n.locale")
+    fixAges() {
+        this.ages = this.$t("tools-page.vital.ages");
+    }
 }
 </script>
 
@@ -87,12 +91,20 @@ export default class Oxygen extends Vue {
         @include tablet {
             margin: 0;
             margin-right: 0.5rem;
+            .lang-en & {
+                margin: 0;
+                margin-left: 0.5rem;
+            }
         }
     }
     /deep/ .md-field:last-of-type {
         @include tablet {
             margin: 0;
             margin-left: 0.5rem;
+            .lang-en & {
+                margin: 0;
+                margin-right: 0.5rem;
+            }
         }
     }
 }

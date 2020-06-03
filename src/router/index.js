@@ -1,7 +1,6 @@
 import Vue from "vue";
 import VueRouter from "vue-router";
 import Home from "../views/Home.vue";
-import i18n from "@/i18n";
 
 Vue.use(VueRouter);
 
@@ -15,8 +14,8 @@ const routes = [
         path: "/tools/:tool?",
         name: "Tools",
         meta: {
-            title: i18n.t("tools-page.name"),
-            description: i18n.t("tools-page.desc"),
+            title: "tools-page.name",
+            description: "tools-page.desc",
         },
         component: () => import("../views/Tools.vue"),
     },
@@ -24,8 +23,8 @@ const routes = [
         path: "/moked/:page",
         name: "Moked",
         meta: {
-            title: i18n.t("moked-page.name"),
-            description: i18n.t("moked-page.desc"),
+            title: "moked-page.name",
+            description: "moked-page.desc",
         },
         component: () => import("../views/Moked.vue"),
     },
@@ -33,8 +32,8 @@ const routes = [
         path: "/contact",
         name: "Contact",
         meta: {
-            title: i18n.t("contact-page.name"),
-            description: i18n.t("contact-page.desc"),
+            title: "contact-page.name",
+            description: "contact-page.desc",
         },
         component: () => import("../views/Contact.vue"),
     },
@@ -42,8 +41,8 @@ const routes = [
         path: "/info",
         name: "Info",
         meta: {
-            title: i18n.t("info-page.name"),
-            description: i18n.t("info-page.desc"),
+            title: "info-page.name",
+            description: "info-page.desc",
         },
         component: () => import("../views/Info.vue"),
     },
@@ -51,8 +50,8 @@ const routes = [
         path: "/privacy",
         name: "Privacy",
         meta: {
-            title: i18n.t("privacy-page.name"),
-            description: i18n.t("privacy-page.desc"),
+            title: "privacy-page.name",
+            description: "privacy-page.desc",
         },
         component: () => import("../views/Privacy.vue"),
     },

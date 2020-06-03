@@ -2,15 +2,15 @@
     <header class="main-header">
         <nav class="main-header__nav" @click.capture="closeMenu">
             <div class="main-header__nav-wrapper">
-                <a class="main-header__nav-wrapper__button main-header__nav-wrapper__button-right" @click="toggleMenu" v-if="isMobile && currentLoc === 'Tools'">
+                <a class="main-header__nav-wrapper__button main-header__nav-wrapper__button-start" @click="toggleMenu" v-if="isMobile && currentLoc === 'Tools'">
                     <i class="material-icons">menu</i>
                 </a>
-                <a class="main-header__nav-wrapper__button main-header__nav-wrapper__button-right" v-else-if="currentLoc !== 'home'" @click="goBack">
-                    <i class="material-icons">arrow_forward</i>
+                <a class="main-header__nav-wrapper__button main-header__nav-wrapper__button-start" v-else-if="currentLoc !== 'home'" @click="goBack">
+                    <i class="material-icons">{{ $i18n.locale === "he" ? "arrow_forward" : "arrow_back" }}</i>
                 </a>
-                <span class="main-header__nav-wrapper__brand" v-if="title">{{ title }}</span>
+                <span class="main-header__nav-wrapper__brand" v-if="title">{{ $t(title) }}</span>
                 <span class="main-header__nav-wrapper__brand" v-else>{{ $t("common.app-name") }}</span>
-                <a class="main-header__nav-wrapper__button main main-header__nav-wrapper__button-left" @click="openSettings">
+                <a class="main-header__nav-wrapper__button main main-header__nav-wrapper__button-end" @click="openSettings">
                     <i class="material-icons">settings</i>
                 </a>
             </div>
@@ -104,11 +104,21 @@ export default class AppBar extends Vue {
                 vertical-align: middle;
                 cursor: pointer;
                 line-height: 3.5rem;
-                &-left {
+                &-end {
                     left: 0.8rem;
                 }
-                &-right {
+                &-start {
                     right: 0.8rem;
+                }
+                #app.lang-en & {
+                    &-end {
+                        right: 0.8rem;
+                        left: unset;
+                    }
+                    &-start {
+                        left: 0.8rem;
+                        right: unset;
+                    }
                 }
             }
             &__brand {

@@ -2,8 +2,8 @@
     <menu class="tools-nav" :class="{ open: menuState }">
         <ul class="tools-nav__menu">
             <li class="tools-nav__menu-item tools-nav__menu-item__large-only" @click="goHome">
-                <i class="tools-nav__menu-item__icon material-icons">arrow_forward</i>
-                עמוד הבית
+                <i class="tools-nav__menu-item__icon material-icons">{{ $i18n.locale === "he" ? "arrow_forward" : "arrow_back" }}</i>
+                {{ $t("tools-page.home") }}
             </li>
             <li class="tools-nav__menu-item" @click="close" v-if="hasContractions">
                 <router-link to="/tools/contractions">
@@ -155,12 +155,6 @@ export default class ToolsMenu extends Vue {
     overflow-y: auto;
     transform: translateX(100%);
     box-shadow: 0 2px 2px 0 rgba(0, 0, 0, 0.14), 0 3px 1px -2px rgba(0, 0, 0, 0.12), 0 1px 5px 0 rgba(0, 0, 0, 0.2);
-    &.open {
-        transform: translateX(0%);
-    }
-    @include desktop {
-        transform: translateX(0%);
-    }
     &__menu {
         list-style: none;
         padding: 0;
@@ -198,6 +192,23 @@ export default class ToolsMenu extends Vue {
     &__title {
         color: $secondaryError;
         padding: 0 1rem;
+    }
+    .lang-en & {
+        right: unset;
+        left: 0;
+        transform: translateX(-100%);
+        &__menu-item__icon {
+            margin: 0 1.2rem 0 0.7rem;
+        }
+        @include desktop {
+            transform: translateX(0%);
+        }
+    }
+    &.open {
+        transform: translateX(0%);
+    }
+    @include desktop {
+        transform: translateX(0%);
     }
 }
 </style>

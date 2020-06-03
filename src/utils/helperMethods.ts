@@ -8,6 +8,13 @@ export const convertRemToPixels = (rem: number): number => {
     return rem * parseFloat(getComputedStyle(document.documentElement).fontSize);
 };
 
+export function getBrowserLocale() {
+    const navigatorLocale = navigator.languages !== undefined ? navigator.languages[0] : navigator.language;
+    if (!navigatorLocale) return undefined;
+    const trimmedLocale = navigatorLocale.trim().split(/-|_/)[0];
+    return trimmedLocale;
+}
+
 export const MedicalCodes: MedicalCode[] = [
     //#region Area
     { name: "מצבי חירום סביבתיים", group: MedicalCodeGroup.Area },
