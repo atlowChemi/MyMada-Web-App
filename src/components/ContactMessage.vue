@@ -60,6 +60,14 @@ export default class ContactMessage extends Vue {
     &__time {
         float: left;
     }
+    .lang-en & {
+        &__name {
+            float: left;
+        }
+        &__time {
+            float: right;
+        }
+    }
     &__content {
         #{ $msg }__whatsapp {
             display: block;

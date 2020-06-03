@@ -223,10 +223,12 @@
         "name": "About the app",
         "desc": "About the app and the web version",
         "version": "Version number:",
-        "section1": "This app was created by the \"AtlowApps\" team. All rights are reserved to Chemi@low and Itiel Atlow.<br />We thank Yossi Cassouto, Yochai Benita and Shakom Sacks for all their help, as well as Rabi Zohar Maman for the \"Handling the deceased\" pamphlet.",
-        "section2": "The application was built by MADA volunteers in order to improve existing functionalities, and to create new ones, in order to improve the volunteers abilities.",
-        "section3": "In case you find an error or a problem in the application, ot if you've got a question or a request for us, you may contact us via the \"Contact us\" page and we will do our best to respond A.S.A.P.",
-        "section4": "This application is not an official MADA app.<br />Any possible implication of using this app, is the complete responsibilty of the user."
+        "section": [
+            "This app was created by the \"AtlowApps\" team. All rights are reserved to Chemi@low and Itiel Atlow.<br />We thank Yossi Cassouto, Yochai Benita and Shakom Sacks for all their help, as well as Rabi Zohar Maman for the \"Handling the deceased\" pamphlet.",
+            "The application was built by MADA volunteers in order to improve existing functionalities, and to create new ones, in order to improve the volunteers abilities.",
+            "In case you find an error or a problem in the application, ot if you've got a question or a request for us, you may contact us via the \"Contact us\" page and we will do our best to respond A.S.A.P.",
+            "This application is not an official MADA app.<br />Any possible implication of using this app, is the complete responsibilty of the user."
+        ]
     },
     "privacy-page": {
         "name": "Privacy policy",

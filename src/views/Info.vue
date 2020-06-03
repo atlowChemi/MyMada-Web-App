@@ -1,10 +1,10 @@
 <template>
     <div class="container">
         <p>{{ $t("info-page.version") }} {{ $store.getters.appVersion }}</p>
-        <p v-html="$t('info-page.section1')"></p>
-        <p v-html="$t('info-page.section2')"></p>
-        <p v-html="$t('info-page.section3')"></p>
-        <p v-html="$t('info-page.section4')"></p>
+        <p v-html="$t('info-page.section[0]')"></p>
+        <p v-html="$t('info-page.section[1]')"></p>
+        <p v-html="$t('info-page.section[2]')"></p>
+        <p v-html="$t('info-page.section[3]')"></p>
         <HomeButton isSmall of="privacy">{{ $t("home-buttons.privacy") }}</HomeButton>
     </div>
 </template>

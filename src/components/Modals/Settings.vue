@@ -12,6 +12,7 @@
             <md-checkbox v-model="tools" @change="toolsChanged" value="dictionary">{{ $t("tools-page.dictionary.name") }}</md-checkbox>
             <md-checkbox v-model="tools" @change="toolsChanged" value="protocoles">{{ $t("tools-page.protocoles.name") }}</md-checkbox>
         </div>
+        <hr />
         <b>{{ $t("modals.settings.select-moked") }}</b>
         <div class="radio-grid">
             <md-radio v-model="moked" :value="0">ירושלים</md-radio>
@@ -27,6 +28,7 @@
             <md-radio v-model="moked" :value="10">שרון</md-radio>
             <md-radio v-model="moked" :value="11">מוקד 4</md-radio>
         </div>
+        <hr />
         <b>{{ $t("modals.settings.select-lang") }}</b>
         <div class="centered">
             <md-radio v-model="lang" :value="0">עברית</md-radio>
