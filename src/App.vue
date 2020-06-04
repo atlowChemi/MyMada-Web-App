@@ -25,6 +25,9 @@ import { DatabaseManager } from "./store/indexedDb";
 export default class App extends Vue {
     deferredPrompt: BeforeInstallPromptEvent | null = null;
     openInstaller: boolean = false;
+    ogTitle: HTMLMetaElement | null = document.querySelector("meta[property='og:title']");
+    ogDescription: HTMLMetaElement | null = document.querySelector("meta[property='og:description']");
+    description: HTMLMetaElement | null = document.querySelector("meta[name='description']");
     mounted() {
         window.addEventListener("beforeinstallprompt", e => {
             function isBeforeInstallPromptEvent(e: Event): e is BeforeInstallPromptEvent {
@@ -40,13 +43,11 @@ export default class App extends Vue {
     }
     created() {
         document.addEventListener("SW_CacheUpdated", this.swUpdateNeeded, { once: true });
+        if (this.ogTitle) this.ogTitle.content = this.$t("common.app-name").toString();
     }
     get alert() {
         return this.$store.state.alert;
     }
-    ogTitle: HTMLMetaElement | null = document.querySelector("meta[property='og:title']");
-    ogDescription: HTMLMetaElement | null = document.querySelector("meta[property='og:description']");
-    description: HTMLMetaElement | null = document.querySelector("meta[name='description']");
     @Watch("$route", { immediate: true, deep: true })
     routeChange(to: any, from: any): void {
         if (from?.name === "Moked" && to.name !== "Moked") {
