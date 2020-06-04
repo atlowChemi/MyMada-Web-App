@@ -1,161 +1,91 @@
 <template>
     <div class="container">
-        <h1>מדיניות הפרטיות של דיווחי מגן דוד אדום</h1>
+        <h1 v-t="'privacy-page.page-title'"></h1>
         <p>
-            <b>מעודכן לתאריך: 17 במאי 2020.</b>
+            <b>{{ $t("privacy-page.up-to-date") }}: 01/06/2020.</b>
         </p>
-        <p>
-            צוות AtlowApps (להלן "אנחנו", "אותנו", או "שלנו") מפעיל את אפליקציית דיווחי מגן דוד אדום (להלן "השירות" או "האפליקציה").
-            <br />
-            <br />עמוד זה יפרט על המדיניות שלנו בכל הנוגע לאיסוף, שימוש וחשיפת מידע פרטי ורגיש, בעת השימוש בשירות שלנו ובאפשרויות הנוגעות למידע הרגיש.
-            <br />
-            <br />אנו עושים שימוש במידע הפרטי על מנת לשפר את האפליקציה, ולהציג מידע רלוונטי לכל משתמש. בעת שימוש בשירות, אתה מאשר ומסכים לאיסוף מידע אישי לשימוש בו בהתאם למדיניות זו. אלא אם צוין אחרת במדיניות הפרטיות, ההגדרות כאן תקפות גם עבור תקנון השימוש באפליקציה.
-        </p>
+        <p v-html="$t('privacy-page.intro')"></p>
         <div>
-            <h2>
-                <b>איסוף ושימוש במידע פרטי</b>
-            </h2>
-            אנו אוספים מספר סוגים של מידע למספר שימושים על מנת לשפר ולקדם את השירות שלנו עבורך.
+            <h2 v-t="'privacy-page.private-info.title'"></h2>
+            {{ $t("privacy-page.private-info.info") }}
             <br />
-            <b>סוגי המידע הנאספים:</b>
+            <b v-t="'privacy-page.private-info.types.title'"></b>
             <br />
-            <i>
-                <b>מידע פרטי</b>
-            </i>
-            <br />במהלך שימוש בשירות שלנו, אנו עלולים לבקש מידע פרטי למטרות יצירת קשר או לשם זיהוי המשתמש ("מידע פרטי"). מידע פרטי מעין זה עלול לכלול בין היתר:
+            <i><b v-t="'privacy-page.private-info.types.private-info.title'"></b></i>
+            <br />
+            <span v-t="'privacy-page.private-info.types.private-info.info'"></span>
             <ul>
-                <li>כתובת אימייל</li>
-                <li>שם פרטי ומשפחה</li>
-                <li>מספר טלפון</li>
-                <li>נתוני שימוש</li>
+                <li v-for="(item, index) in $t('privacy-page.private-info.types.private-info.types')" :key="index">{{ item }}</li>
             </ul>
-            <i>
-                <b>נתוני שימוש</b>
-            </i>
-            <br />במהלך השימוש באפליקציה, אנו עלולים לאסוף מידע באופן אוטומטי, כולל, בין היתר, סוג המכשיר בו אתם משתמשים, מספר הזיהוי הייחודי של האפליקציה במכשיר, גרסת מערכת ההפעלה, וכן מידע שימוש נוסף מהאפליקציה ("נתוני שימוש").
+            <i><b v-t="'privacy-page.private-info.types.usage-data.title'"></b></i>
+            <br />{{ $t("privacy-page.private-info.types.usage-data.info") }}
         </div>
         <div>
-            <h2>
-                <b>שימוש במידע</b>
-            </h2>
-            האפליקציה אוספת מידע למספר שימושים:
+            <h2 v-t="'privacy-page.data-usage.title'"></h2>
+            <span v-t="'privacy-page.data-usage.info'"></span>
             <ul>
-                <li>על מנת לספק, לשמר ולשפר את השירות.</li>
-                <li>על מנת ליידע אותכם אודות שינויים בשירות.</li>
-                <li>על מנת לאפשר שירות לקוחות.</li>
-                <li>
-                    כדי לאפשר ניתוח מידע מהשימוש באפליקציה על מנת לקדם ולשפר את חוויית המשתמש.
-                </li>
-                <li>על מנת לנטר את השימוש באפליקציה.</li>
-                <li>בכדי לאתר, לזהות ולטפל בתקלות טכניות בשירות.</li>
+                <li v-for="(item, index) in $t('privacy-page.data-usage.types')" :key="index">{{ item }}</li>
             </ul>
         </div>
         <div>
-            <h2>
-                <b>העברת המידע</b>
-            </h2>
-            המידע של המשתמש, כולל מידע פרטי, עלול להיות מועבר — וכן להישמר — על מחשבים במדינות אחרות אשר חוקי פרטיות המידע בהם שונים מחוקי פרטיות המידע במדינת המשתמש.
-            <br />
-            <br />אם אתה נמצא מחוץ לישראל ומשתמש באפליקציה, אנא שים לב כי אנו מעבירים את המידע, כולל המידע הפרטי, למערכותינו בישראל על מנת לעבד את המידע.
-            <br />
-            <br />השימוש באפליקציה מהווה הסכמה מלאה להעברת המידע, בכפוף למדיניות הפרטיות.
-            <br />
-            <br />אנו מתחייבים לנקוט בכל הכלים על מנת לוודא שהמידע מועבר בצורה מוצפנת ומאובטחת בהתאם למדיניות הפרטיות הזו, ולא תתרחש העברת מידע לשום ארגון מבלי לשמור על המידע הפרטי.
+            <h2 v-t="'privacy-page.data-handing.title'">העברת המידע</h2>
+            <span v-html="$t('privacy-page.data-handing.info')"></span>
         </div>
         <div>
-            <h2>
-                <b>חשיפת המידע לגורמים חיצוניים</b>
-            </h2>
-            <b>דרישות מערכת החוק</b>
+            <h2 v-t="'privacy-page.data-exposure.title'"></h2>
+            <b v-t="'privacy-page.data-exposure.law.title'"></b>
             <br />
-            <br />אנחנו עלולים למסור מידע פרטי כאשר אנו מאמינים כי צעד זה דרוש לשם:
+            <br />
+            <span v-t="'privacy-page.data-exposure.law.info'"></span>
             <br />
             <ul>
-                <li>ציות למערכת החוק במדינה</li>
-                <li>הגנה על הזכויות החוקיות שלנו</li>
-                <li>מניעה או חקירה של שימוש לרעה באפליקציה</li>
-                <li>הגנת הפרטיות של כלל המשתמשים באפליקציה</li>
-                <li>הוכחה לחפות משפטית</li>
+                <li v-for="(item, index) in $t('privacy-page.data-exposure.law.types')" :key="index">{{ item }}</li>
             </ul>
         </div>
         <div>
-            <h2>
-                <b>אבטחת המידע</b>
-            </h2>
-            פרטיות המידע של המשתמש חשובה לנו, אך אנא זכרו כי שום שיטה להעברת מידע באינטרנט, או שמירת מידע ברשת אינה בטוחה ב100%.
-            <br />
-            <br />בעוד אנו נוקטים בנהלי האבטחה המחמירים המקובלים כיום, איננו יכולים להתחייב כי המידע לחלוטין בלתי פגיע.
+            <h2 v-t="'privacy-page.data-security.title'"></h2>
+            <span v-html="$t('privacy-page.data-security.info')"></span>
         </div>
         <div>
-            <h2>
-                <b>ספקי שירות</b>
-            </h2>
-            אנחנו עלולים לפנות לארגונים או יחידים שהינם חיצוניים לשירות שלנו על מנת להציג את שירותינו ("ספקי שירות"), כדי שיאפשרו כלים בשירות שלנו, או על מנת לנתח נתוני שימוש באפליקציה.
-            <br />
-            <br />לספקי השירות הללו יש גישה למידע הפרטי של המשתמש על מנת לבצע את המשימות שלהם בלבד, והם מחוייבים שלא לחשוף את המידע ולא לעשות בו שום שימוש נוסף.
+            <h2 v-t="'privacy-page.services.title'"></h2>
+            <span v-html="$t('privacy-page.services.info')"></span>
             <br />
             <br />
-            <b>ניתוח אנליטי</b>
+            <b v-t="'privacy-page.services.analytics.title'"></b>
             <br />
-            <br />אנו משתמשים בכלים חיצוניים על מנת לאפשר ניטור וניתוח מידע ונתוני שימוש מהאפליקציה.
+            <br />
+            <span v-t="'privacy-page.services.analytics.info'"></span>
             <br />
             <br />
             <ul>
                 <li>
-                    <i>
-                        <b>גוגל אנליטיקה</b>
-                    </i>
+                    <i><b v-t="'privacy-page.services.analytics.google.title'"></b></i>
                     <br />
-                    <br />גוגל אנליטיקה הינו שירות ניטור וניתוח נתוני שימוש אינטרנטי. גוגל עושה שימוש בנתונים שנאגרים בכדי לבצע ניטור וניתוח לנתונים מהשירות שלנו. המידע הזה מועבר לשירותים נוספים בתוך גוגל. גוגל עלולה להשתמש במידע על מנת להתאים פרטנית את הפרסומות שלה עבור כל משתמש.
-                    <br />
-                    <br />ניתן לבטל הצטרפות לחלקים מסוימים של של גוגל אנליטיקה דרך הגדרות חשבון הגוגל, כמו למשל הגדרות הפרסום. ניתן לקרוא וללמוד אודות תהליכים אלו באתר הפרטיות של גוגל:
-                    <a href="https://policies.google.com/privacy" target="_blank">https://policies.google.com/privacy</a>
-                    <br />
-                    <br />למידע נוסף אודות מדיניות הפרטיות של גוגל, אנא בקרו באתר הפרטיות של גוגל:
-                    <a href="https://policies.google.com/privacy" target="_blank">https://policies.google.com/privacy</a>
+                    <p v-html="$t('privacy-page.services.analytics.google.info')"></p>
                 </li>
             </ul>
         </div>
         <div>
-            <h2>
-                <b>קישורים לאתרים חיצוניים</b>
-            </h2>
-            השירות שלנו עלול להכיל קישורים לשירותים חיצוניים שאינם שלנו ואינם בשליטתנו. בלחיצה על קישור לשירות חיצוני, תועבר לשירות החיצוני. אנו ממליצים בחום לעבור על מדיניות הפרטיות של כל אתר בו תבקרו.
-            <br />
-            <br />אין לנו כל שליטה על המתרחש בשירותים אלו, ואיננו נושאים באחריות על המתרחש בהם.
+            <h2 v-t="'privacy-page.outer-links.title'"></h2>
+            <span v-html="$t('privacy-page.outer-links.info')"></span>
         </div>
         <div>
-            <h2>
-                <b>פרטיות ילדים</b>
-            </h2>
-            האפליקציה שלנו לא פונה למשתמשים מתחת לגיל 18 ("ילדים").
-            <br />
-            <br />אנחנו לא אוספים בידיעה שום מידע פרטי על ילדים מתחת לגיל 18. אם את/ה הורה לילד ויודע/ת שהוא מסר לנו מידע פרטי, אנא צור/צרי איתנו קשר. אם נודע לך שאספנו מידע פרטי מילדים בלא קבלת אישור מהורה, אנו נפעל בהתאם ונסיר את כלל המידע מהשרתים שלנו.
+            <h2 v-t="'privacy-page.children.title'"></h2>
+            <span v-html="$t('privacy-page.children.info')"></span>
         </div>
         <div>
-            <h2>
-                <b>שינויים במדיניות הפרטיות</b>
-            </h2>
-            אנו עלולים לבצע שינויים במדיניות הפרטיות מדי פעם. בכל שינוי במדיניות הפרטיות נעדכן באמצעות שינוי הדף הזה.
-            <br />
-            <br />אנו נודיע באמצעות הודעה בתוך השירות שלנו, בטרם תיכנס לתוקף מדיניות חדשה. כמו כן נעדכן את תאריך העדכון האחרון בראש העמוד.
-            <br />
-            <br />אנחנו ממליצים לכל משתמש לבחון מדי פעם את עמוד זה כדי לוודא כי לא בוצעו שינויים במדיניות הפרטיות. שינויים במדיניות הפרטיות שלנו, חלים מהרגע בו הם מופיעים בעמוד זה.
+            <h2 v-t="'privacy-page.updates.title'"></h2>
+            <span v-html="$t('privacy-page.updates.info')"></span>
         </div>
         <div>
-            <h2>
-                <b>יצירת קשר</b>
-            </h2>
-            במידה ויש לכם שאלות לגבי מדיניות הפרטיות, אנא צרו איתנו קשר:
+            <h2 v-t="'privacy-page.contact.title'"></h2>
+            <span v-t="'privacy-page.contact.info'"></span>
             <ul>
                 <li>
-                    בכתובת המייל:
-                    <a href="mailto:atlowapps@gmail.com">atlowapps@gmail.com</a>
+                    <router-link to="/contact"><span v-t="'privacy-page.contact.web'"></span></router-link>
                 </li>
-                <li>
-                    בוואטסאפ:
-                    <a href="https://wa.me/972557249771" target="_blank">055-724-9771</a>
-                </li>
+                <li><span v-t="'privacy-page.contact.email'"></span> <a href="mailto:atlowapps@gmail.com">atlowapps@gmail.com</a></li>
+                <li><span v-t="'privacy-page.contact.whatsapp'"></span> <a href="https://wa.me/972557249771" target="_blank">055-724-9771</a></li>
             </ul>
             <br />
             <br />
@@ -164,8 +94,10 @@
 </template>
 
 <script lang="ts">
-import Vue from "vue";
-export default Vue.extend({});
+import { Component, Vue } from "vue-property-decorator";
+
+@Component
+export default class Privacy extends Vue {}
 </script>
 
 <style lang="scss" scoped>
@@ -175,5 +107,6 @@ h1 {
 }
 h2 {
     font-size: 1.2rem;
+    font-weight: bold;
 }
 </style>
