@@ -304,5 +304,10 @@
             "email": "By email:",
             "whatsapp": "Via whatsapp:"
         }
+    },
+    "404": {
+        "title": "Page not found",
+        "info": "The requested page could not be found :/",
+        "details": "We could not get the requested page.<br />It might be this page soed not exist!"
     }
 }

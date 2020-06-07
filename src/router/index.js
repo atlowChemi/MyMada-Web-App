@@ -63,6 +63,14 @@ const routes = [
             next(false);
         },
     },
+    {
+        path: "*",
+        meta: {
+            title: "404.title",
+            description: "404.info",
+        },
+        component: () => import("../views/404.vue"),
+    },
 ];
 
 const router = new VueRouter({

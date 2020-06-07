@@ -112,6 +112,7 @@ body {
     font-family: "Heebo", serif;
     @include vendor(user-select, none);
     background-color: $background;
+    background: radial-gradient(ellipse at center, $radialInner 0%, $radialOuter 100%);
     #app {
         &.lang {
             &-en {
