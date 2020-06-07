@@ -152,7 +152,6 @@ export default class ToolsMenu extends Vue {
     background-color: white;
     margin: 0;
     padding: 0;
-    transition: transform 0.3s ease-out;
     overflow-y: auto;
     transform: translateX(100%);
     box-shadow: 0 2px 2px 0 rgba(0, 0, 0, 0.14), 0 3px 1px -2px rgba(0, 0, 0, 0.12), 0 1px 5px 0 rgba(0, 0, 0, 0.2);

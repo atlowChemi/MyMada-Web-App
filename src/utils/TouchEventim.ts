@@ -16,6 +16,7 @@ const start = (event: TouchEvent) => {
     touchData.startYLocation = event.touches[0].pageY;
     touchData.direction = touchData.diffXAxis = touchData.newXLocation = 0;
 };
+
 const move = (event: TouchEvent) => {
     //Block x movement if the movemvnt is on X axis
     let movmentY = event.touches[0].pageY;
@@ -26,7 +27,7 @@ const move = (event: TouchEvent) => {
     touchData.diffXAxis = reverseLtr(getPercentage());
     eDispatcher(touchData.diffXAxis);
 };
-const end = () => {
+const end = (event: TouchEvent) => {
     // Move and animate the elements.
     const total = Math.abs(touchData.startXLocation - touchData.newXLocation);
     if (total > 30 && touchData.direction === 1) eDispatcher(0);
