@@ -27,7 +27,7 @@ const move = (event: TouchEvent) => {
     touchData.diffXAxis = reverseLtr(getPercentage());
     eDispatcher(touchData.diffXAxis);
 };
-const end = (event: TouchEvent) => {
+const end = () => {
     // Move and animate the elements.
     const total = Math.abs(touchData.startXLocation - touchData.newXLocation);
     if (total > 30 && touchData.direction === 1) eDispatcher(0);
