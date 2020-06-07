@@ -35,11 +35,10 @@ import ToolsMenu from "@/components/ToolsMenu.vue";
 export default class AppBar extends Vue {
     isMobile: boolean = true;
     menuIsOpen: boolean = false;
-    openage: number | undefined = 100;
+    openage: string | undefined = "100";
     @Watch("$route", { immediate: true, deep: true })
     changedRoute(to: any): void {
-        touchDragger.unInit();
-        // document.removeEventListener("touchmove", this.dragDrawer);
+        touchDragger.dispose();
         if (to.name !== "Tools") {
             this.menuIsOpen = false;
         } else {
@@ -49,7 +48,7 @@ export default class AppBar extends Vue {
     }
     @Watch("$i18n.locale", { immediate: true })
     setMenuStartPos() {
-        this.openage = this.$i18n.locale === "he" ? 100 : -100;
+        this.openage = this.$i18n.locale === "he" ? "100" : "-100";
     }
     get currentLoc(): string | undefined | null {
         return this.$route.name;
@@ -90,12 +89,10 @@ export default class AppBar extends Vue {
     }
     draggedEvent(e: Event) {
         if (e instanceof CustomEvent) {
-            // let disCalc = this.$i18n.locale === "he" ? 100 : -100;
             let amount = (e as CustomEvent<DragEventDetails>).detail.x;
-            console.log(amount);
-            this.openage = amount;
-                // if (amount <= 99) this.menuIsOpen = true;
-                // else this.menuIsOpen = false;
+            this.openage = String(amount);
+            if (Math.abs(amount) <= 99) this.menuIsOpen = true;
+            else this.menuIsOpen = false;
         }
     }
 }

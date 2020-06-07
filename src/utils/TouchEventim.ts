@@ -1,57 +1,64 @@
 import i18n from "@/i18n";
+import { convertRemToPixels } from "./helperMethods";
 
-const touchData: { touchstartx: number; touchmovex: number; movex: number; longTouch: boolean; slideWidth: 304 } = {
-    longTouch: false,
-    movex: 0,
-    slideWidth: 304,
-    touchmovex: 0,
-    touchstartx: 0,
+const touchData = {
+    diffXAxis: 0,
+    slideWidth: convertRemToPixels(19),
+    newXLocation: 0,
+    startXLocation: 0,
+    startYLocation: 0,
+    direction: 0,
 };
 
 const start = (event: TouchEvent) => {
-    // Test for flick.
-    touchData.longTouch = false;
-    setTimeout(() => (touchData.longTouch = true), 250);
     // Get the original touch position.
-    touchData.touchstartx = event.touches[0].screenX;
-    touchData.movex = touchData.touchmovex = 0;
+    touchData.startXLocation = event.touches[0].pageX;
+    touchData.startYLocation = event.touches[0].pageY;
+    touchData.direction = touchData.diffXAxis = touchData.newXLocation = 0;
 };
 const move = (event: TouchEvent) => {
-    // Continuously return touch position.
-    touchData.touchmovex = event.touches[0].screenX;
-    // Calculate distance to translate holder.
-    let movementPercentage = ((touchData.touchstartx - touchData.touchmovex) / touchData.slideWidth) * 100;
-    if (i18n.locale === "en") movementPercentage = movementPercentage * -1;
-    if (touchData.movex >= 0) touchData.movex = Math.min(movementPercentage, 100);
-    //else touchData.movex = Math.max(touchData.movex, -100);
-    // Defines the speed the images should move at.
-    if (touchData.movex < touchData.slideWidth) {
-        // makes the holder stop moving when there is no more content.
-        eDispatcher();
-    }
+    //Block x movement if the movemvnt is on X axis
+    let movmentY = event.touches[0].pageY;
+    if (Math.abs(touchData.startYLocation - movmentY) > 10) return;
+    //Do the X movement
+    touchData.newXLocation = event.touches[0].pageX;
+    touchData.direction = touchData.direction || reverseLtr(Math.sign(touchData.startXLocation - touchData.newXLocation));
+    touchData.diffXAxis = reverseLtr(getPercentage());
+    eDispatcher(touchData.diffXAxis);
 };
 const end = () => {
     // Move and animate the elements.
-    // touchData.touchstartx = 0;
-    let abs = Math.abs(touchData.movex);
-    if (abs > 30) eDispatcher(100);
-    else if (abs <= 30) eDispatcher(0);
+    const total = Math.abs(touchData.startXLocation - touchData.newXLocation);
+    if (total > 30 && touchData.direction === 1) eDispatcher(0);
+    else eDispatcher(reverseLtr(100));
 };
 
-const eDispatcher = (amount?: number) => {
-    if (amount !== undefined) touchData.movex = amount;
+const eDispatcher = (amount: number) => {
+    if (amount !== undefined) touchData.diffXAxis = amount;
     document.dispatchEvent(
-        new CustomEvent<DragEventDetails>("drawertouched", { detail: { x: touchData.movex } })
+        new CustomEvent<DragEventDetails>("drawertouched", { detail: { x: amount } })
     );
 };
 
-const touchDragger: { init: () => void; unInit: () => void } = {
+const getPercentage = () => {
+    let percentage = Math.abs((touchData.startXLocation - touchData.newXLocation) / touchData.slideWidth) * 100;
+    percentage = Math.max(Math.min(percentage, 100), 0);
+
+    if (touchData.direction === 1) {
+        return 100 - percentage;
+    }
+    return percentage;
+};
+
+const reverseLtr = (num: number) => num * (i18n.locale === "en" ? -1 : 1);
+
+const touchDragger: { init: () => void; dispose: () => void } = {
     init() {
         document.addEventListener("touchstart", start);
         document.addEventListener("touchmove", move);
         document.addEventListener("touchend", end);
     },
-    unInit() {
+    dispose() {
         document.removeEventListener("touchstart", start);
         document.removeEventListener("touchmove", move);
         document.removeEventListener("touchend", end);
@@ -59,5 +66,4 @@ const touchDragger: { init: () => void; unInit: () => void } = {
 };
 
 export { touchDragger };
-
 (<any>window).touchData = touchData;

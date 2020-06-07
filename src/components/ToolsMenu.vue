@@ -85,7 +85,7 @@ import { Component, Vue, Prop, Emit } from "vue-property-decorator";
 @Component
 export default class ToolsMenu extends Vue {
     @Prop({ type: Boolean, required: true, default: false }) readonly menuState!: boolean;
-    @Prop({ type: Number, required: false }) readonly openage!: boolean;
+    @Prop({ type: String, required: false }) readonly openage!: string;
     created() {
         if (!this.$route.params.tool && this.allowedTools.length > 0) {
             let routeTo!: string;

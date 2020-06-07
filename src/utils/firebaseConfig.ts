@@ -17,7 +17,21 @@ const firebaseConfig = {
 
 firebase.initializeApp(firebaseConfig);
 
-const messaging = firebase.messaging();
+let messaging: firebase.messaging.Messaging | { usePublicVapidKey: (key: string) => void; requestPermission(): Promise<void>; getToken(): Promise<string> };
+try {
+    messaging = firebase.messaging();
+} catch (err) {
+    messaging = {
+        usePublicVapidKey() {},
+        requestPermission() {
+            return new Promise<void>(() => {});
+        },
+        getToken() {
+            return new Promise<string>(() => {});
+        },
+    };
+}
+
 const defaultAnalytics = firebase.analytics();
 defaultAnalytics.logEvent("Web App Open", { name: "website Opened!" });
 messaging.usePublicVapidKey("BEFLpvSn04jJC8mgoS4k7zBzDBN3GEq_GXPHpp1d4Q6VePrq3yyRFh0SeBtAEqf156xuJ811CGC8ipfGdcMIj4Y");
@@ -25,7 +39,7 @@ messaging.usePublicVapidKey("BEFLpvSn04jJC8mgoS4k7zBzDBN3GEq_GXPHpp1d4Q6VePrq3yy
 const DB = firebase.database();
 const FB = firebase.firestore();
 
-FB.enablePersistence({ synchronizeTabs: true }).catch(function(err) {
+FB.enablePersistence({ synchronizeTabs: true }).catch(err => {
     console.log(err);
 });
 
