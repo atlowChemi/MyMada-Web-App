@@ -1,5 +1,5 @@
 <template>
-    <menu class="tools-nav" :class="{ open: menuState }">
+    <menu class="tools-nav" :class="{ open: menuState }" :style="{ transform: openage ? `translateX(${openage}%)` : '' }">
         <ul class="tools-nav__menu">
             <li class="tools-nav__menu-item tools-nav__menu-item__large-only" @click="goHome">
                 <i class="tools-nav__menu-item__icon material-icons">{{ $i18n.locale === "he" ? "arrow_forward" : "arrow_back" }}</i>
@@ -85,6 +85,7 @@ import { Component, Vue, Prop, Emit } from "vue-property-decorator";
 @Component
 export default class ToolsMenu extends Vue {
     @Prop({ type: Boolean, required: true, default: false }) readonly menuState!: boolean;
+    @Prop({ type: Number, required: false }) readonly openage!: boolean;
     created() {
         if (!this.$route.params.tool && this.allowedTools.length > 0) {
             let routeTo!: string;

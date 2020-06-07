@@ -129,4 +129,7 @@ declare global {
         name: string;
         role: MedicalRole;
     };
+    export type DragEventDetails = {
+        x: number;
+    };
 }

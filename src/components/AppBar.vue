@@ -16,7 +16,7 @@
             </div>
             <div class="main-header__nav--circle" v-if="currentLoc === 'home'"></div>
         </nav>
-        <tools-menu v-if="currentLoc === 'Tools'" :menuState="menuIsOpen" @close="closeMenu"></tools-menu>
+        <tools-menu v-if="currentLoc === 'Tools'" :menuState="menuIsOpen" @close="closeMenu" :openage="openage"></tools-menu>
         <div class="backdrop" @click="closeMenu" v-if="menuIsOpen && isMobile && currentLoc === 'Tools'"></div>
     </header>
 </template>
@@ -24,6 +24,7 @@
 <script lang="ts">
 import { Component, Vue, Watch } from "vue-property-decorator";
 import { convertRemToPixels } from "@/utils/helperMethods";
+import { touchDragger } from "@/utils/TouchEventim";
 import ToolsMenu from "@/components/ToolsMenu.vue";
 
 @Component({
@@ -34,11 +35,21 @@ import ToolsMenu from "@/components/ToolsMenu.vue";
 export default class AppBar extends Vue {
     isMobile: boolean = true;
     menuIsOpen: boolean = false;
+    openage: number | undefined = 100;
     @Watch("$route", { immediate: true, deep: true })
     changedRoute(to: any): void {
+        touchDragger.unInit();
+        // document.removeEventListener("touchmove", this.dragDrawer);
         if (to.name !== "Tools") {
             this.menuIsOpen = false;
+        } else {
+            touchDragger.init();
+            document.addEventListener("drawertouched", this.draggedEvent);
         }
+    }
+    @Watch("$i18n.locale", { immediate: true })
+    setMenuStartPos() {
+        this.openage = this.$i18n.locale === "he" ? 100 : -100;
     }
     get currentLoc(): string | undefined | null {
         return this.$route.name;
@@ -51,10 +62,12 @@ export default class AppBar extends Vue {
     }
     toggleMenu() {
         this.menuIsOpen = !this.menuIsOpen;
+        this.openage = undefined;
     }
     closeMenu() {
         if (this.menuIsOpen) {
             this.menuIsOpen = false;
+            this.openage = undefined;
         }
     }
     goBack() {
@@ -64,7 +77,6 @@ export default class AppBar extends Vue {
             this.$router.go(-1);
         }
     }
-
     created() {
         window.addEventListener("resize", this.sizeChanged);
         this.sizeChanged();
@@ -75,6 +87,16 @@ export default class AppBar extends Vue {
     sizeChanged(): void {
         let width = window.innerWidth;
         this.isMobile = width < convertRemToPixels(48);
+    }
+    draggedEvent(e: Event) {
+        if (e instanceof CustomEvent) {
+            // let disCalc = this.$i18n.locale === "he" ? 100 : -100;
+            let amount = (e as CustomEvent<DragEventDetails>).detail.x;
+            console.log(amount);
+            this.openage = amount;
+                // if (amount <= 99) this.menuIsOpen = true;
+                // else this.menuIsOpen = false;
+        }
     }
 }
 </script>
