@@ -1,8 +1,8 @@
 <template>
-    <div class="metro__valign">
+    <div class="metro__valign" @click="startMetronome">
         <div class="metro__valign-row">
             <p class="metro__info">{{ $t("tools-page.metronome.touch") }}</p>
-            <circular-button metronome @click="startMetronome" :preWorking="isPlaying">
+            <circular-button metronome ref="metroBtn" :preWorking="isPlaying">
                 {{ activeTime }}
                 <p class="round-num">{{ $t("tools-page.metronome.round") }}: {{ round }}</p>
             </circular-button>

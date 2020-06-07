@@ -19,15 +19,15 @@
 </template>
 
 <script lang="ts">
-import { Component, Vue, Emit, Prop } from "vue-property-decorator";
+import { Component, Vue, Emit, Prop, Watch } from "vue-property-decorator";
 
 @Component
 export default class CircularButton extends Vue {
     @Prop({ type: Boolean, required: false, default: false }) metronome!: boolean;
     @Prop({ type: Boolean, required: false, default: false }) preWorking!: boolean;
     working: boolean = false;
-    constructor() {
-        super();
+    @Watch("preWorking", { immediate: true })
+    WatchPreWork() {
         this.working = this.preWorking;
     }
     @Emit()
