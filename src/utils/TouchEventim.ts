@@ -67,4 +67,3 @@ const touchDragger: { init: () => void; dispose: () => void } = {
 };
 
 export { touchDragger };
-(<any>window).touchData = touchData;

@@ -1,6 +1,6 @@
 {
   "name": "mymadawebapp",
-  "version": "0.9.5",
+  "version": "1.0.0",
   "private": true,
   "scripts": {
     "start": "vue-cli-service build && node server.js",
