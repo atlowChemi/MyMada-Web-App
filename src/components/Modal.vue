@@ -36,8 +36,9 @@
 </template>
 
 <script lang="ts">
-import { Component, Vue, Prop } from "vue-property-decorator";
+import { Component, Prop } from "vue-property-decorator";
 import { ModalComponents } from ".";
+import Escapable from "@/utils/Escapable";
 
 @Component({
     components: {
@@ -48,11 +49,14 @@ import { ModalComponents } from ".";
         Settings: ModalComponents.Settings,
     },
 })
-export default class Modal extends Vue {
+export default class Modal extends Escapable {
     @Prop(String) message!: string;
     @Prop(String) title!: string;
     @Prop() type!: AlertType;
     addTeamBtnEnabled: TeamMember | null = null;
+    created() {
+        this.$on("escaped", () => this.close(true));
+    }
     get error(): boolean {
         return this.type === "Error";
     }
