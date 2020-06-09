@@ -43,12 +43,13 @@ export default class AppBar extends Vue {
             this.menuIsOpen = false;
         } else {
             touchDragger.init();
+            this.sizeChanged();
             document.addEventListener("drawertouched", this.draggedEvent);
         }
     }
     @Watch("$i18n.locale", { immediate: true })
     setMenuStartPos() {
-        this.openage = this.$i18n.locale === "he" ? "100" : "-100";
+        if (this.isMobile) this.openage = this.$i18n.locale === "he" ? "100" : "-100";
     }
     get currentLoc(): string | undefined | null {
         return this.$route.name;
