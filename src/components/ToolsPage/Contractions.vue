@@ -31,7 +31,8 @@ export default class Contractions extends Vue {
     async created() {
         this.btnText = this.$t("tools-page.contractions.start");
         let tmpContractions = await DatabaseManager.GetContractions();
-        let lastData = tmpContractions[tmpContractions.length - 1]!?.endTime;
+        let lastData = 0;
+        if (tmpContractions && tmpContractions.length) lastData = tmpContractions[tmpContractions.length - 1].endTime;
         let lastDataAge = (new Date().getTime() - lastData) / (1000 * 60);
         if (lastDataAge <= 20) {
             this.$store.dispatch("setContractions", tmpContractions);
