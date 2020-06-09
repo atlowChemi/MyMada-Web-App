@@ -1,6 +1,6 @@
 <template>
     <header class="main-header">
-        <nav class="main-header__nav" @click.capture="closeMenu">
+        <nav class="main-header__nav" @click="closeMenu">
             <div class="main-header__nav-wrapper">
                 <a class="main-header__nav-wrapper__button main-header__nav-wrapper__button-start" @click="toggleMenu" v-if="isMobile && currentLoc === 'Tools'">
                     <i class="material-icons">menu</i>
@@ -59,9 +59,10 @@ export default class AppBar extends Vue {
     openSettings() {
         this.$store.dispatch("alert/settings");
     }
-    toggleMenu() {
+    toggleMenu(e: Event) {
         this.menuIsOpen = !this.menuIsOpen;
         this.openage = undefined;
+        e.stopPropagation();
     }
     closeMenu() {
         if (this.menuIsOpen) {
@@ -86,6 +87,8 @@ export default class AppBar extends Vue {
     sizeChanged(): void {
         let width = window.innerWidth;
         this.isMobile = width < convertRemToPixels(48);
+        if (!this.isMobile) this.openage = "0";
+        else if (!this.menuIsOpen) this.setMenuStartPos();
     }
     draggedEvent(e: Event) {
         if (e instanceof CustomEvent) {
