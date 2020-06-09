@@ -27,6 +27,7 @@ function playSweep() {
     osc.type = "sine";
     osc.frequency.value = currentNote === 0 ? 320 : 277;
     gain.connect(audioCtx.destination);
+    gain.gain.value = 2.5;
     gain.gain.exponentialRampToValueAtTime(0.00001, audioCtx.currentTime + 0.9);
     osc.start();
     osc.stop(audioCtx.currentTime + 0.9);
