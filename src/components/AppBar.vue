@@ -13,6 +13,9 @@
                 <a class="main-header__nav-wrapper__button main main-header__nav-wrapper__button-end" @click="openSettings">
                     <i class="material-icons">settings</i>
                 </a>
+                <a class="main-header__nav-wrapper__button main main-header__nav-wrapper__button-end" @click="addToDictionary" v-if="isInDictionary">
+                    <i class="material-icons">add</i>
+                </a>
             </div>
             <div class="main-header__nav--circle" v-if="currentLoc === 'home'"></div>
         </nav>
@@ -54,10 +57,16 @@ export default class AppBar extends Vue {
     get currentLoc(): string | undefined | null {
         return this.$route.name;
     }
+    get isInDictionary(): boolean {
+        return this.$route.name === "Tools" && Boolean(this.$route.params.tool) && this.$route.params.tool === "dictionary";
+    }
     get title(): string {
         return this.$route.meta.title;
     }
     openSettings() {
+        this.$store.dispatch("alert/settings");
+    }
+    addToDictionary() {
         this.$store.dispatch("alert/settings");
     }
     toggleMenu(e: Event) {
@@ -128,15 +137,21 @@ export default class AppBar extends Vue {
                 cursor: pointer;
                 line-height: 3.5rem;
                 &-end {
-                    left: 0.8rem;
+                    left: 3.2rem;
+                    &:nth-of-type(2) {
+                        left: 0.8rem;
+                    }
                 }
                 &-start {
                     right: 0.8rem;
                 }
                 #app.lang-en & {
                     &-end {
-                        right: 0.8rem;
+                        right: 3.2rem;
                         left: unset;
+                        &:nth-of-type(2) {
+                            right: 0.8rem;
+                        }
                     }
                     &-start {
                         left: 0.8rem;
