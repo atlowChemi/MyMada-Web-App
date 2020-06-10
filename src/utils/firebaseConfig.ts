@@ -58,6 +58,15 @@ const setup = () => {
     });
 };
 
+const AddToDictionary = (item: DictionaryItem) =>
+    new Promise<void>((resolve, reject) => {
+        let newWord = FB.collection("dictionary").doc();
+        newWord
+            .set({ approved: false, ...item, key: newWord.id })
+            .then(resolve)
+            .catch(reject);
+    });
+
 const ContactDb = (fcmToken: string) => DB.ref(`chats/${fcmToken}`);
 
-export { setup, ContactDb, DB, FB };
+export { setup, ContactDb, DB, FB, AddToDictionary };

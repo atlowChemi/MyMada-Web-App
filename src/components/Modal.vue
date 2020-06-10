@@ -9,6 +9,7 @@
                 <send-to-moked v-else-if="SendToMoked" :msg="message"></send-to-moked>
                 <medical-codes v-else-if="MedicalCodePicker"></medical-codes>
                 <add-team-member v-else-if="IsAddTeamMember" :member="message" @is-valid="isValidTeamMember"></add-team-member>
+                <add-to-dictionary v-else-if="addToDictionary" @is-valid="addToDictionaryEnabled = $event"></add-to-dictionary>
                 <p v-else v-html="message"></p>
             </div>
             <div class="modal__footer">
@@ -29,6 +30,10 @@
                     <app-btn class="modal__footer-btn flat" v-wave.success @click="retrieveContractions" v-t="'modals.retrieve.yes'"></app-btn>
                     <app-btn class="modal__footer-btn flat" v-wave.danger @click="noRetrieveContractions" v-t="'common.cancel'"></app-btn>
                 </div>
+                <div v-else-if="addToDictionary">
+                    <app-btn class="modal__footer-btn flat" v-wave.success @click="goAddToDictionary" v-t="'modals.add'" :disabled="!addToDictionaryEnabled"></app-btn>
+                    <app-btn class="modal__footer-btn flat" v-wave.danger @click="close" v-t="'common.cancel'"></app-btn>
+                </div>
                 <md-button :disabled="validateUserName" v-else @click="close(false)">{{ $t("modals.ok") }}</md-button>
             </div>
         </div>
@@ -39,10 +44,12 @@
 import { Component, Prop } from "vue-property-decorator";
 import { ModalComponents } from ".";
 import Escapable from "@/utils/Escapable";
+import { AddToDictionary } from "../utils/firebaseConfig";
 
 @Component({
     components: {
         AddTeamMember: ModalComponents.AddTeamMember,
+        AddToDictionary: ModalComponents.AddToDictionary,
         ChangeName: ModalComponents.ChangeName,
         MedicalCodes: ModalComponents.MedicalCodes,
         SendToMoked: ModalComponents.SendToMoked,
@@ -54,6 +61,7 @@ export default class Modal extends Escapable {
     @Prop(String) title!: string;
     @Prop() type!: AlertType;
     addTeamBtnEnabled: TeamMember | null = null;
+    addToDictionaryEnabled: DictionaryItem | null = null;
     created() {
         this.$on("escaped", () => this.close(true));
     }
@@ -81,8 +89,26 @@ export default class Modal extends Escapable {
     get retrieveContraction(): boolean {
         return this.type === "ContractionRetrieve";
     }
+    get addToDictionary(): boolean {
+        return this.type === "DictionaryAdd";
+    }
     get validateUserName(): boolean {
         return this.changeName && !this.$store.getters["user/validUserName"];
+    }
+    goAddToDictionary() {
+        let tempItem = this.addToDictionaryEnabled;
+        if (tempItem !== null) {
+            this.addToDictionaryEnabled = null;
+            AddToDictionary(tempItem)
+                .then(() => {
+                    this.$store.dispatch("alert/showSnackbar", { show: true, msg: this.$t("modals.add-to-dictionary.good") });
+                    this.close(false);
+                })
+                .catch(() => {
+                    this.$store.dispatch("alert/showSnackbar", { show: true, msg: this.$t("modals.add-to-dictionary.err") });
+                    this.addToDictionaryEnabled = tempItem;
+                });
+        }
     }
     close(backdrop: boolean): void {
         if (this.validateUserName) {

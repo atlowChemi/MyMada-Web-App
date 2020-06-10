@@ -10,10 +10,10 @@
                 </a>
                 <span class="main-header__nav-wrapper__brand" v-if="title">{{ $t(title) }}</span>
                 <span class="main-header__nav-wrapper__brand" v-else>{{ $t("common.app-name") }}</span>
-                <a class="main-header__nav-wrapper__button main main-header__nav-wrapper__button-end" @click="openSettings">
+                <a class="main-header__nav-wrapper__button main-header__nav-wrapper__button-end__last" @click="openSettings">
                     <i class="material-icons">settings</i>
                 </a>
-                <a class="main-header__nav-wrapper__button main main-header__nav-wrapper__button-end" @click="addToDictionary" v-if="isInDictionary">
+                <a class="main-header__nav-wrapper__button main-header__nav-wrapper__button-end" @click="addToDictionary" v-if="isInDictionary">
                     <i class="material-icons">add</i>
                 </a>
             </div>
@@ -67,7 +67,7 @@ export default class AppBar extends Vue {
         this.$store.dispatch("alert/settings");
     }
     addToDictionary() {
-        this.$store.dispatch("alert/settings");
+        this.$store.dispatch("alert/addToDictionary");
     }
     toggleMenu(e: Event) {
         this.menuIsOpen = !this.menuIsOpen;
@@ -136,26 +136,29 @@ export default class AppBar extends Vue {
                 vertical-align: middle;
                 cursor: pointer;
                 line-height: 3.5rem;
-                &-end {
-                    left: 3.2rem;
-                    &:nth-of-type(2) {
-                        left: 0.8rem;
-                    }
-                }
-                &-start {
-                    right: 0.8rem;
-                }
-                #app.lang-en & {
+                &#{ & } {
                     &-end {
-                        right: 3.2rem;
-                        left: unset;
-                        &:nth-of-type(2) {
-                            right: 0.8rem;
+                        left: 3.2rem;
+                        &__last {
+                            left: 0.8rem;
                         }
                     }
                     &-start {
-                        left: 0.8rem;
-                        right: unset;
+                        right: 0.8rem;
+                    }
+                    #app.lang-en & {
+                        &-end {
+                            right: 3.2rem;
+                            left: unset;
+                            &__last {
+                                right: 0.8rem;
+                                left: unset;
+                            }
+                        }
+                        &-start {
+                            left: 0.8rem;
+                            right: unset;
+                        }
                     }
                 }
             }

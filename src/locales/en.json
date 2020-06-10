@@ -46,6 +46,15 @@
         },
         "change-name": {
             "title": "Write your name"
+        },
+        "add-to-dictionary": {
+            "title": "Add a new medical term to dictionary",
+            "item-name": "Medical term's name",
+            "item-name-err": "The name is a required field",
+            "item-details": "Medical term's descrtiption",
+            "item-details-err": "The description is a required field",
+            "good": "The term was sent for verification.",
+            "err": "An error occurred, please try again."
         }
     },
     "a2hs": {

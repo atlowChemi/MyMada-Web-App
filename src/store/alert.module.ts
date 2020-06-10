@@ -7,6 +7,8 @@ export const state: AlertState = {
     type: "Success",
     message: "",
     title: "",
+    showSnackbar: false,
+    snackbarMessage: "",
 };
 
 export const alert: Module<AlertState, RootState> = {
@@ -40,9 +42,17 @@ export const alert: Module<AlertState, RootState> = {
         restoreContractions({ commit }) {
             commit("restoreContractions");
         },
+        addToDictionary({ commit }) {
+            commit("addToDictionary");
+        },
         clear({ commit }) {
             commit("clear");
         },
+        //#region Snackbar
+        showSnackbar({ commit }, { show, msg }: { show: boolean; msg?: string }) {
+            commit("showSnackbar", { show, msg });
+        },
+        //#endregion
     },
     mutations: {
         message(state, { message, title }: { message: string; title: string }) {
@@ -99,8 +109,20 @@ export const alert: Module<AlertState, RootState> = {
             state.message = i18n.t("modals.retrieve.message").toString();
             state.title = i18n.t("modals.retrieve.title").toString();
         },
+        addToDictionary(state) {
+            state.show = true;
+            state.type = "DictionaryAdd";
+            state.message = "";
+            state.title = i18n.t("modals.add-to-dictionary.title").toString();
+        },
         clear(state) {
             state.show = false;
         },
+        //#region Snackbar
+        showSnackbar(state, { show, msg }: { show: boolean; msg?: string }) {
+            state.showSnackbar = show;
+            state.snackbarMessage = msg || "";
+        },
+        //#endregion
     },
 };

@@ -2,6 +2,9 @@
     <div id="app" :class="'lang-' + $i18n.locale">
         <app-nav />
         <modal v-if="alert.show" :message="alert.message" :title="alert.title" :type="alert.type" :footer="alert.footerType" />
+        <md-snackbar md-position="center" :md-duration="5500" :md-persistent="true" :md-active.sync="showSnackbar">
+            <span>{{ alert.snackbarMessage }}</span>
+        </md-snackbar>
         <main class="main-main">
             <router-view />
         </main>
@@ -47,6 +50,12 @@ export default class App extends Vue {
     }
     get alert() {
         return this.$store.state.alert;
+    }
+    get showSnackbar() {
+        return this.alert.showSnackbar;
+    }
+    set showSnackbar(val) {
+        this.$store.dispatch("alert/showSnackbar", { show: false });
     }
     @Watch("$route", { immediate: true, deep: true })
     routeChange(to: any, from: any): void {
@@ -161,6 +170,21 @@ body {
                             left: unset;
                             right: 0;
                         }
+                        & > .md-icon {
+                            & ~ label {
+                                left: 2.25rem;
+                                right: unset;
+                            }
+                            & ~ .md-input,
+                            & ~ .md-textarea {
+                                margin-left: 0.75rem;
+                                margin-right: 0;
+                            }
+                            &:after {
+                                right: unset;
+                                left: -1px;
+                            }
+                        }
                     }
                     &-list {
                         &-item-content {
@@ -187,104 +211,106 @@ body {
                             text-align: left;
                         }
                     }
+                    &-snackbar {
+                        direction: ltr;
+                    }
                 }
             }
             &-he {
                 direction: rtl;
             }
         }
-    }
-    .main-main {
-        height: calc(100vh - 3.5rem);
-        //padding: 1rem;
-        margin: 0 auto;
-        overflow-y: auto;
-
-        .container {
-            width: 90%;
-            max-width: 45rem;
+        .main-main {
+            height: calc(100vh - 3.5rem);
             margin: 0 auto;
-            overflow-wrap: break-word;
-            padding-bottom: 2rem;
-        }
+            overflow-y: auto;
 
-        .centered {
-            text-align: center;
-        }
+            .container {
+                width: 90%;
+                max-width: 45rem;
+                margin: 0 auto;
+                overflow-wrap: break-word;
+                padding-bottom: 2rem;
+            }
 
-        .grid {
-            display: flex;
-            flex-wrap: wrap;
-            justify-content: space-around;
-            align-items: stretch;
-        }
+            .centered {
+                text-align: center;
+            }
 
-        .card {
-            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.26);
-            border-radius: 0.7rem;
-            padding: 1rem 0;
+            .grid {
+                display: flex;
+                flex-wrap: wrap;
+                justify-content: space-around;
+                align-items: stretch;
+            }
 
-            &__header,
-            &__content {
-                padding: 1rem;
+            .card {
+                box-shadow: 0 2px 8px rgba(0, 0, 0, 0.26);
+                border-radius: 0.7rem;
+                padding: 1rem 0;
 
-                h1,
-                h2,
-                p {
-                    margin: 0;
+                &__header,
+                &__content {
+                    padding: 1rem;
+
+                    h1,
+                    h2,
+                    p {
+                        margin: 0;
+                    }
+                }
+
+                &__image {
+                    text-align: center;
+                    width: 100%;
+                    height: 10rem;
+
+                    img {
+                        max-width: 100%;
+                        max-height: 10rem;
+                    }
+                }
+
+                &__actions {
+                    padding: 1rem;
+                    text-align: center;
+
+                    form {
+                        display: inline;
+                    }
+
+                    button,
+                    a {
+                        text-decoration: none;
+                        margin: 0 0.25rem;
+                    }
                 }
             }
 
-            &__image {
-                text-align: center;
-                width: 100%;
-                height: 10rem;
+            .image {
+                max-height: 20rem;
+
+                @include desktop {
+                    height: 20rem;
+                }
 
                 img {
+                    max-height: 100%;
                     max-width: 100%;
-                    max-height: 10rem;
                 }
             }
 
-            &__actions {
-                padding: 1rem;
-                text-align: center;
-
-                form {
-                    display: inline;
-                }
-
-                button,
-                a {
-                    text-decoration: none;
-                    margin: 0 0.25rem;
-                }
+            .code {
+                display: inline-block;
+                background-color: #eee;
+                border-radius: 5px;
+                font-family: courier, monospace;
+                padding: 0.7rem;
+                margin: 0.4rem;
+                text-align: left;
+                white-space: pre;
+                direction: ltr;
             }
-        }
-
-        .image {
-            max-height: 20rem;
-
-            @include desktop {
-                height: 20rem;
-            }
-
-            img {
-                max-height: 100%;
-                max-width: 100%;
-            }
-        }
-
-        .code {
-            display: inline-block;
-            background-color: #eee;
-            border-radius: 5px;
-            font-family: courier, monospace;
-            padding: 0.7rem;
-            margin: 0.4rem;
-            text-align: left;
-            white-space: pre;
-            direction: ltr;
         }
     }
 }
