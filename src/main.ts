@@ -1,8 +1,8 @@
 import Vue from "vue";
 import Waves from "vue-waves-effect";
 import { MdAutocomplete, MdButton, MdCard, MdCheckbox, MdChips, MdEmptyState, MdField, MdHighlightText, MdList, MdMenu, MdRadio, MdRipple, MdSnackbar, MdSubheader, MdTabs, MdTooltip } from "vue-material/dist/components";
-import "vue-material/dist/vue-material.min.css";
-import "vue-material/dist/theme/default.css";
+import "@/assets/styles/vue-material.min.css";
+import "@/assets/styles/default.css";
 
 import "@/utils/directives";
 import App from "./App.vue";
