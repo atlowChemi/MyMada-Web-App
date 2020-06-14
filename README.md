@@ -1,24 +1,8 @@
-# mymadawebapp
+# MyMada Web Version (PWA)
 
-## Project setup
-```
-npm install
-```
+## My Mada
+The "MyMada" app was built  solely for the use of MADA volunteers. Its purpose was to facilitate easy contact with the MADA dispatch, and turn reception of emergency calls more convenient and noticeable.
+The app was only available for Android phones, and therefore the site was first created at September 2019.
 
-### Compiles and hot-reloads for development
-```
-npm run serve
-```
-
-### Compiles and minifies for production
-```
-npm run build
-```
-
-### Lints and fixes files
-```
-npm run lint
-```
-
-### Customize configuration
-See [Configuration Reference](https://cli.vuejs.org/config/).
+## Current version
+The current version was built using Vue framework, and has all features first version had, but is built as an SPA, and works much faster, and much more efficiently.
