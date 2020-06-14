@@ -1,5 +1,5 @@
-importScripts('https://www.gstatic.com/firebasejs/7.14.4/firebase-app.js');
-importScripts('https://www.gstatic.com/firebasejs/7.14.4/firebase-messaging.js');
+importScripts("https://www.gstatic.com/firebasejs/7.14.4/firebase-app.js");
+importScripts("https://www.gstatic.com/firebasejs/7.14.4/firebase-messaging.js");
 
 const firebaseConfig = {
     apiKey: "AIzaSyBexDweJCEqx-6nQWPdAHxztngxVKsMCeg",
@@ -16,11 +16,11 @@ firebase.initializeApp(firebaseConfig);
 
 const messaging = firebase.messaging();
 messaging.setBackgroundMessageHandler(function(payload) {
-   // Customize notification here
-   const notificationTitle = "הודעת צ'אט חדשה מאת מנהל!";
-   const notificationOptions = {
-      body: payload.data.msg,
-      icon: 'img/icons/android-chrome-512x512.png'
-   };
-   return self.registration.showNotification(notificationTitle, notificationOptions);
+    // Customize notification here
+    const notificationTitle = "הודעת צ'אט חדשה מאת מנהל!";
+    const notificationOptions = {
+        body: payload.data.msg,
+        icon: "img/icons/android-chrome-512x512.png",
+    };
+    return self.registration.showNotification(notificationTitle, notificationOptions);
 });
