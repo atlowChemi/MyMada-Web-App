@@ -31,14 +31,18 @@ module.exports = {
         assetsVersion: version,
         workboxPluginMode: "InjectManifest",
         workboxOptions: {
-            // skipWaiting: true,
-            // clientsClaim: true,
             swSrc: "src/service-worker.js",
             exclude: [/\.map$/],
         },
         manifestOptions: {
             short_name: 'דיווחי מד"א',
             background_color: "#E0E0E0",
+            related_applications: [
+                {
+                    platform: "play",
+                    id: "atlow.chemi.mymada",
+                },
+            ],
         },
     },
 
