@@ -362,4 +362,7 @@ declare global {
          */
         x: number;
     };
+    export type ContactMsg = {
+        [key: string]: { msg: string; sender: string; time: number; WhatsApp?: boolean };
+    };
 }

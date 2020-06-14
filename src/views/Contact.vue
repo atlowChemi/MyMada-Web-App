@@ -56,7 +56,7 @@ export default class Contact extends Vue {
     msg: string | null = null;
     lastSent!: number;
     seenMsg: string | any = "";
-    private retrievedMessages: { [key: string]: { msg: string; sender: string; time: number; WhatsApp?: boolean } } | null = null;
+    private retrievedMessages: ContactMessage[] | null = null;
     get fcmToken(): string {
         return this.$store.state.user.fcmToken;
     }
@@ -77,8 +77,8 @@ export default class Contact extends Vue {
                 const { Name, SeenByAdmin, LastSent, ...value } = snapshot.val();
                 if (!Name) return;
                 this.lastSent = LastSent;
-                this.retrievedMessages = value;
-                if (typeof SeenByAdmin !== undefined) {
+                if (SeenByAdmin != null && LastSent != null) {
+                    this.retrievedMessages = value;
                     this.seenMsg = SeenByAdmin ? this.$t("contact-page.seen") : this.$t("contact-page.not-seen");
                 }
             }
