@@ -56,7 +56,7 @@ export default class Contact extends Vue {
     msg: string | null = null;
     lastSent!: number;
     seenMsg: string | any = "";
-    private retrievedMessages: ContactMessage[] | null = null;
+    private retrievedMessages: globalThis.ContactMsg[] | null = null;
     get fcmToken(): string {
         return this.$store.state.user.fcmToken;
     }
