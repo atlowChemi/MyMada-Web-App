@@ -67,7 +67,7 @@ export default class Modal extends Escapable {
     }
     @Watch("$route", { immediate: true, deep: true })
     routeChange(to: any, from: any): void {
-        if (this.type === "Settings" || this.type === "UpdateNeeded") return;
+        if (this.type === "Settings" || this.type === "UpdateNeeded" || to == null || from == null) return;
         if (to.name !== from.name) this.close(false);
     }
     get error(): boolean {
