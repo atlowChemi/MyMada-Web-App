@@ -41,10 +41,10 @@
 </template>
 
 <script lang="ts">
-import { Component, Prop } from "vue-property-decorator";
+import { Component, Prop, Watch } from "vue-property-decorator";
 import { ModalComponents } from ".";
-import Escapable from "@/utils/Escapable";
 import { AddToDictionary } from "../utils/firebaseConfig";
+import Escapable from "@/utils/Escapable";
 
 @Component({
     components: {
@@ -64,6 +64,11 @@ export default class Modal extends Escapable {
     addToDictionaryEnabled: DictionaryItem | null = null;
     created() {
         this.$on("escaped", () => this.close(true));
+    }
+    @Watch("$route", { immediate: true, deep: true })
+    routeChange(to: any, from: any): void {
+        if (this.type === "Settings" || this.type === "UpdateNeeded") return;
+        if (to.name !== from.name) this.close(false);
     }
     get error(): boolean {
         return this.type === "Error";
