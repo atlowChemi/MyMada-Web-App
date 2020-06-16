@@ -85,7 +85,7 @@
                     <router-link to="/contact"><span v-t="'privacy-page.contact.web'"></span></router-link>
                 </li>
                 <li><span v-t="'privacy-page.contact.email'"></span> <a href="mailto:atlowapps@gmail.com">atlowapps@gmail.com</a></li>
-                <li><span v-t="'privacy-page.contact.whatsapp'"></span> <a href="https://wa.me/972557249771" target="_blank">055-724-9771</a></li>
+                <li><span v-t="'privacy-page.contact.whatsapp'"></span> <a href="https://wa.me/972557123581" target="_blank">055-712-3581</a></li>
             </ul>
             <br />
             <br />
