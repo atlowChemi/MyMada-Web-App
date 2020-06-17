@@ -42,8 +42,11 @@ $Volunteer: #e61f1f;
 
 //Tools Grades
 $badShape: #B71C1C;
+$badShapeTxt: #711111;
 $medShape: #fbc02d;
+$medShapeTxt: #6d5008;
 $goodShape: #4CAF50;
+$goodShapeTxt: #155a18;
 
 @mixin medicalCodeSelectors($name, $bg) {
     .grp-#{$name} {

@@ -1,8 +1,8 @@
 <template>
     <div class="info-card" :class="gradeClass">
-        <div class="info-card__icon" v-if="grade === undefined">
+        <!--<div class="info-card__icon" v-if="grade === undefined">
             <i class="material-icons">info</i>
-        </div>
+        </div>-->
         <div class="info-card__text">
             <slot>{{ $t("common.no-msg") }}</slot>
         </div>
@@ -30,18 +30,27 @@ export default class InfoCard extends Vue {
     $ic: &;
     display: flex;
     flex-flow: row;
-    background: white;
+    background: rgba($color: $btnColor, $alpha: 0.3);
+    color: $primaryColor;
     width: 100%;
-    border-radius: 8px;
     padding: 1rem;
     margin: 0.2rem 2rem;
+    border: 0 solid $btnColor;
+    .lang-he & {
+        border-radius: 8px 4px 4px 8px;
+        border-right-width: 4px;
+    }
+    .lang-en & {
+        border-radius: 4px 8px 8px 4px;
+        border-left-width: 4px;
+    }
     @include tablet {
         margin: 0.5rem 2rem;
     }
     &__text {
-        margin-right: 0.8rem;
-        padding-right: 0.4rem;
-        border-right: 1px solid $btnDisabledColor;
+        // margin-right: 0.8rem;
+        // padding-right: 0.4rem;
+        // border-right: 1px solid $btnDisabledColor;
         font-size: 1rem;
         .lang-en & {
             margin-right: 0;
@@ -58,16 +67,22 @@ export default class InfoCard extends Vue {
     &.grade {
         justify-content: center;
         text-align: center;
-        @include transition(background-color 1s linear);
+        @include transition(background-color 1s linear, border 1s linear, color 1s linear);
         &.grade {
             &-bad {
-                background-color: $badShape;
+                border-color: $badShape;
+                background-color: rgba($color: $badShape, $alpha: 0.3);
+                color: $badShapeTxt;
             }
             &-med {
-                background-color: $medShape;
+                border-color: $medShape;
+                background-color: rgba($color: $medShape, $alpha: 0.3);
+                color: $medShapeTxt;
             }
             &-good {
-                background-color: $goodShape;
+                border-color: $goodShape;
+                background-color: rgba($color: $goodShape, $alpha: 0.3);
+                color: $goodShapeTxt;
             }
         }
         #{ $ic }__text {
