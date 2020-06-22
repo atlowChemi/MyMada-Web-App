@@ -42,7 +42,7 @@ export default class Button extends Vue {
     background-color: $btnColor;
     cursor: pointer;
     outline: none;
-    transition: background-color 0.2s ease-out;
+    @include transition(background-color 0.2s ease-out);
     padding: 0 1rem;
     vertical-align: middle;
     -webkit-tap-highlight-color: transparent;

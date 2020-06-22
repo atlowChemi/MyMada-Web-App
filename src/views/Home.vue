@@ -22,6 +22,7 @@ export default {
 <style lang="scss" scoped>
 .grid-container {
     display: grid;
+    grid-template-columns: 1fr 1fr;
     grid-gap: 0.6rem 0.7rem;
     align-content: center;
     margin: 0.5rem auto;

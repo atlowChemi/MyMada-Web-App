@@ -35,14 +35,14 @@ export default class InfoCard extends Vue {
     width: 100%;
     padding: 1rem;
     margin: 0.2rem 2rem;
-    border: 0 solid $btnColor;
+    border: 1px solid $btnColor;
     .lang-he & {
         border-radius: 8px 4px 4px 8px;
-        border-right-width: 4px;
+        border-right-width: 6px;
     }
     .lang-en & {
         border-radius: 4px 8px 8px 4px;
-        border-left-width: 4px;
+        border-left-width: 6px;
     }
     @include tablet {
         margin: 0.5rem 2rem;
