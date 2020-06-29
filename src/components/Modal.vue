@@ -3,7 +3,7 @@
         <div class="modal-backdrop" @click="close(true)"></div>
         <div class="modal" :class="{ 'modal-error': error }">
             <div class="modal__content">
-                <h1 class="modal__content-title">{{ title || $t("modals.settings.title") }}</h1>
+                <h1 class="modal__content-title">{{ settings ? $t("modals.settings.title") : title || "" }}</h1>
                 <change-name v-if="changeName" />
                 <settings v-else-if="settings" />
                 <send-to-moked v-else-if="SendToMoked" :msg="message"></send-to-moked>

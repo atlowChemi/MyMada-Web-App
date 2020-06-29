@@ -71,7 +71,7 @@ export const alert: Module<AlertState, RootState> = {
             state.show = true;
             state.type = "Settings";
             state.message = "";
-            state.title = i18n.t("modals.settings.title").toString();
+            state.title = "modals.settings.title";
         },
         changeName(state) {
             state.show = true;
