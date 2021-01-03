@@ -14,7 +14,7 @@ module.exports = {
         ],
     },
     publicPath:
-		process.env.NODE_ENV === "production" && !proccess.env.HEROKU ? "/MyMada-Web-App/" : "/",
+		process.env.NODE_ENV === "production" && !process.env.HEROKU ? "/MyMada-Web-App/" : "/",
     css: {
         loaderOptions: {
             sass: {
