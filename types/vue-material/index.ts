@@ -68,3 +68,5 @@ declare module "vue/types/vue" {
         };
     }
 }
+
+declare module 'vue-material/dist/components';
