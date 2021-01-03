@@ -16,6 +16,7 @@ jobs:
         with:
           username: 'ChemiAtlow'
           reponame: 'MyMada-Web-App'
-          token: ${{ secrets.GITHUB_TOKEN }} # Leave this line unchanged:
+          token: ${{ secrets.GITHUB_TOKEN }} 
           gitemail: 'deploy@MyMada-Web.ci'
           gitname: 'deploy CI'
+
