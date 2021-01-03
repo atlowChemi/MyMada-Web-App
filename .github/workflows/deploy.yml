@@ -1,0 +1,22 @@
+
+
+name: CI
+
+on:
+  push:
+    branches: [ master ]
+  # Allows you to run this workflow manually from the Actions tab
+  workflow_dispatch:
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - uses: xRealNeon/VuePagesAction@1.0.0
+        with:
+          username: 'ChemiAtlow'
+          reponame: 'MyMada-Web-App'
+          token: ${{ secrets.GITHUB_TOKEN }} 
+          gitemail: 'deploy@MyMada-Web.ci'
+          gitname: 'deploy CI'

@@ -1,7 +1,7 @@
 const fs = require("fs");
 const webpack = require("webpack");
-const packageJson = fs.readFileSync("./package.json");
-const version = JSON.parse(packageJson).version || 0;
+const packageJson = require("./package.json");
+const version = packageJson.version || 0;
 module.exports = {
     configureWebpack: {
         devtool: "source-map",
@@ -13,7 +13,8 @@ module.exports = {
             }),
         ],
     },
-
+    publicPath:
+		process.env.NODE_ENV === "production" ? "/MyMada-Web-App/" : "/",
     css: {
         loaderOptions: {
             sass: {
