@@ -87,5 +87,3 @@ declare module 'vue/types/vue' {
 		}
 	}
 }
-
-declare module 'vue-waves-effect';
